@@ -23,15 +23,14 @@ namespace dotNet5781_01_9893_9832
         public void insert()
         {
             Console.WriteLine("Please enter ID of bus:");
-            string data = Console.ReadLine();
-            int id = int.Parse(data);
+            string id = Console.ReadLine();
             Console.WriteLine("Please enter date of start activity:");
-            data = Console.ReadLine();
+            string data = Console.ReadLine();
             DateTime date = DateTime.Parse(data);
             Bus b = new Bus(id, date);
             total.Add(b);
         }
-        public bool findBusBool(int id)
+        public bool findBusBool(string id)
         {
             foreach (Bus item in total)
                 if (item.ID == id)
@@ -39,7 +38,7 @@ namespace dotNet5781_01_9893_9832
             return false;
         }
 
-        public Bus findBusBus(int id)
+        public Bus findBusBus(string id)
         {
             foreach (Bus item in total)
                 if (item.ID == id)
@@ -49,13 +48,13 @@ namespace dotNet5781_01_9893_9832
         public void busForDriving()
         {
             Console.WriteLine("Please enter ID of bus:");
-            string data = Console.ReadLine();
-            int id = int.Parse(data);
+            string id = Console.ReadLine();
             if (!findBusBool(id))
                 Console.WriteLine("the bus is not found..");
             else
             {
-                int km = r.Next();
+                //int km = r.Next();
+                int km = 200;
                 Bus b = findBusBus(id);
                 b.checkDriving(km);
             }
@@ -63,9 +62,9 @@ namespace dotNet5781_01_9893_9832
 
         public void fuelOrTreat()
         {
+            string data;
             Console.WriteLine("Please enter ID of bus:");
-            string data = Console.ReadLine();
-            int id = int.Parse(data);
+            string id = Console.ReadLine();
             if (!findBusBool(id))
                 Console.WriteLine("the bus is not found..");
             else

@@ -8,35 +8,41 @@ namespace dotNet5781_01_9893_9832
 {
     class Bus
     {
-        public int ID
+        private string m_id;
+        public string ID
         {
-            get { return ID; }
-            private set { ID = value; }
+            get { return m_id; }
+            private set { m_id = value; }
         }
+        private DateTime start;
         public DateTime startActivity
         {
-            get { return startActivity; }
-            private set { startActivity = value; }
+            get { return start; }
+            private set { start = value; }
         }
+        private float m_sum;
         public float sumKM
         {
-            get { return sumKM; }
-            private set { sumKM = value; }
+            get { return m_sum; }
+            private set { m_sum = value; }
         }
+        private float ttF;
         public float totalFuel
         {
             get; set;
         }
+        private float kmfromt;
         public float kmFromTreat
         {
             get; set;
         }
+        private DateTime lastT;
         public DateTime lastTreat
         {
             get; set;
         }
 
-        public Bus(int id, DateTime date)
+        public Bus(string id, DateTime date)
         {
             ID = id;
             startActivity = date;
@@ -89,13 +95,20 @@ namespace dotNet5781_01_9893_9832
         }
         public void printKmFromTreat()
         {
-            // number with 8 digis 999-99-999
-            if (ID > 9999999)
-                Console.WriteLine("ID BUNS: " + ID/100000 + "-" + (ID/1000)%100 + "-" + ID%1000);
-            // number with 7 digis 99-999-99
+            if(ID.Length==7)
+            {
+                ID = ID.Insert(2, "-");
+                ID = ID.Insert(6, "-");
+            }
             else
-                Console.WriteLine("ID BUNS: " + ID / 100000 + "-" + (ID / 100) % 1000 + "-" + ID % 100);
+            {
+                ID = ID.Insert(3, "-");
+                ID = ID.Insert(6, "-");
+            }
+            Console.WriteLine("ID BUNS: " + ID);
             Console.WriteLine("the number KM from the last treat: " + kmFromTreat);
+
+
         }
 
 
