@@ -12,7 +12,10 @@ namespace dotNet5781_02_9893_9832
         {
             station = new ListOfBusStation();
             for (int i = 0; i < 40; i++)
+            {
+                Console.WriteLine(i);
                 station.addBusStation();
+            }
                 //station.Add(new BusStation());
             List<LineBus> lines = new List<LineBus>();
             lines.Add(new LineBus(station.total[0], station.total[1]));
@@ -94,10 +97,86 @@ namespace dotNet5781_02_9893_9832
                 Console.WriteLine("please enter number station key:");
                 int numberStation = int.Parse(Console.ReadLine());
                 if (station.search(numberStation))
-                    lines[numberBus].addstation(station.GetStation(numberStation));
+                    lines[lines.findIndex(numberBus)].addstation(station.GetStation(numberStation));
             }
 
         }
+
+        static void deleteLineBus(ref CollectionOfLineBus lines)
+        {
+            Console.WriteLine("please enter number line bus to delete:");
+            int data = int.Parse(Console.ReadLine());
+            int index = lines.findIndex(data);
+            if(index!= -1)
+                lines.deleteLineFromCollection(lines[index]);
+        }
+
+        static void deleteStationFromLineBus(ref CollectionOfLineBus lines)
+        {
+            Console.WriteLine("please enter number line bus and station to delete");
+            int bus = int.Parse(Console.ReadLine());
+            int station = int.Parse(Console.ReadLine());
+            int indexBus = lines.findIndex(bus);
+            if (indexBus != -1)
+            {
+                lines[indexBus].deleteStation(lines[indexBus].getStation(station));
+            }
+            else
+                throw new ObjectNotFoundExeption();
+        }
+
+        static void searchLinesInStation(ref CollectionOfLineBus lines)
+        {
+            Console.WriteLine("please enter number of station");
+            int station = int.Parse(Console.ReadLine());
+            Console.WriteLine("the buses which pass in this station are:");
+            foreach(LineBus bus in lines)
+                if(bus.stationInLineBus(station))
+                    Console.WriteLine(bus.numberBus + " ");
+        }
+
+        static void searchBestWay(ref CollectionOfLineBus lines)
+        {
+            CollectionOfLineBus options = new CollectionOfLineBus();
+            Console.WriteLine("please enter start and end stations");
+            int start = int.Parse(Console.ReadLine());
+            int end = int.Parse(Console.ReadLine());
+            foreach (LineBus bus in lines)
+            {
+                int indexStart = bus.getIndexOfStation(start);
+                int indexEnd = bus.getIndexOfStation(end);
+                if(indexStart != -1 && indexEnd != -1 && indexEnd>indexStart)
+                {
+                    options.addLineToCollection(bus.subLineBus(bus.getStation(start), bus.getStation(end)));
+                }
+            }
+            options.sortBusList();
+            foreach (LineBus bus in options)
+            {
+                Console.WriteLine("Number line bus: " + bus.numberBus + " total time: " + bus.totalTimeDriving() + "\n");
+            }
+
+        }
+
+        static void printAllLineBus(ref CollectionOfLineBus lines)
+        {
+            foreach (LineBus bus in lines)
+                Console.WriteLine(bus.ToString());
+        }
+
+        static void printStationWithBus(ref ListOfBusStation stations, ref CollectionOfLineBus lines)
+        {
+            foreach(BusStation item in stations.total)
+            {
+                Console.WriteLine("number station " + item.BusStationKey);
+                List<LineBus> buses = lines.listBusInStation(item.BusStationKey);
+                Console.WriteLine(" the number line bus whitch pass in this station: ");
+                foreach(LineBus line in buses)
+                    Console.WriteLine("  "+line.numberBus);
+                Console.WriteLine("***");
+            }
+        }
+
 
         static void Main(string[] args)
         {
@@ -110,10 +189,10 @@ namespace dotNet5781_02_9893_9832
             Console.WriteLine("b: to ADD a new station for a line bus");
             Console.WriteLine("c: to DELETE line bus");
             Console.WriteLine("d: to DELETE station fron line bus");
-            Console.WriteLine("e: to SEARCH lines which pass in spesific station");
+            Console.WriteLine("e: to SEARCH lines whitch pass in spesific station");
             Console.WriteLine("f: to FIND the best way between two stations");
             Console.WriteLine("g: to PRINT all line buses");
-            Console.WriteLine("h: to PRINT all station with the bus witch pass there");
+            Console.WriteLine("h: to PRINT all station with the bus whitch pass there");
             Console.WriteLine("i: to EXIT");
             do
             {
@@ -124,25 +203,25 @@ namespace dotNet5781_02_9893_9832
                         addNewLineBus(ref stations, ref buses);
                         break;
                     case "b":
-                        listBus.busForDriving();
+                        addNewStationInLineBus(ref stations, ref buses);
                         break;
                     case "c":
-                        listBus.fuelOrTreat();
+                        deleteLineBus(ref buses);
                         break;
                     case "d":
-                        listBus.printAllKmfromTreat();
+                        deleteStationFromLineBus(ref buses);
                         break;
                     case "e":
-                        Console.WriteLine("see you..:)");
+                        searchLinesInStation(ref buses);
                         break;
                     case "f":
-                        Console.WriteLine("see you..:)");
+                        searchBestWay(ref buses);
                         break;
                     case "g":
-                        Console.WriteLine("see you..:)");
+                        printAllLineBus(ref buses);
                         break;
                     case "h":
-                        Console.WriteLine("see you..:)");
+                        printStationWithBus(ref stations, ref buses);
                         break;
                     case "i":
                         Console.WriteLine("see you..:)");
@@ -152,7 +231,7 @@ namespace dotNet5781_02_9893_9832
                         break;
                 }
 
-            } while (ch != "e");
+            } while (ch != "i");
         }
     }
 }

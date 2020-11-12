@@ -19,6 +19,10 @@ namespace dotNet5781_02_9893_9832
         {
             return AllLineBus.GetEnumerator();
         }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)AllLineBus).GetEnumerator();
+        }
 
         //the func
 
@@ -29,7 +33,7 @@ namespace dotNet5781_02_9893_9832
         public void addLineToCollection(LineBus addBus)
         {
             bool exist = false;
-            foreach (LineBus bus in CollectionOfLineBus)
+            foreach (LineBus bus in AllLineBus)
                 if (addBus.numberBus == bus.numberBus)
                     exist = true;
             if (!exist)
@@ -48,7 +52,7 @@ namespace dotNet5781_02_9893_9832
         public List<LineBus> listBusInStation(int code)
         {
             List<LineBus> busInStation = new List<LineBus>();
-            foreach (LineBus bus in CollectionOfLineBus)
+            foreach (LineBus bus in AllLineBus)
                 if (bus.stationInLineBus(code))
                     busInStation.Add(bus);
             if (busInStation.Count == 0)
@@ -63,7 +67,7 @@ namespace dotNet5781_02_9893_9832
 
         public int findIndex(int numberLine)
         {
-            foreach (LineBus bus in CollectionOfLineBus)
+            foreach (LineBus bus in AllLineBus)
                 if (bus.numberBus == numberLine)
                     return AllLineBus.IndexOf(bus);
             return -1;
