@@ -38,5 +38,21 @@ namespace dotNet5781_02_9893_9832
                 if (item.BusStationKey == stationToDelete.BusStationKey)
                     total.Remove(item);
         }
+
+        public bool search(int code)
+        {
+            foreach(BusStation bus in total)
+                if(bus.BusStationKey==code)
+                    return true;
+            return false;
+        }
+
+        public BusStation GetStation(int code)
+        {
+            foreach (BusStation bus in total)
+                if (bus.BusStationKey == code)
+                    return bus;
+            return null;
+        }
     }
 }
