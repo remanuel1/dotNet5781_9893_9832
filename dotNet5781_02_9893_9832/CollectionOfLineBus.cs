@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_9893_9832
 {
+    //Collection of all lines
     class CollectionOfLineBus : IEnumerable<LineBus>
     {
-        public List<LineBus> AllLineBus
+        public List<LineBus> AllLineBus //List of all lines
         {
             get; set;
         }
-
+        //An exercise that will allow the collection to be counted
         public IEnumerator<LineBus> GetEnumerator()
         {
             return AllLineBus.GetEnumerator();
@@ -26,18 +27,18 @@ namespace dotNet5781_02_9893_9832
 
         //the func
 
-        public CollectionOfLineBus()
+        public CollectionOfLineBus() //constructor
         {
             AllLineBus = new List<LineBus>();
         }
-        public void addLineToCollection(LineBus addBus)
+        public void addLineToCollection(LineBus addBus) //Add a line 
         {
-            bool exist = false;
+            bool exist = false; //Checks if the line is already on the list
             foreach (LineBus bus in AllLineBus)
                 if (addBus.numberBus == bus.numberBus)
                     exist = true;
             if (!exist)
-                AllLineBus.Add(addBus);
+                AllLineBus.Add(addBus); //
         }
 
         public void deleteLineFromCollection(LineBus addBus)
