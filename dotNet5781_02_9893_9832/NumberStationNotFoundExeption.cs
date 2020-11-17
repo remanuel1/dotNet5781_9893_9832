@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace dotNet5781_02_9893_9832
 {
     [Serializable]
-    class NumberStationNotFoundExeption : Exception
+    public class NumberStationNotFoundExeption : Exception
     {
         public NumberStationNotFoundExeption() : base() { }
         public NumberStationNotFoundExeption(string message) : base(message) { }

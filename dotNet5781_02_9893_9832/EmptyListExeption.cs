@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace dotNet5781_02_9893_9832
 {
     [Serializable]
-    class EmptyListExeption : Exception
+    public class EmptyListExeption : Exception
     {
         public EmptyListExeption() : base() { }
         public EmptyListExeption(string message) : base(message) { }

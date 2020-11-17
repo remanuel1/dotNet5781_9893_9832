@@ -7,28 +7,30 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_9893_9832
 {
-    class BusStation
+    //A class that represents a bus station
+    public class BusStation
     {
         static Random r = new Random(DateTime.Now.Millisecond);
         public static int countKey = 0;
-        public int BusStationKey
+        public int BusStationKey //Station number
         {
             get; private set;
         }
-        public double Latitude
+        public double Latitude //Latitude of the station
         {
             get; private set;
         }
-        public double Longitude
+        public double Longitude //Longitude of the station
         {
             get; private set;
         }
-        public string address
+        public string address //Address of the station
+
         {
             get; private set;
         }
 
-        public BusStation(string _address = " ")
+        public BusStation(string _address = " ") //constructor
         {
             BusStationKey = countKey;
             countKey++;

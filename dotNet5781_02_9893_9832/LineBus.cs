@@ -10,7 +10,7 @@ using System.Data;
 namespace dotNet5781_02_9893_9832
 {
     public enum allArea {north, center, south, general};
-    class LineBus : IComparable
+    public class LineBus : IComparable
     {
         static Random r = new Random(DateTime.Now.Millisecond);
 
@@ -93,12 +93,13 @@ namespace dotNet5781_02_9893_9832
         public void addstation(BusStation station)
         {
             StationLineBus add = new StationLineBus(station);
-            Console.WriteLine("in this line there are " + listOfBus.Count + "stations, where you want to add this station? [1-" + (listOfBus.Count+1) + "]\n");
+            /*Console.WriteLine("in this line there are " + listOfBus.Count + "stations, where you want to add this station? [1-" + (listOfBus.Count+1) + "]\n");
             int index = int.Parse(Console.ReadLine());
             if (index < 0 || index-1 > listOfBus.Count)
             {
                 throw new NumberStationNotFoundExeption();
-            }
+            }*/
+            int index = r.Next(1, (listOfBus.Count + 1));
             if (!findStation(add))
             {
                 listOfBus.Insert(index-1, add);

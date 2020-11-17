@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace dotNet5781_02_9893_9832
 {
     [Serializable]
-    class ObjectNotFoundExeption : Exception
+    public class ObjectNotFoundExeption : Exception
     {
         public ObjectNotFoundExeption() : base() { }
         public ObjectNotFoundExeption(string message) : base(message) { }
