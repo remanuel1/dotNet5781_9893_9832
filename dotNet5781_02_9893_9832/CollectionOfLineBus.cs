@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_9893_9832
 {
     //Collection of all lines
-    class CollectionOfLineBus : IEnumerable<LineBus>
+    public class CollectionOfLineBus : IEnumerable<LineBus>
     {
         public List<LineBus> AllLineBus //List of all lines
         {

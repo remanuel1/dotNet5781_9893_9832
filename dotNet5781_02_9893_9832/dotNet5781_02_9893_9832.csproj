@@ -44,22 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\..\..\Desktop\שנה ב\BusStation.cs">
-      <Link>BusStation.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Desktop\שנה ב\CollectionOfLineBus.cs">
-      <Link>CollectionOfLineBus.cs</Link>
-    </Compile>
+    <Compile Include="BusStation.cs" />
+    <Compile Include="CollectionOfLineBus.cs" />
     <Compile Include="EmptyListExeption.cs" />
-    <Compile Include="..\..\..\..\..\Desktop\שנה ב\LineBus.cs">
-      <Link>LineBus.cs</Link>
-    </Compile>
+    <Compile Include="LineBus.cs" />
     <Compile Include="ListOfBusStation.cs" />
     <Compile Include="NumberStationNotFoundExeption.cs" />
     <Compile Include="ObjectNotFoundExeption.cs" />
-    <Compile Include="..\..\..\..\..\Desktop\שנה ב\Program.cs">
-      <Link>Program.cs</Link>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
