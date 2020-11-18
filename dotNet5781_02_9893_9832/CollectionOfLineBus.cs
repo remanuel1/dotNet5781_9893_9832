@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_9893_9832
 {
     //Collection of all lines
-    public class CollectionOfLineBus : IEnumerable<LineBus>
+    class CollectionOfLineBus : IEnumerable<LineBus>
     {
-        List<LineBus> AllLineBus //List of all lines
+        public List<LineBus> AllLineBus //List of all lines
         {
             get; set;
         }
@@ -31,14 +31,14 @@ namespace dotNet5781_02_9893_9832
         {
             AllLineBus = new List<LineBus>();
         }
-        public void addLineToCollection(LineBus addBus) //Add a line
+        public void addLineToCollection(LineBus addBus) //Add a line 
         {
             bool exist = false; //Checks if the line is already on the list
             foreach (LineBus bus in AllLineBus)
                 if (addBus.numberBus == bus.numberBus)
                     exist = true;
             if (!exist)
-                AllLineBus.Add(addBus);
+                AllLineBus.Add(addBus); //
         }
 
         public void deleteLineFromCollection(LineBus addBus)
