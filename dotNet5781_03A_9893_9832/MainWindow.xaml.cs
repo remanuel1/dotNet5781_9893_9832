@@ -92,7 +92,6 @@ namespace dotNet5781_03A_9893_9832
             ListOfBusStation stations = new ListOfBusStation();
             restart(ref stations, ref totalBuses);
             InitializeComponent();
-
             cbBusLines.ItemsSource = totalBuses;
             cbBusLines.DisplayMemberPath = " numberBus ";
             cbBusLines.SelectedIndex = 0;
