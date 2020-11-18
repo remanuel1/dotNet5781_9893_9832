@@ -29,7 +29,7 @@ namespace dotNet5781_03A_9893_9832
         {
             currentDisplayBusLine = totalBuses[index];
             UpGrid.DataContext = currentDisplayBusLine;
-            lbBusLineStations.DataContext = currentDisplayBusLine.listOfBus;
+            lbBusLineStations.DataContext = currentDisplayBusLine.ToString();
         }
 
         static void restart(ref ListOfBusStation station, ref CollectionOfLineBus line)
@@ -37,7 +37,6 @@ namespace dotNet5781_03A_9893_9832
             station = new ListOfBusStation();
             for (int i = 0; i < 40; i++)
             {
-                Console.WriteLine(i);
                 station.addBusStation();
             }
             //station.Add(new BusStation());
@@ -93,7 +92,7 @@ namespace dotNet5781_03A_9893_9832
             restart(ref stations, ref totalBuses);
             InitializeComponent();
             cbBusLines.ItemsSource = totalBuses;
-            cbBusLines.DisplayMemberPath = " numberBus ";
+            cbBusLines.DisplayMemberPath = "numberBus";
             cbBusLines.SelectedIndex = 0;
             ShowBusLine(cbBusLines.SelectedIndex);
             

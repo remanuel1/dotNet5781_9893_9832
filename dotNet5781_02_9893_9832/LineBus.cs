@@ -82,11 +82,18 @@ namespace dotNet5781_02_9893_9832
         }
         public override string ToString()
         {
-            string help = "Bus Number: " + numberBus + "\n";
+            /*string help = "Bus Number: " + numberBus + "\n";
             help += " the area is: " + area + "\n";
             help += " all the station: ";
             foreach (StationLineBus item in listOfBus)
                 help += item.busStation.BusStationKey + " -> ";
+            return help;*/
+            string help = "";
+            foreach (StationLineBus item in listOfBus)
+            {
+                help += "Bus station code: " + item.busStation.BusStationKey;
+                help += " " + item.busStation.Latitude + " " + item.busStation.Longitude + "\n";
+            }
             return help;
 
         }

@@ -81,6 +81,13 @@ namespace dotNet5781_02_9893_9832
             set { AllLineBus[index] = value; }
         }
 
+        public override string ToString()
+        {
+            string all = "";
+            foreach (LineBus bus in AllLineBus)
+                all += bus.ToString();
+            return all;
+        }
 
 
 

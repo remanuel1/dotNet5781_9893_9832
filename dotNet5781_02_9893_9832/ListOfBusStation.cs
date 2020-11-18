@@ -23,7 +23,7 @@ namespace dotNet5781_02_9893_9832
         // A function that adds a bus stop
         public void addBusStation()
         {
-            string data = " ";
+            /*string data = " ";
             Console.WriteLine("did you want to enter station address? [yes/no]"); //Option to enter an address
             data = Console.ReadLine();
             if (data == "yes")
@@ -31,7 +31,8 @@ namespace dotNet5781_02_9893_9832
                 Console.WriteLine("enter station address");
                 data = Console.ReadLine();
             }
-            BusStation station = new BusStation(data); //Create a station
+            BusStation station = new BusStation(data); //Create a station*/
+            BusStation station = new BusStation();
             total.Add(station); //Add the station to the list
         }
 
