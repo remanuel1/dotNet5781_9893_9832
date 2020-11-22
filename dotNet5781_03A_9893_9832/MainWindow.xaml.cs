@@ -29,7 +29,8 @@ namespace dotNet5781_03A_9893_9832
         {
             currentDisplayBusLine = totalBuses[index];
             UpGrid.DataContext = currentDisplayBusLine;
-            lbBusLineStations.DataContext = currentDisplayBusLine.ToString();
+            lbBusLineStations.DataContext = currentDisplayBusLine.listOfBus;
+            tbArea.DataContext = totalBuses[index];
         }
 
         static void restart(ref ListOfBusStation station, ref CollectionOfLineBus line)
@@ -95,10 +96,10 @@ namespace dotNet5781_03A_9893_9832
             cbBusLines.DisplayMemberPath = "numberBus";
             cbBusLines.SelectedIndex = 0;
             ShowBusLine(cbBusLines.SelectedIndex);
-            
+            tbArea.DataContext = totalBuses[0];
         }
 
-        private void lbBusLineStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cbBusLineStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int numBus = (cbBusLines.SelectedValue as LineBus).numberBus;
             ShowBusLine(totalBuses.findIndex(numBus));

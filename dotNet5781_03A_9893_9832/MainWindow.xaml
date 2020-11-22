@@ -5,25 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03A_9893_9832"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="800">
+        Title="רשימת התחנות עבור קו אוטובוס" Height="640" Width="800" Background="#FFB6F3E9" Icon="bus_icon.jpg">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="400"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto"/>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto" Grid.ColumnSpan="2" Margin="0,0,0.4,0.4"/>
         <TextBox Name="tbArea"
-                 Grid.Column="3" HorizontalAlignment="Stretch" Text="{Binding Path=Area}" VerticalAlignment="Stretch" FontSize="14"/>
+                 Grid.Column="3" HorizontalAlignment="Stretch" Text="{Binding Path=area}" VerticalAlignment="Stretch" FontSize="14" Background="#FFB6F3E9" BorderBrush="#00000000" Grid.ColumnSpan="2" Margin="198.2,0,-0.4,400.2" Grid.RowSpan="2"/>
         <ComboBox Name="cbBusLines"
-                  Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <Label Name="Area" Content="Area:" Grid.Column="2" HorizontalAlignment="Left" Margin="80.2,8,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Footlight MT Light" FontWeight="Bold"/>
-        <Label Content="Bus line Number:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" FontSize="20" FontWeight="Bold" FontFamily="Footlight MT Light"/>
-        <ListBox Name="lbBusLineStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="540" Margin="10,9.6,0,-148.8" VerticalAlignment="Top" Width="774" SelectionChanged="lbBusLineStations_SelectionChanged" Grid.Row="1" Grid.ColumnSpan="4"/>
+                  Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cbBusLineStations_SelectionChanged" Background="#FFB6F3E9" Grid.ColumnSpan="3" Margin="178.8,0,198.2,0.4"/>
+        <Label Name="Area" Content="Area:" Grid.Column="3" HorizontalAlignment="Left" Margin="80.2,8,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Kristen ITC" FontWeight="Bold"/>
+        <Label Content="Bus line Number:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="188" FontSize="20" FontWeight="Bold" FontFamily="Kristen ITC" Grid.ColumnSpan="2"/>
+        <ListBox Name="lbBusLineStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="540" Margin="10,9.6,0,-148.8" VerticalAlignment="Top" Width="774" Grid.Row="1" Grid.ColumnSpan="5" Background="#FFB6F3E9" FontFamily="Kristen ITC"/>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="179*"/>
+            <ColumnDefinition Width="198*"/>
+            <ColumnDefinition Width="198*"/>
+            <ColumnDefinition Width="198*"/>
         </Grid.ColumnDefinitions>
 
     </Grid>

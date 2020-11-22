@@ -30,6 +30,11 @@ namespace dotNet5781_02_9893_9832
                 get; set;
             }
 
+            public override string ToString()
+            {
+                return "station code: " + busStation.BusStationKey + "   " + busStation.Latitude + "   " + busStation.Longitude + "   " + timeRideFromLastStation;
+            }
+
             // constractor of station line bus
             public StationLineBus(BusStation bus)
             {
@@ -88,11 +93,12 @@ namespace dotNet5781_02_9893_9832
             foreach (StationLineBus item in listOfBus)
                 help += item.busStation.BusStationKey + " -> ";
             return help;*/
-            string help = "";
+           string help = "";
             foreach (StationLineBus item in listOfBus)
             {
-                help += "Bus station code: " + item.busStation.BusStationKey;
-                help += " " + item.busStation.Latitude + " " + item.busStation.Longitude + "\n";
+                /*help += "Bus station code: " + item.busStation.BusStationKey;
+                help += " " + item.busStation.Latitude + " " + item.busStation.Longitude + "\n";*/
+                help += "Bus station code: " + item.ToString() + "\n";
             }
             return help;
 
