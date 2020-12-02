@@ -1,0 +1,24 @@
+﻿<Window x:Class="dotNet5781_03B_9893_9832.addNewBus"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03B_9893_9832"
+        mc:Ignorable="d"
+        Title="addNewBus" Height="316.55" Width="296.243">
+    <Grid Margin="0,0,3.2,-20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="207*"/>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="21*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="idBus" PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" HorizontalAlignment="Left" Height="23" Margin="37,52,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.ColumnSpan="2" MaxLength="8"/>
+        <TextBlock HorizontalAlignment="Left" Margin="37,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FlowDirection="RightToLeft" Width="177" Grid.ColumnSpan="2" Text="הכנס תאריך ייצור"/>
+        <DatePicker x:Name="dateBus" HorizontalAlignment="Left" Margin="37,118,0,0" VerticalAlignment="Top" Height="27" Width="177" Grid.ColumnSpan="2"/>
+        <Button x:Name="add" Content="הוסף" HorizontalAlignment="Left" Margin="97,203,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="37,36,0,0" TextWrapping="Wrap" Text="הכנס מספר אוטובוס" FlowDirection="RightToLeft" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="177"/>
+
+    </Grid>
+
+</Window>

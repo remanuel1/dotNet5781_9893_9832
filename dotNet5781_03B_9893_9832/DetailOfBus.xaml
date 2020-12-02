@@ -1,0 +1,33 @@
+﻿<Window x:Class="dotNet5781_03B_9893_9832.DetailOfBus"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03B_9893_9832"
+        mc:Ignorable="d"
+        Title="פרטי האוטובוס" Height="350" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="מספר קו אוטובוס" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="100" Height="30" Grid.Column="1" Margin="0,10,9.6,280.8" />
+        <Label x:Name="idBus" Content="{Binding}" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="100" Height="30" Grid.Column="0" Margin="32,10,15.2,280.8"/>
+        <Label Content="תאריך ייצור" HorizontalAlignment="Center" FlowDirection="RightToLeft" Margin="0,40,9.6,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+        <Label x:Name="dateStart" Content="{Binding}" HorizontalAlignment="Center" FlowDirection="RightToLeft" Grid.Column="0" Margin="32,36,15.2,0" VerticalAlignment="Top" Width="100" Height="30"/>
+        <Label Content="תאריך טיפול אחרון" HorizontalAlignment="Center" FlowDirection="RightToLeft" Margin="18.8,66,14.6,0" VerticalAlignment="Top" Width="113" Grid.Column="1"/>
+        <Label x:Name="dateTreat" Content="{Binding}" HorizontalAlignment="Center" FlowDirection="RightToLeft" VerticalAlignment="Top" Grid.Column="0" Width="100" Height="30" Margin="32,62,15.2,0"/>
+        <Label Content="סך קילומטראז" HorizontalAlignment="Center" FlowDirection="RightToLeft" Margin="18.8,92,27.6,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+        <Label x:Name="sumKm" Content="{Binding}" HorizontalAlignment="Center" FlowDirection="RightToLeft" VerticalAlignment="Top" Grid.Column="0" Width="100" Height="30" Margin="32,88,15.2,0"/>
+        <Label Content="מצב הדלק" HorizontalAlignment="Center" FlowDirection="RightToLeft" Margin="18.8,118,27.6,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+        <Label x:Name="fuel" Content="{Binding}" HorizontalAlignment="Center" FlowDirection="RightToLeft" VerticalAlignment="Top" Grid.Column="0" Width="100" Height="30" Margin="32,118,15.2,0"/>
+        <Label Content="סטאטוס" HorizontalAlignment="Center" FlowDirection="RightToLeft" Margin="18.8,144,27.6,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+        <Label x:Name="state" Content="{Binding}" HorizontalAlignment="Center" FlowDirection="RightToLeft" VerticalAlignment="Top" Grid.Column="0" Width="100" Height="30" Margin="32,140,15.2,0"/>
+        <Label Content="סך קמ מהטיפול" HorizontalAlignment="Center" FlowDirection="RightToLeft" Margin="18.8,170,27.6,0" VerticalAlignment="Top" Width="100" Height="29" Grid.Column="1"/>
+        <Label x:Name="KmFrom" Content="{Binding}" HorizontalAlignment="Center" FlowDirection="RightToLeft" VerticalAlignment="Top" Grid.Column="0" Width="100" Height="30" Margin="32,169,15.2,0"/>
+        <Button Content="לתדלוק" HorizontalAlignment="Left" Margin="57,225,0,0" VerticalAlignment="Top" Width="75" Height="40" MouseDoubleClick="Button_MouseDoubleClick"/>
+        <Button Content="לטיפול" Grid.Column="1" HorizontalAlignment="Left" Margin="18.8,225,0,0" VerticalAlignment="Top" Width="75" Height="40" MouseDoubleClick="Button_MouseDoubleClick_1"/>
+
+
+    </Grid>
+</Window>
