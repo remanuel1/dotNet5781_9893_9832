@@ -32,7 +32,7 @@ namespace dotNet5781_03B_9893_9832
         {
             InitializeComponent();
             listBus.DataContext = totalBus;
-
+            
         }
 
         //see detail of bus
@@ -58,6 +58,7 @@ namespace dotNet5781_03B_9893_9832
             Bus bus = (sender as Button).DataContext as Bus;
             NewDriving newDriving = new NewDriving(bus);
             newDriving.Show();
+            
 
         }
 

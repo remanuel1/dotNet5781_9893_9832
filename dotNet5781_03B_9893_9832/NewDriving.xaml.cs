@@ -52,6 +52,7 @@ namespace dotNet5781_03B_9893_9832
                 {
                     MessageBox.Show("האוטובוס לא זמין לנסיעה", "שגיאה");
                 }
+//                return;
                 Close();
             }
 

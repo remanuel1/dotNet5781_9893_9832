@@ -95,6 +95,7 @@ namespace dotNet5781_03B_9893_9832
 
         private string _timer;
         public string timer
+
         {
             get { return _timer; }
             set
@@ -102,16 +103,32 @@ namespace dotNet5781_03B_9893_9832
                 _timer = value;
                 if (PropertyChanged != null)
                 {
-                    PropertyChanged(this, new PropertyChangedEventArgs("state"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("timer"));
                 }
             }
         }
 
+        private int _work;
+        public int work
+
+        {
+            get { return _work; }
+            set
+            {
+                _work = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("work"));
+                }
+            }
+        }
+        int timeToEndWork;
 
         public event PropertyChangedEventHandler PropertyChanged;
         static Random r = new Random(DateTime.Now.Millisecond);
-        public Stopwatch stopWatch;
+        //public Stopwatch stopWatch;
         public bool isTimerRun;
+
         public BackgroundWorker worker = new BackgroundWorker();
         
 
@@ -124,8 +141,9 @@ namespace dotNet5781_03B_9893_9832
             kmFromTreat = 0;
             lastTreat = date;
             state = 0;
-            timer = "00:00:00";
-            stopWatch = new Stopwatch();
+            timer = "";
+            //stopWatch = new Stopwatch();
+            work = 0;
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
@@ -157,7 +175,7 @@ namespace dotNet5781_03B_9893_9832
             else
             {
                 int num = r.Next(20, 51);
-                stopWatch.Restart();
+                //stopWatch.Restart();
                 isTimerRun = true;
                 worker.RunWorkerAsync((int)(num * km * 0.1));
                 state = (Status)1;
@@ -169,7 +187,8 @@ namespace dotNet5781_03B_9893_9832
         }
         public void fullFuel()
         {
-            stopWatch.Restart();
+            state = (Status)2;
+            //stopWatch.Restart();
             isTimerRun = true;
             worker.RunWorkerAsync(12);
             totalFuel = 1200;
@@ -177,7 +196,8 @@ namespace dotNet5781_03B_9893_9832
         }
         public void doTreat()
         {
-            stopWatch.Restart();
+            state = (Status)3;
+            //stopWatch.Restart();
             isTimerRun = true;
             worker.RunWorkerAsync(144);
             lastTreat = DateTime.Now;
@@ -220,27 +240,31 @@ namespace dotNet5781_03B_9893_9832
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            int num = (int)e.Argument;
-            for(int i=0; i<num; i++)
+            int length = (int)e.Argument;
+            timeToEndWork = length;
+            //timer = "שניות " + timeToEndWork + " נשארו עוד";
+            for(int i=1; i<= length; i++)
             {
-                worker.ReportProgress(1);
                 Thread.Sleep(1000);
+                worker.ReportProgress(i * 100 / length);
             }
                 
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            timer = stopWatch.Elapsed.ToString();
-            timer = timer.Substring(0, 8);
-            //timerTextBlock.Text = timer;
-
+            work = (int)e.ProgressPercentage;
+            timer = "נשארו עוד " + timeToEndWork + " שניות";
+            timeToEndWork--;
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             isTimerRun = false;
             state = (Status)0;
+            work = 0;
+            timer = "";
+            timeToEndWork = 0;
         }
 
 

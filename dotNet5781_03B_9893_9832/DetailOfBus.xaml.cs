@@ -34,24 +34,23 @@ namespace dotNet5781_03B_9893_9832
             sumKm.DataContext = bus.sumKM;
             fuel.DataContext = bus.totalFuel;
             state.DataContext = bus.state;
-
             KmFrom.DataContext = bus.kmFromTreat;
         }
 
+        // to full
         private void Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             temp.fullFuel();
             temp.state = (Status)2;
             state.Content = temp.state;
-            
         }
 
+        // to do treat
         private void Button_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
         {
             temp.doTreat();
             temp.state = (Status)3;
             state.Content = temp.state;
-            
         }
     }
 }

@@ -23,10 +23,10 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="listBus" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="397" Grid.ColumnSpan="2" MouseDoubleClick="listBus_MouseDoubleClick">
+        <ListView x:Name="listBus" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="595" MouseDoubleClick="listBus_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="מספר קו אוטובוס"/>
@@ -47,15 +47,22 @@
                     <GridViewColumn Width="110">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock x:Name="timerTextBlock"  Text="{Binding Path=timer, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+                                <ProgressBar x:Name="timerTextBlock" Minimum="0" Maximum="100" Width="70" Height="20" Value="{Binding work, UpdateSourceTrigger=PropertyChanged}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    
+                    <GridViewColumn Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock x:Name="timeToEnd" Text="{Binding timer , UpdateSourceTrigger=PropertyChanged}" Width="120" Height="20" FlowDirection="RightToLeft"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="הוסף אוטובוס חדש" Grid.Column="1" HorizontalAlignment="Left" Margin="25.2,23,0,0" VerticalAlignment="Top" Width="109" Click="Button_Click"/>
+        <Button Content="הוסף אוטובוס חדש" Grid.Column="1" HorizontalAlignment="Left" Margin="42.8,35,0,0" VerticalAlignment="Top" Width="109" Click="Button_Click" Height="37"/>
 
 
     </Grid>
