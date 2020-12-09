@@ -17,6 +17,8 @@ namespace dotNet5781_03B_9893_9832
     /// <summary>
     /// Interaction logic for DetailOfBus.xaml
     /// </summary>
+
+    //A new window showing details of a bus
     public partial class DetailOfBus : Window
     {
         Bus temp;
@@ -24,6 +26,8 @@ namespace dotNet5781_03B_9893_9832
         {
             InitializeComponent();
         }
+
+        //constructor
         public DetailOfBus(Bus bus)
         {
             temp = bus as Bus;

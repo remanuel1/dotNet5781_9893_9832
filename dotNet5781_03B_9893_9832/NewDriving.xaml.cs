@@ -17,6 +17,8 @@ namespace dotNet5781_03B_9893_9832
     /// <summary>
     /// Interaction logic for NewDriving.xaml
     /// </summary>
+
+    //A new window for entering miles for a new driving
     public partial class NewDriving : Window
     {
         
@@ -32,6 +34,7 @@ namespace dotNet5781_03B_9893_9832
             InitializeComponent();
         }
 
+        //A function that allows the entry of numbers only
         private void TextBox_OnlyNumbers_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             TextBox text = sender as TextBox;
@@ -41,8 +44,9 @@ namespace dotNet5781_03B_9893_9832
             //allow get out of the text box
             if (e.Key == Key.Enter || e.Key == Key.Return || e.Key == Key.Tab)
             {
-                int sumKm = int.Parse(sumKM.Text);
-                if(item.checkDriving(sumKm))
+                float sumKm = float.Parse(sumKM.Text);
+                //int sumKm = int.Parse(sumKM.Text);
+                if (item.checkDriving(sumKm))
                 {
                     /*int num = r.Next(20, 51);
                     item.worker.RunWorkerAsync((int)(num * sumKm * 0.1));
@@ -60,7 +64,7 @@ namespace dotNet5781_03B_9893_9832
             //allow list of system keys (add other key here if you want to allow)
             if (e.Key == Key.Escape || e.Key == Key.Back || e.Key == Key.Delete ||
                 e.Key == Key.CapsLock || e.Key == Key.LeftShift || e.Key == Key.Home
-             || e.Key == Key.End || e.Key == Key.Insert || e.Key == Key.Down || e.Key == Key.Right)
+             || e.Key == Key.End || e.Key == Key.Insert || e.Key == Key.Down || e.Key == Key.Right || e.Key == Key.OemPeriod)
                 return;
 
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);

@@ -10,30 +10,36 @@ using System.Diagnostics;
 
 namespace dotNet5781_03B_9893_9832
 {
-
+    //the status of the bus
     public enum Status { ready, inDriving, refueling, inTreat, needTreat };
+   
+    //A class that represents a bus
     public class Bus : INotifyPropertyChanged
     {
-
+       // Bus license number
         private string m_id;
         public string ID
         {
             get { return m_id; }
             private set
             {
-                //m_id = value;
+                //Check that the license number is correct according to the year of manufacture
                 if ((startActivity.Year < 2018 && value.Length == 7) || (startActivity.Year >= 2018 && value.Length == 8))
                     m_id = value;
                 else
                     throw new Exception("מספר רישוי לא תקף");
             }
         }
+
+       // Activity start date
         private DateTime start;
         public DateTime startActivity
         {
             get { return start; }
             set { start = value; }
         }
+
+        //Amount of miles
         private float m_sum;
         public float sumKM
         {
@@ -47,6 +53,8 @@ namespace dotNet5781_03B_9893_9832
                 }
             }
         }
+
+        //Full refueling
         private float ttF;
         public float totalFuel
         {
@@ -60,6 +68,8 @@ namespace dotNet5781_03B_9893_9832
                 }
             }
         }
+
+        //Miles from the last treatment
         private float kmfromt;
         public float kmFromTreat
         {
@@ -73,6 +83,8 @@ namespace dotNet5781_03B_9893_9832
                 }
             }
         }
+
+        //Last treatment date
         private DateTime lastT;
         public DateTime lastTreat
         {
@@ -86,6 +98,8 @@ namespace dotNet5781_03B_9893_9832
                 }
             }
         }
+
+        //Bus status
         private Status st;
         public Status state
         {
@@ -101,6 +115,7 @@ namespace dotNet5781_03B_9893_9832
             }
         }
 
+        //Processor timer
         private string _timer;
         public string timer
 
@@ -116,6 +131,7 @@ namespace dotNet5781_03B_9893_9832
             }
         }
 
+       
         private int _work;
         public int work
 
@@ -130,7 +146,8 @@ namespace dotNet5781_03B_9893_9832
                 }
             }
         }
-        int timeToEndWork;
+
+        //Should the button be available
 
         private bool _notEnable;
         public bool notEnable
@@ -145,6 +162,7 @@ namespace dotNet5781_03B_9893_9832
                 }
             }
         }
+        //An image representing the status of the bus
 
         private string _image;
         public string image
@@ -152,7 +170,8 @@ namespace dotNet5781_03B_9893_9832
             get { return _image; }
             set
             {
-                switch(state)
+                //Adjust image according to bus status
+                switch (state)
                 {
                     case (Status)0:
                         _image = "ready.JPG";
@@ -181,10 +200,10 @@ namespace dotNet5781_03B_9893_9832
         public event PropertyChangedEventHandler PropertyChanged;
         static Random r = new Random(DateTime.Now.Millisecond);
         bool isTimerRun = false;
-
+        int timeToEndWork;
         public BackgroundWorker worker = new BackgroundWorker();
-        
 
+        //constructor Of a bus
         public Bus(string id, DateTime date)
         {
             startActivity = date;
@@ -206,6 +225,7 @@ namespace dotNet5781_03B_9893_9832
             worker.WorkerReportsProgress = true;
         }
 
+        //A function that checks if the bus needs care
         public bool needTreat()
         {
             DateTime dateNow = DateTime.Now;
@@ -219,6 +239,7 @@ namespace dotNet5781_03B_9893_9832
 
         }
 
+       // A function that checks if the bus can leave for driving
         public bool checkDriving(float km)
         {
             DateTime dateNow = DateTime.Now;
@@ -240,6 +261,8 @@ namespace dotNet5781_03B_9893_9832
                 return true;
             }
         }
+
+        //Full refueling
         public void fullFuel()
         {
             state = (Status)2;
@@ -248,6 +271,8 @@ namespace dotNet5781_03B_9893_9832
             worker.RunWorkerAsync(12);
 
         }
+
+        //Bus treat
         public void doTreat()
         {
             state = (Status)3;
@@ -256,6 +281,8 @@ namespace dotNet5781_03B_9893_9832
             worker.RunWorkerAsync(144);
 
         }
+
+        //Prints how many miles the bus has traveled since the last treatment
         public void printKmFromTreat()
         {
             if (ID.Length == 7)
@@ -273,7 +300,7 @@ namespace dotNet5781_03B_9893_9832
 
 
         }
-
+        //override for to string
         public override string ToString()
         {
             string temp = ID;
@@ -290,6 +317,8 @@ namespace dotNet5781_03B_9893_9832
             return temp;
         }
 
+
+        //A process that counts seconds that the bus is in care / refueling / travel
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             int length = (int)e.Argument;
@@ -328,14 +357,6 @@ namespace dotNet5781_03B_9893_9832
                 kmFromTreat = 0;
             }
         }
-
-
-
-
-
-
-
-
 
     }
 }

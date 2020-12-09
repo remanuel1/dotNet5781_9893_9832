@@ -17,14 +17,16 @@ namespace dotNet5781_03B_9893_9832
     /// <summary>
     /// Interaction logic for addNewBus.xaml
     /// </summary>
-    public partial class addNewBus : Window
+   
+     //new window for insert a new bus
+    public partial class addNewBus : Window 
     {
         public addNewBus()
         {
             InitializeComponent();
-            //add.DataContext = idBus.Text != ""
+          
         }
-
+        //Click event to enter new bus details
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string id = (string)idBus.Text;
@@ -33,10 +35,11 @@ namespace dotNet5781_03B_9893_9832
             try
             {
                 temp = new Bus(id, date);
-                if (TotalBus.search(temp.ID))
+                if (TotalBus.search(temp.ID)) //If there is such a bus
                     MessageBox.Show("לא ניתן להוסיף אוטובוס קיים", "שגיאה");
                 else
-                    TotalBus.addNewBus(temp);
+                    TotalBus.addNewBus(temp);//Add the bus to the list
+
             }
             catch
             {
@@ -45,7 +48,7 @@ namespace dotNet5781_03B_9893_9832
 
             this.Close();
         }
-
+        //event that lets you enter only numbers for distance
         private void TextBox_OnlyNumbers_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             TextBox text = sender as TextBox;

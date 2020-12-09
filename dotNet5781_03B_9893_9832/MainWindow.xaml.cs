@@ -56,11 +56,7 @@ namespace dotNet5781_03B_9893_9832
         {
             Bus bus = (sender as Button).DataContext as Bus;
             NewDriving newDriving = new NewDriving(bus);
-            newDriving.Show();
-            
-
-
-
+            newDriving.Show(); 
         }
 
         //full the fuel
@@ -70,8 +66,5 @@ namespace dotNet5781_03B_9893_9832
             bus.fullFuel();
 
         }
-
-
-
     }
 }
