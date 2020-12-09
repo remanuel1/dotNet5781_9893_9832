@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_9893_9832"
         mc:Ignorable="d"
-        Title="כל האוטובוסים" Height="450" Width="800" FontFamily="FbExtazi Regular">
+        Title="כל האוטובוסים" Height="500" Width="600" FontFamily="FbExtazi Regular">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <ListView x:Name="listBus"
                   FontFamily="FbExtazi Regular" FontSize="14"
-                  ItemsSource="{Binding}" Width="800" Background="White"
+                  ItemsSource="{Binding}" Width="600" Background="White"
                   HorizontalAlignment="Left" VerticalAlignment="Top"
                   MouseDoubleClick="listBus_MouseDoubleClick" Grid.Row="0">
             <ListView.View>
@@ -28,7 +28,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     
-                    <GridViewColumn/>
+                    <GridViewColumn x:Name="listBuses"/>
                     
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
@@ -80,8 +80,6 @@
                 Style="{StaticResource FontForButtom}"
                 HorizontalAlignment="Left" VerticalAlignment="Center" Padding="5"
                 Click="Button_Click" Height="36" Grid.Row="1" Margin="26,24,0,24"/>
-
-
 
     </Grid>
 </Window>

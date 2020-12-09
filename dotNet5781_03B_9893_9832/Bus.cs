@@ -206,6 +206,13 @@ namespace dotNet5781_03B_9893_9832
         //constructor Of a bus
         public Bus(string id, DateTime date)
         {
+            /*DateTime today = DateTime.Now;
+            if ((date.Year > today.Year))
+                throw new Exception();
+            if (date.Year == today.Year && date.Month > today.Month)
+                throw new Exception();
+            if (date.Year == today.Year && date.Month == today.Month && date.Day > today.Day)
+                throw new Exception();*/
             startActivity = date;
             if (id.Length < 7)
                 throw new Exception();
@@ -230,7 +237,7 @@ namespace dotNet5781_03B_9893_9832
         {
             DateTime dateNow = DateTime.Now;
             TimeSpan t = dateNow - lastTreat;
-            if (kmFromTreat > 20000 || t.Days > 365)
+            if (kmFromTreat >= 20000 || t.Days > 365)
             {
                 state = (Status)4;
                 return true;
@@ -347,7 +354,10 @@ namespace dotNet5781_03B_9893_9832
         {
             isTimerRun = false;
             notEnable = true;
-            state = (Status)0;
+            if(needTreat())
+                state = (Status)4;
+            else
+                state = (Status)0;
             work = 0;
             timer = "";
             timeToEndWork = 0;

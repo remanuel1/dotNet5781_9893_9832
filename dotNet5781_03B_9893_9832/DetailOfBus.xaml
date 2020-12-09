@@ -39,8 +39,8 @@
                HorizontalAlignment="Center" VerticalAlignment="Center"
                FlowDirection="RightToLeft" Grid.Column="1" Grid.Row="1" Padding="5"
                Style="{StaticResource FontForLabel}"/>
-        
-        <Label x:Name="dateStart" Content="{Binding}"
+
+        <Label x:Name="dateStart" Content="{Binding startActivity}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
                FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="1" Padding="5"
                Style="{StaticResource FontForLabel}"/>
@@ -49,8 +49,8 @@
                HorizontalAlignment="Center" VerticalAlignment="Center"
                FlowDirection="RightToLeft" Grid.Column="1" Grid.Row="2" Padding="5" 
                Style="{StaticResource FontForLabel}"/>
-        
-        <Label x:Name="dateTreat" Content="{Binding}"
+
+        <Label x:Name="dateTreat" Content="{Binding lastTreat}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
                FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="2" Padding="5"
                Style="{StaticResource FontForLabel}"/>
@@ -59,8 +59,8 @@
                HorizontalAlignment="Center" VerticalAlignment="Center"
                FlowDirection="RightToLeft" Grid.Column="1" Grid.Row="3" Padding="5"
                Style="{StaticResource FontForLabel}"/>
-        
-        <Label x:Name="sumKm" Content="{Binding}"
+
+        <Label x:Name="sumKm" Content="{Binding sumKM}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
                FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="3" Padding="5"
                Style="{StaticResource FontForLabel}"/>

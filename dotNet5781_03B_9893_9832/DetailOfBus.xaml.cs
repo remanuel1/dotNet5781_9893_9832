@@ -33,9 +33,9 @@ namespace dotNet5781_03B_9893_9832
             temp = bus as Bus;
             InitializeComponent();
             idBus.DataContext = bus;
-            dateStart.DataContext = bus.startActivity;
-            dateTreat.DataContext = bus.lastTreat;
-            sumKm.DataContext = bus.sumKM;
+            dateStart.DataContext = bus;
+            dateTreat.DataContext = bus;
+            sumKm.DataContext = bus;
             fuel.DataContext = bus;
             state.DataContext = bus;
             KmFrom.DataContext = bus.kmFromTreat;

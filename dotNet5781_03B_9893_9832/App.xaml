@@ -4,15 +4,18 @@
              xmlns:local="clr-namespace:dotNet5781_03B_9893_9832"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        
         <Style x:Key="FontForTextBlock" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="FbExtazi Regular"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        
         <Style x:Key="FontForListBox" TargetType="ListBox">
             <Setter Property="FontFamily" Value="FbExtazi Regular"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
+        
         <Style x:Key="FontForButtom" TargetType="Button">
             <Setter Property="FontFamily" Value="FbExtazi Regular"/>
             <Setter Property="FontSize" Value="14"/>
@@ -28,7 +31,6 @@
             <Setter Property="FontFamily" Value="FbExtazi Regular"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
-
 
     </Application.Resources>
 </Application>

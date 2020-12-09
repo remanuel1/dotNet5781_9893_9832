@@ -30,7 +30,11 @@ namespace dotNet5781_03B_9893_9832
 
         public MainWindow()
         {
+            welcome welcomeProgram = new welcome();
+            welcomeProgram.Show();
+            Thread.Sleep(1500);
             InitializeComponent();
+            welcomeProgram.Close();
             listBus.DataContext = totalBus;
             
         }
