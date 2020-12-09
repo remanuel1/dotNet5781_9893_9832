@@ -54,7 +54,8 @@ namespace dotNet5781_03B_9893_9832
                 }
                 else
                 {
-                    MessageBox.Show("האוטובוס לא זמין לנסיעה", "שגיאה");
+                    //MessageBox.Show("האוטובוס לא זמין לנסיעה", "שגיאה");
+                    MessageBox.Show("האוטובוס לא זמין לנסיעה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 //                return;
                 Close();
