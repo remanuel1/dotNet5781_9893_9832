@@ -54,11 +54,12 @@ namespace dotNet5781_03B_9893_9832
         //new driving
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
             Bus bus = (sender as Button).DataContext as Bus;
             NewDriving newDriving = new NewDriving(bus);
             newDriving.Show();
             
+
+
 
         }
 

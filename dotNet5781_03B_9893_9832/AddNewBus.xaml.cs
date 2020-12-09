@@ -22,14 +22,27 @@ namespace dotNet5781_03B_9893_9832
         public addNewBus()
         {
             InitializeComponent();
+            //add.DataContext = idBus.Text != ""
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string id = (string)idBus.Text;
-            DateTime date = dateBus.DisplayDate;
-            Bus temp = new Bus(id, date);
-            TotalBus.addNewBus(temp);
+            DateTime date = (DateTime)dateBus.SelectedDate;
+            Bus temp;
+            try
+            {
+                temp = new Bus(id, date);
+                if (TotalBus.search(temp.ID))
+                    MessageBox.Show("לא ניתן להוסיף אוטובוס קיים", "שגיאה");
+                else
+                    TotalBus.addNewBus(temp);
+            }
+            catch
+            {
+                MessageBox.Show("הכנסת נתונים לא תקינים", "שגיאה");
+            }
+
             this.Close();
         }
 

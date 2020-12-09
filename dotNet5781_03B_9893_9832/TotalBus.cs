@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 
 
+
 namespace dotNet5781_03B_9893_9832
 {
     public static class TotalBus
@@ -17,6 +18,7 @@ namespace dotNet5781_03B_9893_9832
         {
             totalBus = new ObservableCollection<Bus>();
             restart(ref totalBus);
+            
         }
 
         static Random r = new Random(DateTime.Now.Millisecond);
@@ -26,9 +28,14 @@ namespace dotNet5781_03B_9893_9832
             {
                 int id1 = r.Next(1000000, 100000000);
                 string id = id1.ToString();
-                int year = r.Next(2000, 2022);
+                int year;
+                if (id.Length==7)
+                    year = r.Next(2000, 2017);
+                else
+                    year = r.Next(2018, 2021);
                 int month = r.Next(1, 13);
                 int day = r.Next(1, 29);
+                //DateTime start = new DateTime(year, month, day);
                 DateTime start = new DateTime(year, month, day);
                 Bus temp = new Bus(id, start);
                 listBus.Add(temp);
@@ -43,6 +50,16 @@ namespace dotNet5781_03B_9893_9832
             {
                 totalBus.Add(toAdd);
             }
+        }
+
+        public static bool search(string ID)
+        {
+            for (int i=0; i<totalBus.Count(); i++)
+            {
+                if (totalBus[i].ID == ID)
+                    return true;
+            }
+            return false;
         }
 
     }

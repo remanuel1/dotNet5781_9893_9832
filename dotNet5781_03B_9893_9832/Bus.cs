@@ -11,7 +11,7 @@ using System.Diagnostics;
 namespace dotNet5781_03B_9893_9832
 {
 
-    public enum Status { ready, inDriving, refueling, inTreat };
+    public enum Status { ready, inDriving, refueling, inTreat, needTreat };
     public class Bus : INotifyPropertyChanged
     {
 
@@ -19,13 +19,20 @@ namespace dotNet5781_03B_9893_9832
         public string ID
         {
             get { return m_id; }
-            private set { m_id = value; }
+            private set
+            {
+                //m_id = value;
+                if ((startActivity.Year < 2018 && value.Length == 7) || (startActivity.Year >= 2018 && value.Length == 8))
+                    m_id = value;
+                else
+                    throw new Exception("מספר רישוי לא תקף");
+            }
         }
         private DateTime start;
         public DateTime startActivity
         {
             get { return start; }
-            private set { start = value; }
+            set { start = value; }
         }
         private float m_sum;
         public float sumKM
@@ -71,7 +78,7 @@ namespace dotNet5781_03B_9893_9832
         {
             get { return lastT; }
             set
-            { 
+            {
                 lastT = value;
                 if (PropertyChanged != null)
                 {
@@ -90,6 +97,7 @@ namespace dotNet5781_03B_9893_9832
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("state"));
                 }
+                image = "";
             }
         }
 
@@ -124,26 +132,74 @@ namespace dotNet5781_03B_9893_9832
         }
         int timeToEndWork;
 
+        private bool _notEnable;
+        public bool notEnable
+        {
+            get { return _notEnable; }
+            set
+            {
+                _notEnable = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("notEnable"));
+                }
+            }
+        }
+
+        private string _image;
+        public string image
+        {
+            get { return _image; }
+            set
+            {
+                switch(state)
+                {
+                    case (Status)0:
+                        _image = "ready.JPG";
+                        break;
+                    case (Status)1:
+                        _image = "driving.JPG";
+                        break;
+                    case (Status)2:
+                        _image = "fuel.jpg";
+                        break;
+                    case (Status)3:
+                        _image = "treat.JPG";
+                        break;
+                    case (Status)4:
+                        _image = "warn.JPG";
+                        break;
+
+                }
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("image"));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         static Random r = new Random(DateTime.Now.Millisecond);
-        //public Stopwatch stopWatch;
-        public bool isTimerRun;
+        bool isTimerRun = false;
 
         public BackgroundWorker worker = new BackgroundWorker();
         
 
         public Bus(string id, DateTime date)
         {
-            ID = id;
             startActivity = date;
+            if (id.Length < 7)
+                throw new Exception();
+            ID = id;
             sumKM = 0;
             totalFuel = 1200;
+            lastTreat = startActivity;
             kmFromTreat = 0;
-            lastTreat = date;
             state = 0;
             timer = "";
-            //stopWatch = new Stopwatch();
+            notEnable = true;
             work = 0;
+            needTreat();
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
@@ -156,8 +212,7 @@ namespace dotNet5781_03B_9893_9832
             TimeSpan t = dateNow - lastTreat;
             if (kmFromTreat > 20000 || t.Days > 365)
             {
-                kmFromTreat = 0;
-                lastTreat = dateNow;
+                state = (Status)4;
                 return true;
             }
             return false;
@@ -168,17 +223,17 @@ namespace dotNet5781_03B_9893_9832
         {
             DateTime dateNow = DateTime.Now;
             TimeSpan t = dateNow - lastTreat;
-            if (state!=(Status)0 || kmFromTreat + km > 20000 || t.Days > 365 || totalFuel - km <= 0)
+            if (state!=(Status)0 || kmFromTreat + km > 20000 || needTreat() || totalFuel - km <= 0)
             {
                 return false;
             }
             else
             {
                 int num = r.Next(20, 51);
-                //stopWatch.Restart();
-                isTimerRun = true;
-                worker.RunWorkerAsync((int)(num * km * 0.1));
                 state = (Status)1;
+                isTimerRun = true;
+                notEnable = false;
+                worker.RunWorkerAsync((int)(num * km * 0.1));
                 sumKM += km;
                 kmFromTreat += km;
                 totalFuel -= km;
@@ -188,20 +243,17 @@ namespace dotNet5781_03B_9893_9832
         public void fullFuel()
         {
             state = (Status)2;
-            //stopWatch.Restart();
             isTimerRun = true;
+            notEnable = false;
             worker.RunWorkerAsync(12);
-            totalFuel = 1200;
-            //Console.WriteLine("the bus can driving 1200 KM");
+
         }
         public void doTreat()
         {
             state = (Status)3;
-            //stopWatch.Restart();
             isTimerRun = true;
+            notEnable = false;
             worker.RunWorkerAsync(144);
-            lastTreat = DateTime.Now;
-            kmFromTreat = 0;
 
         }
         public void printKmFromTreat()
@@ -248,7 +300,8 @@ namespace dotNet5781_03B_9893_9832
                 Thread.Sleep(1000);
                 worker.ReportProgress(i * 100 / length);
             }
-                
+            Thread.Sleep(100);
+
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -256,15 +309,24 @@ namespace dotNet5781_03B_9893_9832
             work = (int)e.ProgressPercentage;
             timer = "נשארו עוד " + timeToEndWork + " שניות";
             timeToEndWork--;
+            if (state == Status.refueling)
+                if(timeToEndWork!=0)
+                totalFuel = totalFuel + (1200 - totalFuel)/(timeToEndWork) ;
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             isTimerRun = false;
+            notEnable = true;
             state = (Status)0;
             work = 0;
             timer = "";
             timeToEndWork = 0;
+            if (state == Status.inTreat)
+            {
+                lastTreat = DateTime.Now;
+                kmFromTreat = 0;
+            }
         }
 
 

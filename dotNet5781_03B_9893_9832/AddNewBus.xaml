@@ -5,19 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_9893_9832"
         mc:Ignorable="d"
-        Title="addNewBus" Height="316.55" Width="296.243">
-    <Grid Margin="0,0,3.2,-20">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="207*"/>
-            <ColumnDefinition Width="59*"/>
-            <ColumnDefinition Width="21*"/>
-        </Grid.ColumnDefinitions>
+        Title="הוספת אוטובוס חדש" Height="316.55" Width="296.243">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <TextBox x:Name="idBus" PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" HorizontalAlignment="Left" Height="23" Margin="37,52,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Grid.ColumnSpan="2" MaxLength="8"/>
-        <TextBlock HorizontalAlignment="Left" Margin="37,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FlowDirection="RightToLeft" Width="177" Grid.ColumnSpan="2" Text="הכנס תאריך ייצור"/>
-        <DatePicker x:Name="dateBus" HorizontalAlignment="Left" Margin="37,118,0,0" VerticalAlignment="Top" Height="27" Width="177" Grid.ColumnSpan="2"/>
-        <Button x:Name="add" Content="הוסף" HorizontalAlignment="Left" Margin="97,203,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="37,36,0,0" TextWrapping="Wrap" Text="הכנס מספר אוטובוס" FlowDirection="RightToLeft" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="177"/>
+        <TextBlock Text="הכנס מספר אוטובוס"
+            Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+            TextWrapping="Wrap" FlowDirection="RightToLeft"
+            Style="{StaticResource FontForTextBlock}"/>
+
+        <TextBox x:Name="idBus"
+                 PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown"
+                 Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top"
+                 Height="23" TextWrapping="Wrap" Text="" Width="177" MaxLength="8"
+                 Style="{StaticResource FontForTextBox}"/>
+        
+        <TextBlock x:Name="תוית" Text="הכנס תאריך ייצור"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Grid.Row="3" TextWrapping="Wrap" FlowDirection="RightToLeft"
+                   Style="{StaticResource FontForTextBlock}"/>
+        
+        <DatePicker x:Name="dateBus"
+                    Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" />
+
+        <Button x:Name="add" Content="הוסף"
+                Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="75"
+                Click="Button_Click">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=idBus, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding ElementName=dateBus, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                    
+                </Style>
+            </Button.Style>
+
+        </Button>
+
 
     </Grid>
 

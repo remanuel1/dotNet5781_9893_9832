@@ -32,9 +32,13 @@ namespace dotNet5781_03B_9893_9832
             dateStart.DataContext = bus.startActivity;
             dateTreat.DataContext = bus.lastTreat;
             sumKm.DataContext = bus.sumKM;
-            fuel.DataContext = bus.totalFuel;
-            state.DataContext = bus.state;
+            fuel.DataContext = bus;
+            state.DataContext = bus;
             KmFrom.DataContext = bus.kmFromTreat;
+            timerTextBlock.DataContext = bus;
+            toFull.DataContext = bus;
+            toTreat.DataContext = bus;
+            
         }
 
         // to full
@@ -42,7 +46,6 @@ namespace dotNet5781_03B_9893_9832
         {
             temp.fullFuel();
             temp.state = (Status)2;
-            state.Content = temp.state;
         }
 
         // to do treat
@@ -50,7 +53,6 @@ namespace dotNet5781_03B_9893_9832
         {
             temp.doTreat();
             temp.state = (Status)3;
-            state.Content = temp.state;
         }
     }
 }

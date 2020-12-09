@@ -5,56 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_9893_9832"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <Style x:Key="FontForLabel" TargetType="Label">
-            <Setter Property="FontFamily" Value="Kristen ITC"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-        <Style x:Key="FontForListBox" TargetType="ListBox">
-            <Setter Property="FontFamily" Value="Kristen ITC"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-        <Style x:Key="FontForButtom" TargetType="Button">
-            <Setter Property="FontFamily" Value="Kristen ITC"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-    </Window.Resources>
+        Title="כל האוטובוסים" Height="450" Width="800" FontFamily="FbExtazi Regular">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <ListView x:Name="listBus" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="595" MouseDoubleClick="listBus_MouseDoubleClick">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ListView x:Name="listBus"
+                  FontFamily="FbExtazi Regular" FontSize="14"
+                  ItemsSource="{Binding}" Width="800" Background="White"
+                  HorizontalAlignment="Left" VerticalAlignment="Top"
+                  MouseDoubleClick="listBus_MouseDoubleClick" Grid.Row="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="מספר קו אוטובוס"/>
-                    <GridViewColumn Width="110">
+                    <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="toDrive" Content="נסיעה חדשה" VerticalAlignment="Center" Click="Button_Click_1"/>
+                                <Image x:Name="iconState"
+                                       Source="{Binding image, UpdateSourceTrigger=PropertyChanged}"
+                                       Width="20" Height="20" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="80">
+                    
+                    <GridViewColumn/>
+                    
+                    <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="לתדלק" VerticalAlignment="Center" Click="Button_Click_2"/>
+                                <Button x:Name="toDrive"
+                                        Style="{StaticResource FontForButtom}" Content="נסיעה חדשה" Padding="5"
+                                        IsEnabled="{Binding notEnable}" VerticalAlignment="Center"
+                                        Click="Button_Click_1"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="110">
+                    
+                    <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ProgressBar x:Name="timerTextBlock" Minimum="0" Maximum="100" Width="70" Height="20" Value="{Binding work, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Button x:Name="toFuel"
+                                         Style="{StaticResource FontForButtom}" Content="לתדלק" Padding="5"
+                                        VerticalAlignment="Center" IsEnabled="{Binding notEnable}"
+                                        Click="Button_Click_2"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="150">
+                    
+                    <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock x:Name="timeToEnd" Text="{Binding timer , UpdateSourceTrigger=PropertyChanged}" Width="120" Height="20" FlowDirection="RightToLeft"/>
+                                <ProgressBar x:Name="timerTextBlock"
+                                             Minimum="0" Maximum="100" Width="70" Height="20"
+                                             Value="{Binding work, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock x:Name="timeToEnd"
+                                           Style="{StaticResource FontForTextBlock}"
+                                           Text="{Binding timer , UpdateSourceTrigger=PropertyChanged}"
+                                           Width="150" Height="20" FlowDirection="RightToLeft"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -62,7 +76,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="הוסף אוטובוס חדש" Grid.Column="1" HorizontalAlignment="Left" Margin="42.8,35,0,0" VerticalAlignment="Top" Width="109" Click="Button_Click" Height="37"/>
+        <Button Content="הוסף אוטובוס חדש"
+                Style="{StaticResource FontForButtom}"
+                HorizontalAlignment="Left" VerticalAlignment="Center" Padding="5"
+                Click="Button_Click" Height="36" Grid.Row="1" Margin="26,24,0,24"/>
+
 
 
     </Grid>

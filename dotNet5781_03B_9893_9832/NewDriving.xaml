@@ -5,10 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_9893_9832"
         mc:Ignorable="d"
-        Title="נסיעה חדשה" Height="273.058" Width="358.738">
+        Title="נסיעה חדשה" Height="150" Width="200" FontFamily="FbExtazi Regular">
     <Grid>
-        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="הכנס את המרחק" VerticalAlignment="Stretch" Height="25" Width="113" Margin="119,65,120,153.2" TextAlignment="Center"/>
-        <TextBox x:Name="sumKM" KeyDown="TextBox_OnlyNumbers_PreviewKeyDown" HorizontalAlignment="Left" Height="23" Margin="119,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="הכנס את המרחק"
+                   Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Stretch"
+                   Height="25" Width="113"
+                   Style="{StaticResource FontForTextBlock}"
+                   TextAlignment="Center"/>
+        <TextBox x:Name="sumKM"
+                 KeyDown="TextBox_OnlyNumbers_PreviewKeyDown"
+                 Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"
+                 Style="{StaticResource FontForTextBox}" Height="23" TextWrapping="Wrap" Width="120" TextAlignment="Center"/>
 
     </Grid>
 </Window>

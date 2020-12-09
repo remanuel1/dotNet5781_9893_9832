@@ -117,5 +117,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="driving.JPG" />
+    <Resource Include="ready.JPG" />
+    <Resource Include="treat.JPG" />
+    <Resource Include="warn.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="fuel.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
