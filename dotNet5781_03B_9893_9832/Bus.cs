@@ -257,11 +257,14 @@ namespace dotNet5781_03B_9893_9832
             }
             else
             {
+                float temp;  //
                 int num = r.Next(20, 51);
+                temp = km / num; //
                 state = (Status)1;
                 isTimerRun = true;
                 notEnable = false;
-                worker.RunWorkerAsync((int)(num * km * 0.1));
+               // worker.RunWorkerAsync((int)(num * km * 0.1));
+                worker.RunWorkerAsync((int)(temp * 0.1* 60)); //
                 sumKM += km;
                 kmFromTreat += km;
                 totalFuel -= km;
