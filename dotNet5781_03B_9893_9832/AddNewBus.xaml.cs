@@ -23,8 +23,11 @@ namespace dotNet5781_03B_9893_9832
     {
         public addNewBus()
         {
+            DateTime today = DateTime.Now;
             InitializeComponent();
-          
+            dateBus.DataContext = today;
+
+
         }
         //Click event to enter new bus details
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -43,7 +46,6 @@ namespace dotNet5781_03B_9893_9832
             }
             catch
             {
-                //MessageBox.Show("הכנסת נתונים לא תקינים", "שגיאה");
                 MessageBox.Show("הכנסת נתונים לא זמינים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 

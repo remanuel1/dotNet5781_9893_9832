@@ -35,7 +35,7 @@
                    Style="{StaticResource FontForTextBlock}"/>
         
         <DatePicker x:Name="dateBus"
-                    Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" DisplayDateEnd="12/10/2020"/>
 
         <Button x:Name="add" Content="הוסף"
                 Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"

@@ -116,6 +116,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="addition\RIMONBL.TTF" />
+    <Resource Include="addition\FBEXTAZI-REGULAR.OTF" />
+    <Resource Include="addition\FBORGANY-REGULAR.OTF" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

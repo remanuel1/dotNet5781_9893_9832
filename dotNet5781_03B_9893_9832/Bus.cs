@@ -206,13 +206,6 @@ namespace dotNet5781_03B_9893_9832
         //constructor Of a bus
         public Bus(string id, DateTime date)
         {
-            /*DateTime today = DateTime.Now;
-            if ((date.Year > today.Year))
-                throw new Exception();
-            if (date.Year == today.Year && date.Month > today.Month)
-                throw new Exception();
-            if (date.Year == today.Year && date.Month == today.Month && date.Day > today.Day)
-                throw new Exception();*/
             startActivity = date;
             if (id.Length < 7)
                 throw new Exception();
@@ -263,8 +256,7 @@ namespace dotNet5781_03B_9893_9832
                 state = (Status)1;
                 isTimerRun = true;
                 notEnable = false;
-               // worker.RunWorkerAsync((int)(num * km * 0.1));
-                worker.RunWorkerAsync((int)(temp * 0.1* 60)); //
+                worker.RunWorkerAsync((int)(temp * 0.1* 60));
                 sumKM += km;
                 kmFromTreat += km;
                 totalFuel -= km;

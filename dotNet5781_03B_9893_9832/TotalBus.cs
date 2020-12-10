@@ -28,14 +28,13 @@ namespace dotNet5781_03B_9893_9832
             {
                 int id1 = r.Next(1000000, 100000000);
                 string id = id1.ToString();
-                int year;
+                int year, month, day;
                 if (id.Length==7)
                     year = r.Next(2000, 2017);
                 else
-                    year = r.Next(2018, 2021);
-                int month = r.Next(1, 13);
-                int day = r.Next(1, 29);
-                //DateTime start = new DateTime(year, month, day);
+                    year = r.Next(2018, 2020);
+                month = r.Next(1, 13);
+                day = r.Next(1, 29);
                 DateTime start = new DateTime(year, month, day);
                 Bus temp = new Bus(id, start);
                 listBus.Add(temp);

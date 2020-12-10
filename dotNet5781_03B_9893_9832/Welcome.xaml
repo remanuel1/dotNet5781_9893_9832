@@ -15,6 +15,7 @@
                HorizontalAlignment="Center" VerticalAlignment="Bottom"
                Padding="20" Grid.Row="0"
                FontFamily="RimonaBlack" FontSize="100"/>
+        
         <Label Content="..מיד תועברו לדף המבוקש"
                HorizontalAlignment="Center" VerticalAlignment="Top"
                Grid.Row="1"
