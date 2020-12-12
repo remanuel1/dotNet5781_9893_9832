@@ -5,20 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_9893_9832"
         mc:Ignorable="d"
-        Title="ברוכים הבאים" Height="450" Width="800" Background="#FFE4C0F3">
+        Title="Welcome" Height="450" Width="800" Background="#FFE4C0F3">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="ברוכים הבאים"
+        <Label Content="welcome"
                HorizontalAlignment="Center" VerticalAlignment="Bottom"
                Padding="20" Grid.Row="0"
-               FontFamily="RimonaBlack" FontSize="100"/>
-        
-        <Label Content="..מיד תועברו לדף המבוקש"
+               FontFamily="Forte" FontSize="150"/>
+
+        <Label Content="Immediately you will be taken to the requested page.."
                HorizontalAlignment="Center" VerticalAlignment="Top"
                Grid.Row="1"
-               FontFamily="FbOrgany Regular" FontSize="50"/>
+               FontFamily="FbOrgany Regular" FontSize="30"/>
     </Grid>
 </Window>

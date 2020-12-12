@@ -338,7 +338,7 @@ namespace dotNet5781_03B_9893_9832
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             work = (int)e.ProgressPercentage;
-            timer = "נשארו עוד " + timeToEndWork + " שניות";
+            timer = timeToEndWork + " seconds left";
             timeToEndWork--;
             if (state == Status.refueling)
                 if(timeToEndWork!=0)

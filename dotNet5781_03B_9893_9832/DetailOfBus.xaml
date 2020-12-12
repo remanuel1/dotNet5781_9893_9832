@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_9893_9832"
         mc:Ignorable="d"
-        Title="פרטי האוטובוס" Height="350" Width="300" MinHeight="350" MinWidth="300">
-    <Grid>
+        Title="details of bus" Height="350" Width="320" MinHeight="350" MinWidth="320">
+    <Grid Margin="0,10,0,12.8">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -21,78 +21,78 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+
 
         </Grid.RowDefinitions>
         
-        <Label Content="מספר קו אוטובוס"
+        <Label Content="Number Bus"
                HorizontalAlignment="Center" VerticalAlignment="Center" 
-               FlowDirection="RightToLeft" Grid.Column="1" Grid.Row="0" Padding="5"
+               Grid.Column="0" Grid.Row="0" Padding="5"
                Style="{StaticResource FontForLabel}"/>
 
         <Label x:Name="idBus" Content="{Binding}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="0" Padding="5"
+               Grid.Column="1" Grid.Row="0" Padding="5"
                Style="{StaticResource FontForLabel}"/>
-        
-        <Label Content="תאריך ייצור"
+
+        <Label Content="Manufacturing date"
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="1" Grid.Row="1" Padding="5"
+               Grid.Column="0" Grid.Row="1" Padding="5"
                Style="{StaticResource FontForLabel}"/>
 
         <Label x:Name="dateStart" Content="{Binding startActivity}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="1" Padding="5"
+               Grid.Column="1" Grid.Row="1" Padding="5"
                Style="{StaticResource FontForLabel}"/>
         
-        <Label Content="תאריך טיפול אחרון"
+        <Label Content="Last treat"
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="1" Grid.Row="2" Padding="5" 
+               Grid.Column="0" Grid.Row="2" Padding="5" 
                Style="{StaticResource FontForLabel}"/>
 
         <Label x:Name="dateTreat" Content="{Binding lastTreat}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="2" Padding="5"
+               Grid.Column="1" Grid.Row="2" Padding="5"
                Style="{StaticResource FontForLabel}"/>
         
-        <Label Content="סך קילומטראז"
+        <Label Content="Sum K.M."
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="1" Grid.Row="3" Padding="5"
+               Grid.Column="0" Grid.Row="3" Padding="5"
                Style="{StaticResource FontForLabel}"/>
 
         <Label x:Name="sumKm" Content="{Binding sumKM}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="3" Padding="5"
+               Grid.Column="1" Grid.Row="3" Padding="5"
                Style="{StaticResource FontForLabel}"/>
-        
-        <Label Content="מצב הדלק"
+
+        <Label Content="Fuel status"
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="1" Grid.Row="4" Padding="5"
+               Grid.Column="0" Grid.Row="4" Padding="5"
                Style="{StaticResource FontForLabel}"/>
 
         <Label x:Name="fuel" Content="{Binding totalFuel, UpdateSourceTrigger=PropertyChanged}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="4" Padding="5"
+               Grid.Column="1" Grid.Row="4" Padding="5"
                Style="{StaticResource FontForLabel}"/>
         
-        <Label Content="סטאטוס"
+        <Label Content="Bus status"
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="1" Grid.Row="5" Padding="5"
+               Grid.Column="0" Grid.Row="5" Padding="5"
                Style="{StaticResource FontForLabel}"/>
         
         <Label x:Name="state" Content="{Binding state, UpdateSourceTrigger=PropertyChanged}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="5" Padding="5"
+               Grid.Column="1" Grid.Row="5" Padding="5"
                Style="{StaticResource FontForLabel}"/>
         
-        <Label Content="סך קמ מהטיפול"
+        <Label Content="Sum K.M. from last treat"
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="1" Grid.Row="6" Padding="5"
+               Grid.Column="0" Grid.Row="6" Padding="5"
                Style="{StaticResource FontForLabel}"/>
-        
-        <Label x:Name="KmFrom" Content="{Binding}"
+
+        <Label x:Name="KmFrom" Content="{Binding kmFromTreat}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
-               FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="6" Padding="5"
+               Grid.Column="1" Grid.Row="6" Padding="5"
                Style="{StaticResource FontForLabel}"/>
         
         <ProgressBar x:Name="timerTextBlock" Minimum="0" Maximum="100"
@@ -105,18 +105,17 @@
                    Grid.ColumnSpan="2" Grid.Row="7" Padding="10"
                    Style="{StaticResource FontForTextBlock}"/>
         
-        <Button x:Name="toFull" Content="לתדלוק" IsEnabled="{Binding notEnable}"
+        <Button x:Name="toFull" Content="Fuel" IsEnabled="{Binding notEnable}"
                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="8" Padding="5"
+                Grid.Column="0" Grid.Row="8" Padding="5"
                 MouseDoubleClick="Button_MouseDoubleClick"
                 Style="{StaticResource FontForButtom}"/>
         
-        <Button x:Name="toTreat" Content="לטיפול" IsEnabled="{Binding notEnable}"
-                HorizontalAlignment="Center" VerticalAlignment="Center"
+        <Button x:Name="toTreat" Content="Treat" IsEnabled="{Binding notEnable}"
+                HorizontalAlignment="Left" VerticalAlignment="Center"
                 Grid.Column="1" Grid.Row="8" Padding="5"
                 MouseDoubleClick="Button_MouseDoubleClick_1"
                 Style="{StaticResource FontForButtom}"/>
-
 
     </Grid>
 </Window>

@@ -48,14 +48,11 @@ namespace dotNet5781_03B_9893_9832
                 //int sumKm = int.Parse(sumKM.Text);
                 if (item.checkDriving(sumKm))
                 {
-                    /*int num = r.Next(20, 51);
-                    item.worker.RunWorkerAsync((int)(num * sumKm * 0.1));
-                    */
+                    
                 }
                 else
                 {
-                    //MessageBox.Show("האוטובוס לא זמין לנסיעה", "שגיאה");
-                    MessageBox.Show("האוטובוס לא זמין לנסיעה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("The bus not available to this driving", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 //                return;
                 Close();

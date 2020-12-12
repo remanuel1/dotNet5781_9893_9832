@@ -39,14 +39,14 @@ namespace dotNet5781_03B_9893_9832
             {
                 temp = new Bus(id, date);
                 if (TotalBus.search(temp.ID)) //If there is such a bus
-                    MessageBox.Show("לא ניתן להוסיף אוטובוס קיים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Not possible to add an existing bus", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                     TotalBus.addNewBus(temp);//Add the bus to the list
 
             }
             catch
             {
-                MessageBox.Show("הכנסת נתונים לא זמינים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Entering incorrect data", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             this.Close();

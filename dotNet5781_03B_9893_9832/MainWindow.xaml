@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_9893_9832"
         mc:Ignorable="d"
-        Title="כל האוטובוסים" Height="500" Width="600" FontFamily="FbExtazi Regular">
+        Title="BUSES" Height="500" Width="600" FontFamily="FbExtazi Regular">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
@@ -34,7 +34,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button x:Name="toDrive"
-                                        Style="{StaticResource FontForButtom}" Content="נסיעה חדשה" Padding="5"
+                                        Style="{StaticResource FontForButtom}" Content="New driving" Padding="5"
                                         IsEnabled="{Binding notEnable}" VerticalAlignment="Center"
                                         Click="Button_Click_1"/>
                             </DataTemplate>
@@ -45,7 +45,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button x:Name="toFuel"
-                                         Style="{StaticResource FontForButtom}" Content="לתדלק" Padding="5"
+                                         Style="{StaticResource FontForButtom}" Content="Fuel" Padding="5"
                                         VerticalAlignment="Center" IsEnabled="{Binding notEnable}"
                                         Click="Button_Click_2"/>
                             </DataTemplate>
@@ -67,8 +67,8 @@
                             <DataTemplate>
                                 <TextBlock x:Name="timeToEnd"
                                            Style="{StaticResource FontForTextBlock}"
-                                           Text="{Binding timer , UpdateSourceTrigger=PropertyChanged}"
-                                           Width="150" Height="20" FlowDirection="RightToLeft"/>
+                                           Text="{Binding timer, UpdateSourceTrigger=PropertyChanged}"
+                                           Width="150" Height="20"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -76,7 +76,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="הוסף אוטובוס חדש"
+        <Button Content="Add new bus"
                 Style="{StaticResource FontForButtom}"
                 HorizontalAlignment="Left" VerticalAlignment="Center" Padding="5"
                 Click="Button_Click" Height="36" Grid.Row="1" Margin="26,24,0,24"/>

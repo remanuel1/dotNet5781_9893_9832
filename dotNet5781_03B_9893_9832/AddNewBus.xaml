@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_9893_9832"
         mc:Ignorable="d"
-        Title="הוספת אוטובוס חדש" Height="316.55" Width="296.243">
+        Title="new bus" Height="316.55" Width="296.243">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -18,26 +18,25 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="הכנס מספר אוטובוס"
+        <Label Content="Enter a bus number"
             Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-            TextWrapping="Wrap" FlowDirection="RightToLeft"
-            Style="{StaticResource FontForTextBlock}"/>
+            Style="{StaticResource FontForLabel}"/>
 
         <TextBox x:Name="idBus"
                  PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown"
                  Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top"
                  Height="23" TextWrapping="Wrap" Text="" Width="177" MaxLength="8"
                  Style="{StaticResource FontForTextBox}"/>
-        
-        <TextBlock x:Name="תוית" Text="הכנס תאריך ייצור"
+
+        <Label x:Name="date" Content="Manufacturing date"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Grid.Row="3" TextWrapping="Wrap" FlowDirection="RightToLeft"
-                   Style="{StaticResource FontForTextBlock}"/>
+                   Grid.Row="3"
+                   Style="{StaticResource FontForLabel}"/>
         
         <DatePicker x:Name="dateBus"
                     Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" DisplayDateEnd="12/10/2020"/>
 
-        <Button x:Name="add" Content="הוסף"
+        <Button x:Name="add" Content="ADD"
                 Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Width="75"
                 Click="Button_Click">

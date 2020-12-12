@@ -38,7 +38,7 @@ namespace dotNet5781_03B_9893_9832
             sumKm.DataContext = bus;
             fuel.DataContext = bus;
             state.DataContext = bus;
-            KmFrom.DataContext = bus.kmFromTreat;
+            KmFrom.DataContext = bus;
             timerTextBlock.DataContext = bus;
             toFull.DataContext = bus;
             toTreat.DataContext = bus;
