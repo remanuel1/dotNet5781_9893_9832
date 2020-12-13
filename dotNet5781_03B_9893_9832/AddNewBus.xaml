@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:dotNet5781_03B_9893_9832"
         mc:Ignorable="d"
         Title="new bus" Height="316.55" Width="296.243">
@@ -34,7 +35,8 @@
                    Style="{StaticResource FontForLabel}"/>
         
         <DatePicker x:Name="dateBus"
-                    Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" DisplayDateEnd="12/10/2020"/>
+                    Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top"
+                    DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}"/>
 
         <Button x:Name="add" Content="ADD"
                 Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"

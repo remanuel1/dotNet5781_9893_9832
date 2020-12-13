@@ -23,9 +23,11 @@ namespace dotNet5781_03B_9893_9832
     {
         public addNewBus()
         {
-            DateTime today = DateTime.Now;
+
+            /*DatePicker today = new DatePicker();
+            today.DisplayDate = DateTime.Now;*/
             InitializeComponent();
-            dateBus.DataContext = today;
+            //dateBus.DataContext = today;
 
 
         }

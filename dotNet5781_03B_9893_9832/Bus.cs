@@ -349,18 +349,18 @@ namespace dotNet5781_03B_9893_9832
         {
             isTimerRun = false;
             notEnable = true;
-            if(needTreat())
+            if (state == Status.inTreat)
+            {
+                lastTreat = DateTime.Now;
+                kmFromTreat = 0;
+            }
+            if (needTreat())
                 state = (Status)4;
             else
                 state = (Status)0;
             work = 0;
             timer = "";
             timeToEndWork = 0;
-            if (state == Status.inTreat)
-            {
-                lastTreat = DateTime.Now;
-                kmFromTreat = 0;
-            }
         }
 
     }
