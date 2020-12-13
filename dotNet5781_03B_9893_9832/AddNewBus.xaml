@@ -40,8 +40,9 @@
 
         <Button x:Name="add" Content="ADD"
                 Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"
-                Width="75"
-                Click="Button_Click">
+                Width="75" Click="Button_Click"
+                FontFamily="FbExtazi Regular" FontSize="16" FontWeight="Bold"
+                FlowDirection="LeftToRight" Background="#FFA4E4ED">
             <Button.Style>
                 <Style>
                     <Style.Triggers>
@@ -53,7 +54,6 @@
                             <Setter Property="Button.IsEnabled" Value="false"/>
                         </DataTrigger>
                     </Style.Triggers>
-                    
                 </Style>
             </Button.Style>
 
