@@ -17,8 +17,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -45,7 +45,10 @@
     <Compile Include="Bus.cs" />
     <Compile Include="BLFactory.cs" />
     <Compile Include="BusStation.cs" />
+    <Compile Include="DeepCopyUtilities.cs" />
+    <Compile Include="Driving.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Exceptions.cs" />
     <Compile Include="FollowStations.cs" />
     <Compile Include="IBL.cs" />
     <Compile Include="LineBus.cs" />
@@ -56,6 +59,10 @@
     <ProjectReference Include="..\APIDAL\DLAPI.csproj">
       <Project>{244f2a9d-770d-49f8-8ff3-8f1bf90c0945}</Project>
       <Name>DLAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DLObject\DLObject.csproj">
+      <Project>{fc51673f-01b7-4f24-85cd-1495df617ba2}</Project>
+      <Name>DLObject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

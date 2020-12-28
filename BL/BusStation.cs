@@ -13,7 +13,7 @@ namespace BO
         public double Longitude { get; set; }
         public string nameStation { get; set; }
         public string address { get; set; }
-        public IEnumerable<LineBus> lineInStation { get; set; }
+        public IEnumerable<LineStation> lineInStation { get; set; }
         public bool deleted { get; set; }
     }
 }

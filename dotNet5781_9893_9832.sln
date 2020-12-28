@@ -23,6 +23,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL", "DL\DL.csproj", "{4B91
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{92C06B37-7E43-40EF-A700-CB762C5E1C06}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "item", "item", "{6E9E14A0-E4A1-4C07-A3AE-57D7FBCF63E2}"
+	ProjectSection(SolutionItems) = preProject
+		bin\config.xml = bin\config.xml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLObject", "DLObject\DLObject.csproj", "{FC51673F-01B7-4F24-85CD-1495DF617BA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +76,10 @@ Global
 		{92C06B37-7E43-40EF-A700-CB762C5E1C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92C06B37-7E43-40EF-A700-CB762C5E1C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92C06B37-7E43-40EF-A700-CB762C5E1C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC51673F-01B7-4F24-85CD-1495DF617BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC51673F-01B7-4F24-85CD-1495DF617BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC51673F-01B7-4F24-85CD-1495DF617BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC51673F-01B7-4F24-85CD-1495DF617BA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

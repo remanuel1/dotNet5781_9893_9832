@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace DS
 {
-    class Config
+    public static class Config
     {
-        static int numberBus = 1;
+        public static int numberBusLineID { get; set; } = 1010;
+        public static int numberBusStationID { get; set; } = 3890;
+
     }
 }

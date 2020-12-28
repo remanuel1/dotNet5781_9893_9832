@@ -714,7 +714,7 @@ namespace DS
                 },
 
                 new BusStation //44
-                {   
+                {
                     numberStation = 38884,
                     Latitude = 31.799224,
                     Longitude = 34.782985,
@@ -1591,19 +1591,261 @@ namespace DS
             };
             allFollowStations = new List<FollowStations>
             {
+                // add deleted
                 #region restart all follow stations
                 new FollowStations
                 {
                     numberStation1= 38832,
                     numberStation2= 38838,
                     distance = 0.013278,
+                    deleted = false,
                     drivinngTime= TimeSpan.FromMinutes(0.013278/speed),
-                }
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38838,
+                    numberStation2= 38839,
+                    distance = 0.005246485,
+                    drivinngTime= TimeSpan.FromMinutes(0.005246485/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38839,
+                    numberStation2= 38840,
+                    distance = 0.002805851,
+                    drivinngTime= TimeSpan.FromMinutes(0.002805851/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38840,
+                    numberStation2= 38841,
+                    distance = 0.00328286,
+                    drivinngTime= TimeSpan.FromMinutes(0.00328286/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38841,
+                    numberStation2= 38842,
+                    distance = 0.00244128,
+                    drivinngTime= TimeSpan.FromMinutes(0.00244128/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38842,
+                    numberStation2= 38844,
+                    distance = 0.010054293,
+                    drivinngTime= TimeSpan.FromMinutes(0.010054293/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38844,
+                    numberStation2= 38845,
+                    distance = 0.001986142,
+                    drivinngTime= TimeSpan.FromMinutes(0.001986142/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38845,
+                    numberStation2= 38846,
+                    distance = 0.002443647,
+                    drivinngTime= TimeSpan.FromMinutes(0.002443647/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38846,
+                    numberStation2= 38855,
+                    distance = 0.009417107,
+                    drivinngTime= TimeSpan.FromMinutes(0.009417107/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38834,
+                    numberStation2= 38837,
+                    distance = 0.006306611,
+                    drivinngTime= TimeSpan.FromMinutes(0.006306611/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38837,
+                    numberStation2= 38856,
+                    distance = 0.023780807,
+                    drivinngTime= TimeSpan.FromMinutes(0.023780807/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38856,
+                    numberStation2= 38867,
+                    distance = 0.010176574,
+                    drivinngTime= TimeSpan.FromMinutes(0.010176574/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38867,
+                    numberStation2= 38841,
+                    distance = 0.017798742,
+                    drivinngTime= TimeSpan.FromMinutes(0.017798742/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38841,
+                    numberStation2= 38873,
+                    distance = 0.022190982,
+                    drivinngTime= TimeSpan.FromMinutes(0.022190982/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38873,
+                    numberStation2= 38875,
+                    distance = 0.016084788,
+                    drivinngTime= TimeSpan.FromMinutes(0.016084788/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38875,
+                    numberStation2= 38876,
+                    distance = 0.006921277,
+                    drivinngTime= TimeSpan.FromMinutes(0.006921277/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38876,
+                    numberStation2= 38832,
+                    distance = 0.028697987,
+                    drivinngTime= TimeSpan.FromMinutes(0.028697987/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38832,
+                    numberStation2= 38838,
+                    distance = 0.013278373,
+                    drivinngTime= TimeSpan.FromMinutes(0.013278373/speed),
+                },
+
+                //המשך של תחנות קווים 1002
+                #endregion
             };
+            allLines = new List<LineBus>
+            {
+                #region restart 10 Line Bus
+                new LineBus
+                {
+                    identifyBus = 50000,
+                    numberLine = 277,
+                    area = Area.center,
+                    firstNumberStation = 38832,
+                    lastNumberStation = 38855,
+                    deleted = false
+                },
 
+                new LineBus
+                {
+                    identifyBus = 50001,
+                    numberLine = 150,
+                    area = Area.center,
+                    firstNumberStation = 38834,
+                    lastNumberStation = 38838,
+                    deleted = false
+                },
 
+                new LineBus
+                {
+                    identifyBus = 50002,
+                    numberLine = 111,
+                    area = Area.general,
+                    firstNumberStation = 38859,
+                    lastNumberStation = 38869,
+                    deleted = false
+                },
 
+                new LineBus
+                {
+                    identifyBus = 50003,
+                    numberLine = 200,
+                    area = Area.center,
+                    firstNumberStation = 38846,
+                    lastNumberStation = 38836,
+                    deleted = false
+                },
 
+                new LineBus
+                {
+                    identifyBus = 50004,
+                    numberLine = 220,
+                    area = Area.center,
+                    firstNumberStation = 38880,
+                    lastNumberStation = 38890,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 50005,
+                    numberLine = 220,
+                    area = Area.center,
+                    firstNumberStation = 38884,
+                    lastNumberStation = 38855,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 50006,
+                    numberLine = 230,
+                    area = Area.center,
+                    firstNumberStation = 38838,
+                    lastNumberStation = 38880,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 50007,
+                    numberLine = 230,
+                    area = Area.center,
+                    firstNumberStation = 38832,
+                    lastNumberStation = 38852,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 50008,
+                    numberLine = 510,
+                    area = Area.center,
+                    firstNumberStation = 38852,
+                    lastNumberStation = 38878,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 50009,
+                    numberLine = 37,
+                    area = Area.south,
+                    firstNumberStation = 38832,
+                    lastNumberStation = 38852,
+                    deleted = false
+                },
+
+                #endregion
+            };
         }
     }
 }

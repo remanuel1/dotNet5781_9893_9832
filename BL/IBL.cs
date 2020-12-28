@@ -8,31 +8,56 @@ using BO;
 namespace BLAPI
 {
     public interface IBL
-    {/*
+    {
         #region Bus
-        bool insertBus(Bus bus);
-        bool updateBus(Bus bus);
+
+        void insertBus(Bus bus);
+        void updateBus(Bus bus);
         void deleteBus(Bus bus);
+        Bus getBus(int numberLicense);
         IEnumerable<Bus> getAllBusses();
-        int refuel(Bus bus);
-        bool treat(Bus bus);
+        void refuel(Bus bus);
+        void treat(Bus bus);
         #endregion
 
-
         #region BusStation
-        bool insertBusStation(BusStation bus);
-        bool updateBusStation(BusStation bus);
+        void insertBusStation(BusStation bus);
+        void updateBusStation(BusStation bus);
         void deleteBusStation(BusStation bus);
+        BusStation getBusStation(int numberStation);
         IEnumerable<BusStation> getAllBusStations();
         #endregion
 
+        #region Driving
+        /*void insertDriving(Driving drive);
+        void updateDriving(Driving drive);
+        void deleteDriving(Driving drive);
+        IEnumerable<Driving> getAllDriving();*/
+
+        #endregion
 
         #region LineBus
-        bool insertLineBus(LineBus bus);
-        bool updateLineBus(LineBus bus);
+        void insertLineBus(LineBus bus);
+        void updateLineBus(LineBus bus);
         void deleteLineBus(LineBus bus);
+        LineBus getLineBus(int identifyBus);
         IEnumerable<LineBus> getAllLineBus();
         #endregion
-        */
+
+        /*#region Follow Stations
+        void insertFollowStations(FollowStations stations);
+        void updateFollowStations(FollowStations stations);
+        void deleteFollowStations(FollowStations stations);
+        IEnumerable<FollowStations> getAllFollowStations();
+        #endregion*/
+
+        #region Line Station
+        void insertLineStation(LineStation line);
+        void updateLineStation(LineStation line);
+        void deleteLineStation(LineStation line);
+        IEnumerable<LineStation> getAllLineStation();
+        #endregion
+
+
     }
 }

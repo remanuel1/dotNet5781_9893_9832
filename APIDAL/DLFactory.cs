@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 
-namespace APIDAL
+namespace DLAPI
 {
     /// <summary>
     /// Static Factory class for creating Dal tier implementation object according to

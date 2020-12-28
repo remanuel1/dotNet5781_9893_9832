@@ -11,8 +11,7 @@ namespace BO
         public int identifyBus { get; set; }
         public int numberLine { get; set; }
         public Area area { get; set; }
-        public Bus bus { get; set; }
-        public IEnumerable<FollowStations> listStaion { get; set; }
+        public IEnumerable<LineStation> listStaion { get; set; }
         public bool deleted { get; set; }
 
 
