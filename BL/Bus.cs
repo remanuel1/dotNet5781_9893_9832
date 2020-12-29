@@ -11,7 +11,7 @@ namespace BO
     public class Bus
     {
             public string numberLicense { get; set; }
-            public DateTime staerActivity { get; set; }
+            public DateTime startActivity { get; set; }
             public float sumKM { get; set; }
             public int totalFuel { get; set; }
             public Status Status { get; set; }

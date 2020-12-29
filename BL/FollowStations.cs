@@ -8,8 +8,8 @@ namespace BO
 {
     public class FollowStations
     {
-        public LineStation Station1 { get; set; }
-        public LineStation Station2 { get; set; }
+        public BusStation Station1 { get; set; }
+        public BusStation Station2 { get; set; }
         public float distance { get; set; }
         public DateTime drivinngTime { get; set; }
     }
