@@ -28,10 +28,12 @@ namespace DL
         }
         public void updateBus(DO.Bus bus)
         {
-            if (DataSource.allBuses.FirstOrDefault(p => p.numberLicense == bus.numberLicense && p.deleted==false) == null)
+            if (DataSource.allBuses.FirstOrDefault(p => p.numberLicense == bus.numberLicense && p.deleted == false) == null)
                 throw new DO.BadIdException(int.Parse(bus.numberLicense), "Bus no exist");
-            DataSource.allBuses.Remove(bus);
-            DataSource.allBuses.Add(bus.Clone());
+            int index = DataSource.allBuses.FindIndex(p => p.numberLicense == bus.numberLicense && p.deleted == false);
+            DataSource.allBuses[index] = bus.Clone();
+            //DataSource.allBuses.Remove(bus);
+            //DataSource.allBuses.Add(bus.Clone());
         }
         public void deleteBus(DO.Bus bus)
         {
@@ -49,9 +51,9 @@ namespace DL
         }
         public IEnumerable<DO.Bus> getAllBusses()
         {
-            return from bus in DataSource.allBuses
-                   where bus.deleted==false
-                   select bus.Clone();
+            return (from DO.Bus bus in DataSource.allBuses
+                   where bus.deleted == false
+                   select bus.Clone()).ToList();
         }
         #endregion
 
@@ -86,14 +88,17 @@ namespace DL
         {
             if (DataSource.allBusesStations.FirstOrDefault(p => p.numberStation == busStation.numberStation) != null)
                 throw new DO.BadIdException(busStation.numberStation, "Duplicate Bus Station ");
+            busStation.numberStation = ++DS.Config.numberBusStationID;
             DataSource.allBusesStations.Add(busStation.Clone());
         }
         public void updateBusStation(DO.BusStation busStation)
         {
             if (DataSource.allBusesStations.FirstOrDefault(p => p.numberStation == busStation.numberStation && p.deleted == false) == null)
                 throw new DO.BadIdException(busStation.numberStation, "Bus Station not exist");
-            DataSource.allBusesStations.Remove(busStation);
-            DataSource.allBusesStations.Add(busStation.Clone());
+            int index = DataSource.allBusesStations.FindIndex(p => p.numberStation == busStation.numberStation && p.deleted == false);
+            DataSource.allBusesStations[index] = busStation.Clone();
+            //DataSource.allBusesStations.Remove(busStation);
+            //DataSource.allBusesStations.Add(busStation.Clone());
         }
         public void deleteBusStation(DO.BusStation busStation)
         {
@@ -111,9 +116,17 @@ namespace DL
         }
         public IEnumerable<DO.BusStation> getAllBusStation()
         {
-            return from busStation in DataSource.allBusesStations
+            return (from busStation in DataSource.allBusesStations
                    where busStation.deleted == false
-                   select busStation.Clone();
+                   select busStation.Clone()).ToList();
+        }
+
+        public IEnumerable<DO.LineBus> getLineBusInStation(int numberStation)
+        {
+            return (from lineBus in DataSource.allLines
+                   let lineStation = getLineStation(numberStation, lineBus.identifyBus)
+                   where lineBus.deleted == false && lineStation != null
+                   select getLineBus(lineStation.identifyLine).Clone()).ToList();
         }
         #endregion
 
@@ -121,11 +134,12 @@ namespace DL
         public void addFollowStations(DO.FollowStations Stations)
         {
             if (DataSource.allFollowStations.FirstOrDefault(p => p.numberStation1 == Stations.numberStation1 && p.numberStation2 == Stations.numberStation2) != null)
-                throw new DO.BadTwoIdException(Stations.numberStation1, Stations.numberStation2, "these follow station exist"); 
+                throw new DO.BadTwoIdException(Stations.numberStation1, Stations.numberStation2, "these follow station exist");
             DataSource.allFollowStations.Add(Stations.Clone());
         }
         public void updateFollowStations(DO.FollowStations Stations)
         {
+            // not needed (?)
             if (DataSource.allFollowStations.FirstOrDefault(p => p.numberStation1 == Stations.numberStation1 && p.numberStation2 == Stations.numberStation2 && p.deleted == false) == null)
                 throw new DO.BadTwoIdException(Stations.numberStation1, Stations.numberStation2, "these follow station not exist");
             DataSource.allFollowStations.Remove(Stations);
@@ -133,6 +147,7 @@ namespace DL
         }
         public void deleteFollowStations(DO.FollowStations Stations)
         {
+            // not needed (?)
             if (DataSource.allFollowStations.FirstOrDefault(p => p.numberStation1 == Stations.numberStation1 && p.numberStation2 == Stations.numberStation2 && p.deleted == false) == null)
                 throw new DO.BadTwoIdException(Stations.numberStation1, Stations.numberStation2, "these follow station not exist");
             DataSource.allFollowStations.Find(p => p.numberStation1 == Stations.numberStation1 && p.numberStation2 == Stations.numberStation2).deleted = true;
@@ -140,6 +155,8 @@ namespace DL
         public DO.FollowStations getFollowStations(int numberStation1, int numberStation2)
         {
             DO.FollowStations followStations = DataSource.allFollowStations.Find(p => p.numberStation1 == numberStation1 && p.numberStation2 == numberStation2 && p.deleted == false);
+            if (followStations == null)
+                followStations = DataSource.allFollowStations.Find(p => p.numberStation1 == numberStation2 && p.numberStation2 == numberStation1 && p.deleted == false);
             if (followStations != null)
                 return followStations.Clone();
             else
@@ -147,25 +164,28 @@ namespace DL
         }
         public IEnumerable<DO.FollowStations> getAllFollowStations()
         {
-            return from followStation in DataSource.allFollowStations
+            return (from followStation in DataSource.allFollowStations
                    where followStation.deleted == false
-                   select followStation.Clone();
+                   select followStation.Clone()).ToList();
         }
         #endregion
 
         #region metod line bus
-        public void addLineBus(DO.LineBus lineBus)
+        public int addLineBus(DO.LineBus lineBus)
         {
             if (DataSource.allLines.FirstOrDefault(p => p.identifyBus == lineBus.identifyBus) != null)
                 throw new DO.BadIdException(lineBus.identifyBus, "these line exist");
+            lineBus.identifyBus = ++DS.Config.numberBusLineID;
             DataSource.allLines.Add(lineBus.Clone());
+            return lineBus.identifyBus;
         }
         public void updateLineBus(DO.LineBus lineBus)
         {
             if (DataSource.allLines.FirstOrDefault(p => p.identifyBus == lineBus.identifyBus && p.deleted == false) == null)
                 throw new DO.BadIdException(lineBus.identifyBus, "these line not exist");
-            DataSource.allLines.Remove(lineBus);
-            DataSource.allLines.Add(lineBus.Clone());
+            int index = DataSource.allLines.FindIndex(p => p.identifyBus == lineBus.identifyBus && p.deleted == false);
+            DataSource.allLines[index] = lineBus;
+
         }
         public void deleteLineBus(DO.LineBus lineBus)
         {
@@ -175,7 +195,7 @@ namespace DL
         }
         public DO.LineBus getLineBus(int identifyBus)
         {
-            DO.LineBus lineBus = DataSource.allLines.Find(p => p.identifyBus== identifyBus && p.deleted == false);
+            DO.LineBus lineBus = DataSource.allLines.Find(p => p.identifyBus == identifyBus && p.deleted == false);
             if (lineBus != null)
                 return lineBus.Clone();
             else
@@ -183,9 +203,10 @@ namespace DL
         }
         public IEnumerable<DO.LineBus> getAllLineBus()
         {
-            return from line in DataSource.allLines
+            return (from line in DataSource.allLines
                    where line.deleted == false
-                   select line.Clone();
+                   orderby line.numberLine
+                   select line.Clone()).ToList();
         }
         #endregion
 
@@ -202,26 +223,39 @@ namespace DL
         #region method Line station
         public void addLineStation(DO.LineStation lineStation)
         {
-            if (DataSource.allLinesStation.FirstOrDefault(p => p.identifyLine == lineStation.identifyLine) != null)
+            if (DataSource.allLinesStation.FirstOrDefault(p => p.identifyLine == lineStation.identifyLine && p.numberStation == lineStation.numberStation) != null)
                 throw new DO.BadIdException(lineStation.identifyLine, "these line station exist");
             DataSource.allLinesStation.Add(lineStation.Clone());
         }
-        public void updateLineStation(DO.LineStation lineStation)
+        public void updateLineStation(DO.LineStation lineStationCurrent, DO.LineStation lineStationNew)
         {
-            if (DataSource.allLinesStation.FirstOrDefault(p => p.identifyLine == lineStation.identifyLine && p.deleted == false) == null)
-                throw new DO.BadIdException(lineStation.identifyLine, "these line not exist");
-            DataSource.allLinesStation.Remove(lineStation);
-            DataSource.allLinesStation.Add(lineStation.Clone());
+            if (DataSource.allLinesStation.FirstOrDefault(p => p.identifyLine == lineStationCurrent.identifyLine && p.deleted == false) == null)
+                throw new DO.BadIdException(lineStationCurrent.identifyLine, "these line not exist");
+            //DataSource.allLinesStation.Remove(old);
+            //DataSource.allLinesStation.Add(lineStation.Clone());
+            int index = DataSource.allLinesStation.FindIndex(p => p.identifyLine == lineStationCurrent.identifyLine && p.numberStation == lineStationCurrent.numberStation);
+            DataSource.allLinesStation[index] = lineStationNew.Clone();
         }
         public void deleteLineStation(DO.LineStation lineStation)
         {
             if (DataSource.allLinesStation.FirstOrDefault(p => p.identifyLine == lineStation.identifyLine && p.deleted == false) == null)
                 throw new DO.BadIdException(lineStation.identifyLine, "these line not exist");
-            DataSource.allLinesStation.Find(p => p.identifyLine == lineStation.identifyLine).deleted = true;
+            //DataSource.allLinesStation.Find(p => p.identifyLine == lineStation.identifyLine).deleted = true;
+            int index = DataSource.allLinesStation.FindIndex(p => p.identifyLine == lineStation.identifyLine && p.numberStation == lineStation.numberStation);
+            DataSource.allLinesStation[index].deleted = true;
         }
-        public DO.LineStation getLineStation(int identifyLine)
+        public DO.LineStation getLineStation(int numberStation, int identifyLine)
         {
-            DO.LineStation lineStation = DataSource.allLinesStation.Find(p => p.identifyLine == identifyLine && p.deleted == false);
+            DO.LineStation lineStation = DataSource.allLinesStation.Find(p => p.numberStation == numberStation && p.identifyLine == identifyLine && p.deleted == false);
+            if (lineStation != null)
+                return lineStation.Clone();
+            else
+                throw new DO.BadIdException(numberStation, $"IdentifyBus Line {numberStation} not exist.");
+        }
+
+        public DO.LineStation getLineStationIndex(int identifyLine, int numberInLine)
+        {
+            DO.LineStation lineStation = DataSource.allLinesStation.Find(p => p.identifyLine == identifyLine && p.numberStationInLine == numberInLine && p.deleted == false);
             if (lineStation != null)
                 return lineStation.Clone();
             else
@@ -229,9 +263,25 @@ namespace DL
         }
         public IEnumerable<DO.LineStation> getAllLineStation()
         {
-            return from lineStation in DataSource.allLinesStation
+            return (from lineStation in DataSource.allLinesStation
                    where lineStation.deleted == false
-                   select lineStation.Clone();
+                   select lineStation.Clone()).ToList();
+        }
+
+        public IEnumerable<DO.LineStation> getLineStationInLine(int identifyLine)
+        {
+            return (from lineStation in DataSource.allLinesStation
+                    where lineStation.identifyLine == identifyLine && lineStation.deleted == false
+                    orderby lineStation.numberStationInLine
+                    select lineStation.Clone()).ToList();
+            
+        }
+        public IEnumerable<DO.LineStation> getLineStationInStation(int numberStation)
+        {
+            return (from lineStation in DataSource.allLinesStation
+                   where lineStation.numberStation == numberStation && lineStation.deleted == false && getLineBus(lineStation.identifyLine).deleted == false
+                   select lineStation.Clone()).ToList();
+
         }
         #endregion
     }

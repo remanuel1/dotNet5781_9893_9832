@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Device.Location;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.ComponentModel;
 using BLAPI;
 using DLAPI;
+using System.Device.Location;
 
 namespace BL
 {
@@ -39,7 +41,7 @@ namespace BL
             if (DateTime.Now < bus.startActivity)
                 throw new BO.BadDateExceptions(bus.startActivity, "date is illegal");
             DO.Bus busDO = new DO.Bus();
-            busDO.CopyPropertiesTo(bus);
+            bus.CopyPropertiesTo(busDO);
             try
             {
                 dl.addBus(busDO);
@@ -57,9 +59,8 @@ namespace BL
                 throw new BO.BadIDAndDateExceptions(int.Parse(bus.numberLicense), bus.startActivity, "number License not math to this date");
             if (DateTime.Now < bus.startActivity)
                 throw new BO.BadDateExceptions(bus.startActivity, "date is illegal");
-
             DO.Bus busDO = new DO.Bus();
-            busDO.CopyPropertiesTo(bus);
+            bus.CopyPropertiesTo(busDO);
             try
             {
                 dl.updateBus(busDO);
@@ -79,7 +80,7 @@ namespace BL
                 throw new BO.BadDateExceptions(bus.startActivity, "date is illegal");
 
             DO.Bus busDO = new DO.Bus();
-            busDO.CopyPropertiesTo(bus);
+            bus.CopyPropertiesTo(busDO);
             try
             {
                 dl.deleteBus(busDO);
@@ -104,9 +105,9 @@ namespace BL
         }
         public IEnumerable<BO.Bus> getAllBusses()
         {
-            return from item in dl.getAllBusses()
+            return (from item in dl.getAllBusses()
                    orderby item.startActivity
-                   select busDoBoAdapter(item);
+                   select busDoBoAdapter(item)).ToList();
         }
         public void refuel(BO.Bus bus)
         {
@@ -117,6 +118,7 @@ namespace BL
         {
             bus.lastTreat = DateTime.Now;
             bus.sumKMFromLastTreat = 0;
+            bus.Status = BO.Status.ready;
             updateBus(bus);
         }
 
@@ -136,12 +138,15 @@ namespace BL
                 throw new BO.BadIDExceptions("this bus station not found", ex);
             }
             busStationDO.CopyPropertiesTo(busStationBO);
+            busStationBO.lineInStation = convertLineStationDoBo(dl.getLineStationInStation(id));
             return busStationBO;
         }
         public void insertBusStation(BO.BusStation busStation)
         {
             DO.BusStation busStationDO = new DO.BusStation();
-            busStationDO.CopyPropertiesTo(busStation);
+            if (busStation.Latitude < 33.7 || busStation.Latitude > 36.3 || busStation.Longitude < 29.3 || busStation.Longitude > 33.5)
+                throw new BO.BadLocalExceptions("this location is out from ISRAEL");
+            busStation.CopyPropertiesTo(busStationDO);
             try
             {
                 dl.addBusStation(busStationDO);
@@ -155,7 +160,7 @@ namespace BL
         public void updateBusStation(BO.BusStation busStation)
         {
             DO.BusStation busStationDO = new DO.BusStation();
-            busStationDO.CopyPropertiesTo(busStation);
+            busStation.CopyPropertiesTo(busStationDO);
             try
             {
                 dl.updateBusStation(busStationDO);
@@ -168,7 +173,7 @@ namespace BL
         public void deleteBusStation(BO.BusStation busStation)
         {
             DO.BusStation busStationDO = new DO.BusStation();
-            busStationDO.CopyPropertiesTo(busStation);
+            busStation.CopyPropertiesTo(busStationDO);
             try
             {
                 dl.deleteBusStation(busStationDO);
@@ -193,10 +198,19 @@ namespace BL
         }
         public IEnumerable<BO.BusStation> getAllBusStations()
         {
-            return from item in dl.getAllBusStation()
+            return (from item in dl.getAllBusStation()
                    orderby item.numberStation
-                   select busStationDoBoAdapter(item);
+                   select busStationDoBoAdapter(item)).ToList();
         }
+
+        public IEnumerable<int> getLineInBusStations(BO.BusStation station)
+        {
+            return (from item in station.lineInStation
+                    let line = getLineBus(item.identifyLine)
+                    orderby line.numberLine
+                    select line.numberLine);
+        }
+
         #endregion
 
         #region DRIVIND
@@ -219,31 +233,49 @@ namespace BL
                 throw new BO.BadIDExceptions("this line bus not exsist", ex);
             }
             lineBusDO.CopyPropertiesTo(lineBusBO);
+            IEnumerable<DO.LineStation> station = dl.getLineStationInLine(lineBusBO.identifyBus);
+            lineBusBO.listStaion = (from DO.LineStation item in station
+                                   select lineStationDoBoAdapter(item)).ToList();
             return lineBusBO;
         }
-        public void insertLineBus(BO.LineBus lineBus)
+
+        IEnumerable<BO.LineBus> convertLineBusDoBo (IEnumerable<DO.LineBus> lineBusesDO)
         {
+            return (from item in lineBusesDO
+                    select lineBusDoBoAdapter(item)).ToList();
+        }
+        public int insertLineBus(BO.LineBus lineBus)
+        {
+            int id;
             if (lineBus.listStaion.Count() < 2)
                 throw new BO.BadLineExceptions("to add line, need 2 bus station"); 
 
             DO.LineBus lineBusDO = new DO.LineBus();
-            lineBusDO.CopyPropertiesTo(lineBus);
+            lineBus.CopyPropertiesTo(lineBusDO);
             lineBusDO.firstNumberStation = lineBus.listStaion.First().numberStation;
             lineBusDO.lastNumberStation = lineBus.listStaion.Last().numberStation;
             try
             {
-                dl.addLineBus(lineBusDO);
+                id = dl.addLineBus(lineBusDO);
                 for(int i=0; i<lineBus.listStaion.Count()-1; i++)
                 {
-                    BO.BusStation first = busStationDoBoAdapter(dl.getBusStation(lineBus.listStaion.ElementAt(i).numberStation));
-                    BO.BusStation second = busStationDoBoAdapter(dl.getBusStation(lineBus.listStaion.ElementAt(i+1).numberStation)); 
-                    insertFollowStations(first, second);
+                    int first = lineBus.listStaion.ElementAt(i).numberStation;
+                    int second = lineBus.listStaion.ElementAt(i + 1).numberStation;
+                    //BO.BusStation first = busStationDoBoAdapter(dl.getBusStation(lineBus.listStaion.ElementAt(i).numberStation));
+                    //BO.BusStation second = busStationDoBoAdapter(dl.getBusStation(lineBus.listStaion.ElementAt(i+1).numberStation));
+                    try
+                    {
+                        insertFollowStations(first, second);
+                    }
+                    catch (DO.BadIdException ex)
+                    {;}
                 }
             }
             catch (DO.BadIdException ex)
             {
                 throw new BO.BadIDExceptions("this line bus exsit", ex);
             }
+            return id;
         }
         public void updateLineBus(BO.LineBus lineBus)
         {
@@ -251,7 +283,7 @@ namespace BL
                 throw new BO.BadLineExceptions("to add line, need 2 bus station");
 
             DO.LineBus lineBusDO = new DO.LineBus();
-            lineBusDO.CopyPropertiesTo(lineBus);
+            lineBus.CopyPropertiesTo(lineBusDO);
             try
             {
                 dl.updateLineBus(lineBusDO);
@@ -264,7 +296,7 @@ namespace BL
         public void deleteLineBus(BO.LineBus lineBus)
         {
             DO.LineBus lineBusDO = new DO.LineBus();
-            lineBusDO.CopyPropertiesTo(lineBus);
+            lineBus.CopyPropertiesTo(lineBusDO);
             try
             {
                 dl.deleteLineBus(lineBusDO);
@@ -291,21 +323,21 @@ namespace BL
         }
         public IEnumerable<BO.LineBus> getAllLineBus()
         {
-            return from item in dl.getAllLineBus()
-                   select lineBusDoBoAdapter(item);
+            return (from item in dl.getAllLineBus()
+                   select lineBusDoBoAdapter(item)).ToList();
         }
         public IEnumerable<BO.BusStation> getStationInLineBus(BO.LineBus lineBus)
         {
-            return from item in lineBus.listStaion
+            return (from item in lineBus.listStaion
                    orderby item.numberStationInLine
-                   select busStationDoBoAdapter(dl.getBusStation(item.numberStation));
+                   select busStationDoBoAdapter(dl.getBusStation(item.numberStation))).ToList();
         }
-        public void addStationtoLine(BO.LineBus line, BO.BusStation station, int indexInLine)
+        public void addStationToLine(BO.LineBus line, BO.BusStation station, int indexInLine)
         {
             if (indexInLine < 1 || indexInLine > line.listStaion.Count() + 1)
                 throw new BO.BadIDExceptions("index to insert station is illegal");
             BO.LineStation newLineStation = new BO.LineStation();
-            newLineStation.identifyBus = line.identifyBus;
+            newLineStation.identifyLine = line.identifyBus;
             newLineStation.numberStation = station.numberStation;
             newLineStation.numberStationInLine = indexInLine;
             newLineStation.deleted = false;
@@ -324,27 +356,64 @@ namespace BL
                 if (item.numberStationInLine >= indexInLine)
                     item.numberStationInLine++;
             }
-
-            line.listStaion.ToList().Insert(indexInLine - 1, newLineStation);
-
             try
             {
                 foreach(BO.LineStation item in line.listStaion)
                 {
                     if(item.numberStationInLine>indexInLine) //station that change
-                        updateLineStation(item);
+                        updateLineStation(item, item);
                 }
             }
             catch (DO.BadIdException ex)
             {
                 throw new BO.BadIDExceptions("this line station not exist", ex);
             }
+            IEnumerable<DO.LineStation> stationList = dl.getLineStationInLine(line.identifyBus);
+
+            if(indexInLine !=0)
+                insertFollowStations(station.numberStation, line.listStaion.ElementAt(indexInLine - 2).numberStation);
+            if(indexInLine!= line.listStaion.Count())
+                insertFollowStations(station.numberStation, line.listStaion.ElementAt(indexInLine-1).numberStation);
+            
+            line.listStaion = (from DO.LineStation item in stationList
+                               select lineStationDoBoAdapter(item)).ToList();
         }
 
-        #endregion
+        public void deleteStationInLine(BO.LineBus line, BO.LineStation station)
+        {
+            try
+            {
+                deleteLineStation(station);
+                foreach (BO.LineStation item in line.listStaion)
+                {
+                    if (item.numberStationInLine > station.numberStationInLine)
+                    {
+                        item.numberStationInLine--;
+                        updateLineStation(item, item);
+                    }
 
-        #region Follow Stations
-        BO.FollowStations FollowStationsDoBoAdapter(DO.FollowStations stations)
+                }
+            }
+            catch (DO.BadIdException ex)
+            {
+                throw new BO.BadIDExceptions("this line station not exist", ex);
+            }
+            IEnumerable<DO.LineStation> stationList = dl.getLineStationInLine(line.identifyBus);
+            line.listStaion = (from DO.LineStation item in stationList
+                               select lineStationDoBoAdapter(item)).ToList();
+
+            if (station.numberStationInLine != line.listStaion.Count() + 1 && station.numberStationInLine !=1)
+            {
+                int one = line.listStaion.ElementAt(station.numberStationInLine - 2).numberStation;
+                int two = line.listStaion.ElementAt(station.numberStationInLine - 1).numberStation;
+                insertFollowStations(one, two);
+            }
+        }
+
+            #endregion
+
+            #region Follow Stations
+            BO.FollowStations FollowStationsDoBoAdapter(DO.FollowStations stations)
         {
             BO.FollowStations followStationsBO = new BO.FollowStations();
             int id1 = stations.numberStation1;
@@ -361,23 +430,23 @@ namespace BL
             stations.CopyPropertiesTo(followStationsBO);
             return followStationsBO;
         }
-        public void insertFollowStations(BO.BusStation station1, BO.BusStation station2)
+        public void insertFollowStations(int station1, int station2)
         {
             try
             {
-                dl.getBusStation(station1.numberStation);
-                dl.getBusStation(station2.numberStation);
+                dl.getBusStation(station1);
+                dl.getBusStation(station2);
             }
             catch (DO.BadIdException ex)
             {
                 throw new BO.BadIDExceptions($"station number: {ex.ID} not found", ex);
             }
             DO.FollowStations follow = new DO.FollowStations();
-            follow.numberStation1 = station1.numberStation;
-            follow.numberStation2 = station2.numberStation;
+            follow.numberStation1 = station1;
+            follow.numberStation2 = station2;
 
-            var s1 = new GeoCoordinate(station1.Latitude, station1.Longitude);
-            var d1 = new GeoCoordinate(station2.Latitude, station2.Longitude);
+            GeoCoordinate s1 = new GeoCoordinate(dl.getBusStation(station1).Latitude, dl.getBusStation(station1).Longitude);
+            GeoCoordinate d1 = new GeoCoordinate(dl.getBusStation(station2).Latitude, dl.getBusStation(station2).Longitude);
             follow.distance = s1.GetDistanceTo(d1);
             follow.drivinngTime = TimeSpan.FromSeconds(follow.distance / 50);
             follow.deleted = false;
@@ -390,9 +459,19 @@ namespace BL
                 throw new BO.BadIDExceptions($"station number: {ex.ID1}, {ex.ID2} is exsits", ex);
             }
         }
-        //void updateFollowStations(FollowStations stations);
-        //void deleteFollowStations(FollowStations stations);
-        //IEnumerable<FollowStations> getAllFollowStations();
+        public BO.FollowStations getFollowStations(int station1, int station2)
+        {
+            DO.FollowStations followStationsDO = new DO.FollowStations();
+            try
+            {
+                followStationsDO = dl.getFollowStations(station1, station2);
+            }
+            catch (DO.BadIdException ex)
+            {
+                throw new BO.BadIDExceptions("this follow stations not exist", ex);
+            }
+            return FollowStationsDoBoAdapter(followStationsDO);
+        }
 
         #endregion
 
@@ -403,19 +482,33 @@ namespace BL
             int id = lineStationDO.numberStation;
             try
             {
-                lineStationDO = dl.getLineStation(id);
+                lineStationDO = dl.getLineStation(id, lineStationDO.identifyLine);
             }
             catch (DO.BadIdException ex)
             {
                 throw new BO.BadIDExceptions("this line station not exists", ex);
             }
             lineStationDO.CopyPropertiesTo(lineStationBO);
+            if (lineStationBO.numberStationInLine == 1)
+                lineStationBO.timeFromPriorStation = TimeSpan.Zero;
+            else
+            {
+                int numberPriorStation = dl.getLineStationIndex(lineStationBO.identifyLine, lineStationBO.numberStationInLine - 1).numberStation;
+                lineStationBO.timeFromPriorStation = getFollowStations(numberPriorStation, lineStationBO.numberStation).drivinngTime;
+            }
+            lineStationBO.nameStation = dl.getBusStation(lineStationBO.numberStation).nameStation;
             return lineStationBO;
+        }
+
+        IEnumerable<BO.LineStation> convertLineStationDoBo(IEnumerable<DO.LineStation> lineStationDO)
+        {
+            return (from item in lineStationDO
+                    select lineStationDoBoAdapter(item)).ToList();
         }
         public void insertLineStation(BO.LineStation lineStation)
         {
             DO.LineStation lineStationDO = new DO.LineStation();
-            lineStationDO.CopyPropertiesTo(lineStation);
+            lineStation.CopyPropertiesTo(lineStationDO);
             try
             {
                 dl.addLineStation(lineStationDO);
@@ -425,13 +518,15 @@ namespace BL
                 throw new BO.BadIDExceptions("this line station is exists", ex);
             }
         }
-        public void updateLineStation(BO.LineStation lineStation)
+        public void updateLineStation(BO.LineStation lineStationCurrent, BO.LineStation lineStationNew)
         {
-            DO.LineStation lineStationDO = new DO.LineStation();
-            lineStationDO.CopyPropertiesTo(lineStation);
+            DO.LineStation lineStationCurrentDO = new DO.LineStation();
+            DO.LineStation lineStationNewDO = new DO.LineStation();
+            lineStationCurrent.CopyPropertiesTo(lineStationCurrentDO);
+            lineStationNew.CopyPropertiesTo(lineStationNewDO);
             try
             {
-                dl.updateLineStation(lineStationDO);
+                dl.updateLineStation(lineStationCurrentDO, lineStationNewDO);
             }
             catch (DO.BadIdException ex)
             {
@@ -441,7 +536,7 @@ namespace BL
         public void deleteLineStation(BO.LineStation lineStation)
         {
             DO.LineStation lineStationDO = new DO.LineStation();
-            lineStationDO.CopyPropertiesTo(lineStation);
+            lineStation.CopyPropertiesTo(lineStationDO);
             try
             {
                 dl.deleteLineStation(lineStationDO);
@@ -451,10 +546,31 @@ namespace BL
                 throw new BO.BadIDExceptions("this line station not exists", ex);
             }
         }
+        public BO.LineStation getLineStation(int identifyBus, int numberStation)
+        {
+            DO.LineStation lineStationDO = new DO.LineStation();
+            try
+            {
+                lineStationDO = dl.getLineStation(numberStation, identifyBus);
+            }
+            catch (DO.BadIdException ex)
+            {
+                throw new BO.BadIDExceptions("this line bus not exist", ex);
+            }
+            return lineStationDoBoAdapter(lineStationDO);
+        }
         public IEnumerable<BO.LineStation> getAllLineStation()
         {
-            return from item in dl.getAllLineStation()
-                   select lineStationDoBoAdapter(item);
+            return (from item in dl.getAllLineStation()
+                   select lineStationDoBoAdapter(item)).ToList();
+        }
+        
+        public IEnumerable<BO.LineStation> getLineStationsForLine(int identifyBus)
+        {
+            return (from item in dl.getAllLineStation()
+                    where item.identifyLine == identifyBus && item.deleted == false
+                    orderby item.numberStationInLine
+                    select lineStationDoBoAdapter(item)).ToList();
         }
         #endregion
     }

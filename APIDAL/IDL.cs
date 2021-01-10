@@ -39,11 +39,13 @@ namespace DLAPI
         IEnumerable<FollowStations> getAllFollowStations();
 
         // metod line bus
-        void addLineBus(LineBus lineBus);
+        int addLineBus(LineBus lineBus);
         void updateLineBus(LineBus lineBus);
         void deleteLineBus(LineBus lineBus);
         LineBus getLineBus(int identifyBus);
         IEnumerable<LineBus> getAllLineBus();
+        IEnumerable<LineBus> getLineBusInStation(int numberStation);
+
 
         /*// method line start driving
         void addLineStartDriving(LineStartDriving lineBus);
@@ -54,10 +56,13 @@ namespace DLAPI
 
         // method Line station
         void addLineStation(LineStation lineStation);
-        void updateLineStation(LineStation lineStation);
+        void updateLineStation(LineStation lineStationCurrent, LineStation lineStationNew);
         void deleteLineStation(LineStation lineStation);
-        LineStation getLineStation(int identifyLine);
+        LineStation getLineStation(int numberStation, int identifyLine);
+        LineStation getLineStationIndex(int numberStation, int numberInLine);
         IEnumerable<LineStation> getAllLineStation();
+        IEnumerable<LineStation> getLineStationInLine(int identifyLine);
+        IEnumerable<LineStation> getLineStationInStation(int numberStation);
 
     }
 }

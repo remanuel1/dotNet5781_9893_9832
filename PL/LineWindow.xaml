@@ -1,0 +1,124 @@
+﻿<Window x:Class="PL.LineWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="LineWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="288"/>
+                <RowDefinition Height="81.6"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="all lines:" 
+                   Grid.Row="0" Grid.Column="0" Padding="10" VerticalAlignment="Bottom"
+                   Style="{StaticResource FontForLabel}" Height="37" Margin="0,0,0.2,0.4"/>
+
+            <ListBox x:Name="listLines"
+                 ItemsSource="{Binding}" MouseDoubleClick="listLines_MouseDoubleClick" Grid.Column="0" Padding="10" Margin="0,50,0.2,2.4" Grid.RowSpan="2"/>
+
+            <Button Content="add new line"
+                    Grid.Row="2" Grid.Column="0" Height="40" Width="120"  VerticalAlignment="Center"
+                Style="{StaticResource FontForButtom}"
+                Click="Button_ClickToAdd"/>
+        </Grid>
+
+        <Frame x:Name="frame" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Height="420" Width="400"/>
+
+        <Canvas x:Name="detailOfLine" Visibility="{Binding}"
+                Grid.Column="1">
+
+            <Label Content="Number line:"
+               Height="30" Width="100" Canvas.Top="30" Canvas.Left="30"
+               Style="{StaticResource FontForLabel}" FontWeight="ExtraBlack"/>
+
+            <TextBox x:Name="numberLineForDetail" Text="" TextAlignment="Center"
+               Height="30" Width="100" Canvas.Top="30" Canvas.Left="140"
+               Style="{StaticResource FontForTextBox}"/>
+
+            <Label Content="Number ID line:"
+               Height="30" Width="110" Canvas.Top="65" Canvas.Left="30"
+               Style="{StaticResource FontForLabel}" FontWeight="ExtraBlack"/>
+
+            <TextBlock x:Name="numberIdForDetail" Text="" TextAlignment="Center"
+               Height="30" Width="100" Canvas.Top="65" Canvas.Left="140"
+               Style="{StaticResource FontForTextBlock}"/>
+
+            <Label Content="Area:"
+               Height="30" Width="100" Canvas.Top="100" Canvas.Left="30"
+               Style="{StaticResource FontForLabel}" FontWeight="ExtraBlack"/>
+
+            <ComboBox x:Name="lineArea" ItemsSource="{Binding}"
+               Height="30" Width="100" Canvas.Top="100" Canvas.Left="140"/>
+
+            <Label Content="station in line:"
+               Height="30" Width="110" Canvas.Top="147" Canvas.Left="31"
+               Style="{StaticResource FontForLabel}" FontWeight="ExtraBlack"/>
+
+            <Button x:Name="addStation" Content="+"
+                Width="20" Height="20"
+                Canvas.Left="150" Canvas.Top="150"
+                Style="{StaticResource FontForButtom}"
+                Click="addStation_Click"/>
+
+            <ComboBox x:Name="listStationForNewStation" ItemsSource="{Binding}"
+               Visibility="{Binding}"
+               Height="30" Width="150" Canvas.Top="145" Canvas.Left="200"/>
+
+            <ComboBox x:Name="listNumber" ItemsSource="{Binding}"
+               Visibility="{Binding}"
+               Height="30" Width="40" Canvas.Top="145" Canvas.Left="369"/>
+
+            <Button x:Name="addStationToLine" Content="ADD"
+                Width="40" Height="20" Visibility="{Binding}"
+                Canvas.Left="450" Canvas.Top="150"
+                Style="{StaticResource FontForButtom}"
+                Click="addStationToLine_Click"/>
+
+            <ListView x:Name="stationInLine" Height="145" Width="500"
+                  Canvas.Left="50" Canvas.Top="177">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="25" DisplayMemberBinding="{Binding numberStationInLine}"/>
+                        <GridViewColumn Header="No. Station" Width="65" DisplayMemberBinding="{Binding numberStation}"/>
+                        <GridViewColumn Header="Name Station" Width="200" DisplayMemberBinding="{Binding nameStation}"/>
+                        <GridViewColumn Header="Time driving" Width="100" DisplayMemberBinding="{Binding timeFromPriorStation}"/>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="toDeleteStation"
+                                       Width="20" Height="20" Click="toDeleteStation_Click">
+                                        <Image x:Name="iconDelete" Width="20" Height="20"
+                                               Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\iconGarbage.jpg"/>
+                                    </Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Button x:Name="update" Content="edit line"
+                Width="75" Height="30"
+                Canvas.Left="110" Canvas.Top="360"
+                Style="{StaticResource FontForButtom}"
+                Click="update_Click"/>
+
+            <Button x:Name="delete" Content="delete line"
+                Width="75" Height="30"
+                Canvas.Left="225" Canvas.Top="360"
+                Style="{StaticResource FontForButtom}"
+                Click="delete_Click"/>
+
+        </Canvas>
+    </Grid>
+</Window>

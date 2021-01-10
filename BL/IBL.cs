@@ -26,6 +26,7 @@ namespace BLAPI
         void deleteBusStation(BusStation bus);
         BusStation getBusStation(int numberStation);
         IEnumerable<BusStation> getAllBusStations();
+        IEnumerable<int> getLineInBusStations(BusStation station);
         #endregion
 
         #region Driving
@@ -37,18 +38,21 @@ namespace BLAPI
         #endregion
 
         #region LineBus
-        void insertLineBus(LineBus bus);
+        int insertLineBus(LineBus bus);
         void updateLineBus(LineBus bus);
         void deleteLineBus(LineBus bus);
         LineBus getLineBus(int identifyBus);
         IEnumerable<LineBus> getAllLineBus();
         IEnumerable<BusStation> getStationInLineBus(LineBus lineBus);
-        void addStationtoLine(LineBus line, BusStation station, int indexInLine);
+        void addStationToLine(LineBus line, BusStation station, int indexInLine);
+        void deleteStationInLine(LineBus line, LineStation station);
+
 
         #endregion
 
         #region Follow Stations
-        void insertFollowStations(BusStation station1, BusStation station2);
+        void insertFollowStations(int station1, int station2);
+        FollowStations getFollowStations(int station1, int station2);
         //void updateFollowStations(FollowStations stations);
         //void deleteFollowStations(FollowStations stations);
         //IEnumerable<FollowStations> getAllFollowStations();
@@ -56,9 +60,11 @@ namespace BLAPI
 
         #region Line Station
         void insertLineStation(LineStation line);
-        void updateLineStation(LineStation line);
+        void updateLineStation(LineStation lineStationCurrent, LineStation lineStationNew);
         void deleteLineStation(LineStation line);
+        LineStation getLineStation(int identifyBus, int numberStation);
         IEnumerable<LineStation> getAllLineStation();
+        IEnumerable<LineStation> getLineStationsForLine(int identifyBus);
         #endregion
 
 

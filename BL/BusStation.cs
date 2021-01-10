@@ -15,5 +15,10 @@ namespace BO
         public string address { get; set; }
         public IEnumerable<LineStation> lineInStation { get; set; }
         public bool deleted { get; set; }
+
+        public override string ToString()
+        {
+            return nameStation;
+        }
     }
 }

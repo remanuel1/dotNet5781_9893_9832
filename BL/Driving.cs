@@ -10,5 +10,7 @@ namespace BO
     {
         public BusStation startStation { get; set; }
         public BusStation endStation { get; set; }
+
+        public override string ToString() => this.ToStringProperty();
     }
 }

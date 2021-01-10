@@ -10,9 +10,14 @@ namespace Consol
 {
     public class Class1
     {
-        IDL mydl = DLFactory.GetDal();
-        DO.Bus bus = new DO.Bus();
-        
+        static IDL mydl;
+        static void main(string[] args)
+        {
+            mydl = DLFactory.GetDal();
+            DO.Bus bus;
+            Console.WriteLine(mydl.getBus("1234567"));
+        }
+
 
     }
 }

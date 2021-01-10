@@ -8,9 +8,10 @@ namespace BO
 {
     public class FollowStations
     {
-        public BusStation Station1 { get; set; }
-        public BusStation Station2 { get; set; }
-        public float distance { get; set; }
-        public DateTime drivinngTime { get; set; }
-    }
+        public int numberStation1 { get; set; }
+        public int numberStation2 { get; set; }
+        public double distance { get; set; }
+        //public DateTime drivinngTime { get; set; }
+        public TimeSpan drivinngTime { get; set; }
+}
 }

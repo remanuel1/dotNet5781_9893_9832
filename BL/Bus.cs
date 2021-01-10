@@ -19,5 +19,21 @@ namespace BO
             public DateTime lastTreat { get; set; }
             public bool deleted { get; set; }
 
+        public override string ToString()
+        {
+            string temp = numberLicense;
+            if (temp.Length == 7)
+            {
+                temp = temp.Insert(2, "-");
+                temp = temp.Insert(6, "-");
+            }
+            else
+            {
+                temp = temp.Insert(3, "-");
+                temp = temp.Insert(6, "-");
+            }
+            return temp;
+        }
+
     }
 }

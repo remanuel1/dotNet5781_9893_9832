@@ -13,6 +13,10 @@ namespace BO
         public Area area { get; set; }
         public IEnumerable<LineStation> listStaion { get; set; }
         public bool deleted { get; set; }
+        public override string ToString()
+        {
+            return ""+numberLine;
+        }
 
 
     }

@@ -1,0 +1,96 @@
+﻿<Window x:Class="PL.DetailOfBus"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="DetailOfBus" Height="450" Width="400">
+    <Grid Margin="0,10,0,12.8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Number Bus"
+               HorizontalAlignment="Center" VerticalAlignment="Center" 
+               Grid.Column="0" Grid.Row="0" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label x:Name="idBus" Content="{Binding}"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="1" Grid.Row="0" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label Content="Manufacturing date"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="0" Grid.Row="1" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label x:Name="dateStart" Content="{Binding startActivity}"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="1" Grid.Row="1" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label Content="Last treat"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="0" Grid.Row="2" Padding="5" 
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label x:Name="dateTreat" Content="{Binding lastTreat}"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="1" Grid.Row="2" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label Content="Sum K.M."
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="0" Grid.Row="3" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label x:Name="sumKm" Content="{Binding sumKM}"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="1" Grid.Row="3" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label Content="Fuel status"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="0" Grid.Row="4" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label x:Name="fuel" Content="{Binding totalFuel, UpdateSourceTrigger=PropertyChanged}"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="1" Grid.Row="4" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label Content="Bus status"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="0" Grid.Row="5" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label x:Name="state" Content="{Binding Status}"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="1" Grid.Row="5" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label Content="Sum K.M. from last treat"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="0" Grid.Row="6" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+
+        <Label x:Name="KmFrom" Content="{Binding sumKMFromLastTreat}"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Column="1" Grid.Row="6" Padding="5"
+               Style="{StaticResource FontForLabel}"/>
+    </Grid>
+</Window>

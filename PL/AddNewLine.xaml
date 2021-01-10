@@ -1,0 +1,85 @@
+﻿<Page x:Class="PL.AddNewLine"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PL"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="400"
+      Title="AddNewLine">
+
+    <Canvas x:Name="addNewLine">
+
+        <Label Content="Number line:"
+               Height="30" Width="100" Canvas.Top="30" Canvas.Left="30"
+               Style="{StaticResource FontForLabel}" FontWeight="ExtraBlack"/>
+
+        <TextBox x:Name="numberLine" Text=""
+               Height="30" Width="100" Canvas.Top="30" Canvas.Left="130"
+               Style="{StaticResource FontForTextBox}"
+               PreviewTextInput="numberLine_PreviewTextInput"/>
+
+        <Label Content="Area:"
+               Height="30" Width="100" Canvas.Top="65" Canvas.Left="30"
+               Style="{StaticResource FontForLabel}" FontWeight="ExtraBlack"/>
+
+        <ComboBox x:Name="allArea" ItemsSource="{Binding}"
+                  IsEditable="True"
+               Height="30" Width="100" Canvas.Top="65" Canvas.Left="130"/>
+
+        <Label Content="list station:"
+               Height="30" Width="100" Canvas.Top="110" Canvas.Left="30"
+               Style="{StaticResource FontForLabel}" FontWeight="ExtraBlack"/>
+
+        <ComboBox x:Name="listStationForNewLine" ItemsSource="{Binding}"
+               IsEditable="True"
+               Height="30" Width="200" Canvas.Top="110" Canvas.Left="130"
+               SelectionChanged="listStationForNewLine_SelectionChanged"/>
+
+        <Label Content="station in line:"
+               Height="30" Width="100" Canvas.Top="160" Canvas.Left="30"
+               Style="{StaticResource FontForLabel}" FontWeight="ExtraBlack"/>
+
+        <ListView x:Name="stationSelected" Height="145" Width="300"
+                  ItemsSource="{Binding}"
+                  Canvas.Left="50" Canvas.Top="190">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name Station" Width="200"/>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="garbage"
+                                           Width="15" Height="15"
+                                          MouseDoubleClick="garbage_MouseDoubleClick">
+                                    <Image x:Name="iconG" Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\iconGarbage.jpg"/>
+                                </Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button x:Name="addLine" Content="ADD"
+                Grid.Column="1" Height="40" Width="60" Canvas.Top="350" Canvas.Left="150"
+                FontFamily="FbExtazi Regular" FontSize="16" FontWeight="Bold"
+                FlowDirection="LeftToRight" Background="#FFA4E4ED"
+                Click="addLine_Click">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Da, ElementName=numberLine}" Value="">
+                            <Setter Property="UIElement.IsEnabled" Value="false"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Text, ElementName=allArea}" Value="">
+                            <Setter Property="UIElement.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Canvas>
+    
+</Page>

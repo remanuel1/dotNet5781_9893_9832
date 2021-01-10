@@ -42,12 +42,18 @@ namespace BO
 
     public class BadLineExceptions : Exception
     {
-
         public BadLineExceptions(string message) :
             base(message) { ; }
         
         public override string ToString() => base.ToString() + $", bad line bus";
+    }
 
+    public class BadLocalExceptions : Exception
+    {
+        public BadLocalExceptions(string message) :
+            base(message)
+        {; }
+        public override string ToString() => base.ToString() + $", bad local for bus station";
     }
 
 
