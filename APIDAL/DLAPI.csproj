@@ -48,6 +48,7 @@
     <Compile Include="BusStation.cs" />
     <Compile Include="DLFactory.cs" />
     <Compile Include="Exceptions.cs" />
+    <Compile Include="ExitLine.cs" />
     <Compile Include="FollowStations.cs" />
     <Compile Include="DO.cs" />
     <Compile Include="IDL.cs" />

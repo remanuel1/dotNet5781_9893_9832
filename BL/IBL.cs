@@ -65,6 +65,7 @@ namespace BLAPI
         LineStation getLineStation(int identifyBus, int numberStation);
         IEnumerable<LineStation> getAllLineStation();
         IEnumerable<LineStation> getLineStationsForLine(int identifyBus);
+
         #endregion
 
 

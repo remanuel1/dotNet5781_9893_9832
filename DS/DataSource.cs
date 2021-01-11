@@ -15,7 +15,8 @@ namespace DS
         public static List<LineStation> allLinesStation;
         public static List<FollowStations> allFollowStations;
         public static List<LineBus> allLines;
-        
+        public static List<ExitLine> allExitLines;
+
         static DataSource()
         {
             InitAllLists();

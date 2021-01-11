@@ -233,7 +233,8 @@ namespace BL
                 throw new BO.BadIDExceptions("this line bus not exsist", ex);
             }
             lineBusDO.CopyPropertiesTo(lineBusBO);
-            IEnumerable<DO.LineStation> station = dl.getLineStationInLine(lineBusBO.identifyBus);
+            //IEnumerable<DO.LineStation> station = dl.getLineStationInLine(lineBusBO.identifyBus);
+            IEnumerable<DO.LineStation> station = dl.getAllLineStationBy(l => l.identifyLine == lineBusBO.identifyBus);
             lineBusBO.listStaion = (from DO.LineStation item in station
                                    select lineStationDoBoAdapter(item)).ToList();
             return lineBusBO;
@@ -368,9 +369,9 @@ namespace BL
             {
                 throw new BO.BadIDExceptions("this line station not exist", ex);
             }
-            IEnumerable<DO.LineStation> stationList = dl.getLineStationInLine(line.identifyBus);
-
-            if(indexInLine !=1)
+            //IEnumerable<DO.LineStation> stationList = dl.getLineStationInLine(line.identifyBus);
+            IEnumerable<DO.LineStation> stationList = dl.getAllLineStationBy(l => l.identifyLine == line.identifyBus);
+            if (indexInLine !=1)
                 insertFollowStations(station.numberStation, line.listStaion.ElementAt(indexInLine - 2).numberStation);
             if(indexInLine <= line.listStaion.Count())
                 insertFollowStations(station.numberStation, line.listStaion.ElementAt(indexInLine-1).numberStation);
@@ -398,7 +399,8 @@ namespace BL
             {
                 throw new BO.BadIDExceptions("this line station not exist", ex);
             }
-            IEnumerable<DO.LineStation> stationList = dl.getLineStationInLine(line.identifyBus);
+            //IEnumerable<DO.LineStation> stationList = dl.getLineStationInLine(line.identifyBus);
+            IEnumerable<DO.LineStation> stationList = dl.getAllLineStationBy(l => l.identifyLine == line.identifyBus);
             line.listStaion = (from DO.LineStation item in stationList
                                select lineStationDoBoAdapter(item)).ToList();
 

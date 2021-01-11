@@ -61,6 +61,13 @@ namespace DLAPI
         IEnumerable<LineStation> getAllLineStation();
         IEnumerable<LineStation> getLineStationInLine(int identifyLine);
         IEnumerable<LineStation> getLineStationInStation(int numberStation);
+        IEnumerable<LineStation> getAllLineStationBy(Predicate<LineStation> predicate);
+
+        // method exit Line
+        void deleteExitLine(ExitLine exitLine);
+        ExitLine getExitLineBy(Predicate<ExitLine> predicate);
+        IEnumerable<ExitLine> getAllExitLine();
+        IEnumerable<ExitLine> getAllExitLineBy(Predicate<ExitLine> predicate);
 
     }
 }

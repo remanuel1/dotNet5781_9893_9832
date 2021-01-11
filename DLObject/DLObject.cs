@@ -284,6 +284,45 @@ namespace DL
                    select lineStation.Clone()).ToList();
 
         }
+
+        public IEnumerable<DO.LineStation> getAllLineStationBy(Predicate<DO.LineStation> predicate)
+        {
+            return (from lineStation in DataSource.allLinesStation
+                    where predicate(lineStation) && lineStation.deleted == false && getLineBus(lineStation.identifyLine).deleted == false
+                    select lineStation.Clone()).ToList();
+
+        }
+        #endregion
+
+        #region exit line
+        public void deleteExitLine(DO.ExitLine exitLine)
+        {
+
+            if (DataSource.allExitLines.FirstOrDefault(p => p.identifyBus == exitLine.identifyBus) == null)
+                throw new DO.BadIdException(exitLine.identifyBus, "these exit line not exists");
+            int index = DataSource.allExitLines.FindIndex(p => p.identifyBus == exitLine.identifyBus && p.startTime == exitLine.startTime);
+            DataSource.allExitLines.RemoveAt(index);
+        }
+        public DO.ExitLine getExitLineBy(Predicate<DO.ExitLine> predicate)
+        {
+            return (from item in DataSource.allExitLines
+                   where predicate(item)
+                   select item.Clone()).FirstOrDefault();
+        }
+        public IEnumerable<DO.ExitLine> getAllExitLine()
+        {
+            return from item in DataSource.allExitLines
+                   orderby item.identifyBus, item.startTime
+                   select item.Clone();
+        }
+        public IEnumerable<DO.ExitLine> getAllExitLineBy(Predicate<DO.ExitLine> predicate)
+        {
+            return from item in DataSource.allExitLines
+                   where predicate(item)
+                   orderby item.identifyBus, item.startTime
+                   select item.Clone();
+        }
+
         #endregion
     }
 }
