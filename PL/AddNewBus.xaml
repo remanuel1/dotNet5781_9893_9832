@@ -30,8 +30,8 @@
         <TextBox x:Name="numberBus"
                  PreviewTextInput="numberBus_PreviewTextInput"
                  Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-                 Height="23" TextWrapping="Wrap" Text="" Width="100" MaxLength="8"
-                 Style="{StaticResource FontForTextBox}" Margin="12.2,21,7,20.8"/>
+                 Height="30" TextWrapping="Wrap" Text="" Width="100" MaxLength="8"
+                 Style="{StaticResource FontForTextBox}"/>
 
         <Label x:Name="date" Content="Manufacturing date"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -40,7 +40,7 @@
 
         <DatePicker x:Name="dateBus"
                     Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-                    DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" Height="23" Margin="11.2,21.2,7,20.6" Width="101"/>
+                    DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" Height="35" Width="100"/>
 
         <Label Content="Last treat"
                HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -49,7 +49,7 @@
 
         <DatePicker x:Name="dateTreat"
                     Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-                    DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" Height="23" Margin="11.2,20.4,7,20.6" Width="101"/>
+                    DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" Height="35" Width="100"/>
 
         <Label Content="Sum K.M."
                HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -60,7 +60,7 @@
                HorizontalAlignment="Center" VerticalAlignment="Center"
                PreviewTextInput="numberBus_PreviewTextInput"
                Grid.Column="1" Grid.Row="3" Width="100" Padding="5"
-               Style="{StaticResource FontForTextBox}" Height="29" Margin="12.2,17.4,7,17.6"/>
+               Style="{StaticResource FontForTextBox}" Height="30"/>
 
         <Label Content="Fuel status"
                HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -71,7 +71,7 @@
                HorizontalAlignment="Center" VerticalAlignment="Center"
                PreviewTextInput="numberBus_PreviewTextInput"
                Grid.Column="1" Grid.Row="4" Width="100" Padding="5"
-               Style="{StaticResource FontForTextBox}" Height="29" Margin="12.2,17.4,7,17.6"/>
+               Style="{StaticResource FontForTextBox}" Height="30"/>
 
         <Label Content="Sum K.M. from last treat"
                HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -82,13 +82,13 @@
                HorizontalAlignment="Center" VerticalAlignment="Center"
                PreviewTextInput="numberBus_PreviewTextInput" 
                Grid.Column="1" Grid.Row="5" Width="100" Padding="5"
-               Style="{StaticResource FontForTextBox}" Height="29" Margin="12.2,17.4,7,17.6"/>
+               Style="{StaticResource FontForTextBox}" Height="30"/>
 
         <Button x:Name="add" Content="ADD"
                 Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Width="75" Click="add_Click"
                 FontFamily="FbExtazi Regular" FontSize="16" FontWeight="Bold"
-                FlowDirection="LeftToRight" Background="#FFA4E4ED" Margin="110,20.4,115,22.6" Height="21" Grid.ColumnSpan="2">
+                FlowDirection="LeftToRight" Background="#FFA4E4ED" Height="30" Grid.ColumnSpan="2">
             <Button.Style>
                 <Style>
                     <Style.Triggers>

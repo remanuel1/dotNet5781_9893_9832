@@ -448,7 +448,7 @@ namespace BL
             GeoCoordinate s1 = new GeoCoordinate(dl.getBusStation(station1).Latitude, dl.getBusStation(station1).Longitude);
             GeoCoordinate d1 = new GeoCoordinate(dl.getBusStation(station2).Latitude, dl.getBusStation(station2).Longitude);
             follow.distance = s1.GetDistanceTo(d1);
-            follow.drivinngTime = TimeSpan.FromSeconds(follow.distance / 50);
+            follow.drivinngTime = TimeSpan.FromMilliseconds(follow.distance / 50*10000);
             follow.deleted = false;
             try
             {

@@ -1,96 +1,166 @@
-﻿<Window x:Class="PL.DetailOfBus"
+﻿<Page x:Class="PL.DetailOfBus"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="DetailOfBus" Height="450" Width="400">
-    <Grid Margin="0,10,0,12.8">
+        Title="DetailOfBus" Height="400" Width="400">
+    
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <Label Content="Number Bus"
-               HorizontalAlignment="Center" VerticalAlignment="Center" 
-               Grid.Column="0" Grid.Row="0" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+        <Grid x:Name="GridDetailOfBus" Width="300" Height="400">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
 
-        <Label x:Name="idBus" Content="{Binding}"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="1" Grid.Row="0" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+            </Grid.RowDefinitions>
 
-        <Label Content="Manufacturing date"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="0" Grid.Row="1" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+            <Label Content="Detail of bus:"
+                       Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Style="{StaticResource FontForLabel}" FontSize="20" FontWeight="ExtraBold"/>
 
-        <Label x:Name="dateStart" Content="{Binding startActivity}"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="1" Grid.Row="1" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+            <Label Content="Number Bus:"
+                       Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Style="{StaticResource FontForLabel}" Height="27" Margin="41,15.2,46,14.6" Width="93"/>
 
-        <Label Content="Last treat"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="0" Grid.Row="2" Padding="5" 
-               Style="{StaticResource FontForLabel}"/>
+            <TextBox x:Name="numberBus"
+                    Text="{Binding numberLicense}" IsEnabled="False"
+                    PreviewTextInput="numberBus_PreviewTextInput"
+                    Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Height="23" TextWrapping="Wrap" Width="100" MaxLength="8"
+                    Style="{StaticResource FontForTextBox}"/>
 
-        <Label x:Name="dateTreat" Content="{Binding lastTreat}"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="1" Grid.Row="2" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+            <Label x:Name="date" Content="Manufacturing date:"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Grid.Row="2"
+                   Style="{StaticResource FontForLabel}" Height="27" Margin="18,15.4,23,15.2" Width="139"/>
 
-        <Label Content="Sum K.M."
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="0" Grid.Row="3" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+            <DatePicker x:Name="dateBus"
+                    SelectedDate="{Binding startActivity}"
+                    Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}"
+                    Height="23" Width="102"/>
 
-        <Label x:Name="sumKm" Content="{Binding sumKM}"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="1" Grid.Row="3" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+            <Label Content="Last treat:"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Grid.Column="0" Grid.Row="3" Padding="5" 
+                    Style="{StaticResource FontForLabel}" Height="27" Margin="52,15.8,58,14.8" Width="70"/>
 
-        <Label Content="Fuel status"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="0" Grid.Row="4" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+            <DatePicker x:Name="dateTreat"
+                    SelectedDate="{Binding lastTreat}"
+                    Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}"
+                    Height="23" Width="102"/>
 
-        <Label x:Name="fuel" Content="{Binding totalFuel, UpdateSourceTrigger=PropertyChanged}"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="1" Grid.Row="4" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+            <Label Content="Sum K.M.:"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Grid.Column="0" Grid.Row="4" Padding="5"
+                    Style="{StaticResource FontForLabel}" Height="28" Margin="52,15.2,58,14.4" Width="70"/>
 
-        <Label Content="Bus status"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="0" Grid.Row="5" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+            <TextBox x:Name="sumKm" Text=""
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    PreviewTextInput="numberBus_PreviewTextInput"
+                    Grid.Column="1" Grid.Row="4" Width="100" Padding="5"
+                    Style="{StaticResource FontForTextBox}" Height="28" />
 
-        <Label x:Name="state" Content="{Binding Status}"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="1" Grid.Row="5" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+            <Label Content="Fuel status:"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Grid.Column="0" Grid.Row="5" Padding="5"
+                    Style="{StaticResource FontForLabel}" Height="27" Margin="48,14.6,54,15.2" Width="78"/>
 
-        <Label Content="Sum K.M. from last treat"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="0" Grid.Row="6" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+            <TextBox x:Name="fuel" Text=""
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    PreviewTextInput="numberBus_PreviewTextInput"
+                    Grid.Column="1" Grid.Row="5" Width="100" Padding="5"
+                    Style="{StaticResource FontForTextBox}" Height="29"/>
 
-        <Label x:Name="KmFrom" Content="{Binding sumKMFromLastTreat}"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Column="1" Grid.Row="6" Padding="5"
-               Style="{StaticResource FontForLabel}"/>
+            <Label Content="Sum K.M. from last treat:"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Grid.Column="0" Grid.Row="6" Padding="5"
+                    Style="{StaticResource FontForLabel}" Height="27" Width="168"/>
+
+            <TextBox x:Name="KmFrom" Text=""
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    PreviewTextInput="numberBus_PreviewTextInput" 
+                    Grid.Column="1" Grid.Row="6" Width="100" Padding="5"
+                    Style="{StaticResource FontForTextBox}" Height="29"/>
+
+            <Label Content="Status Bus:"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Grid.Column="0" Grid.Row="7" Padding="5"
+                    Style="{StaticResource FontForLabel}" Height="27"/>
+
+            <TextBox x:Name="status" Text="{Binding Status}" IsEnabled="False"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Grid.Column="1" Grid.Row="7" Width="100" Padding="5"
+                    Style="{StaticResource FontForTextBox}" Height="29"/>
+        </Grid>
+
+        
+
+        <Button x:Name="refuel" Grid.Column="1"
+                   Width="60" Height="60"
+                        Style="{StaticResource FontForButtom}" Padding="5"
+                        VerticalAlignment="Center"
+                        Click="refuel_Click" Margin="20,117,20,223">
+            <Image Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\fuel.JPG"
+                  Width="50" Height="50" />
+        </Button>
+
+        <Button x:Name="treat" Grid.Column="1"
+                    Width="60" Height="60"
+                        Style="{StaticResource FontForButtom}" Padding="5"
+                        VerticalAlignment="Center"
+                        Click="treat_Click" Margin="20,188,20,152">
+            <Image Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\treat.JPG"
+                  Width="50" Height="50" />
+        </Button>
+
+        <Button x:Name="update" Grid.Column="1"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="60" Height="60" Click="update_Click"
+                FontFamily="FbExtazi Regular" FontSize="16" FontWeight="Bold"
+                FlowDirection="LeftToRight" Background="#FFA4E4ED" Margin="20,259,20,81">
+            <Image Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\updateIcon.jpg"
+                   Width="50" Height="50"/>
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=idBus, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding ElementName=dateBus, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="delete" Grid.Column="1"
+                  Width="60" Height="60"
+                        Style="{StaticResource FontForButtom}" Padding="5"
+                        VerticalAlignment="Center"
+                        Click="delete_Click" Margin="20,330,20,10">
+            <Image Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\iconGarbage.jpg"
+                  Width="50" Height="50" />
+        </Button>
     </Grid>
-</Window>
+</Page>

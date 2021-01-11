@@ -21,12 +21,12 @@ namespace PL
     public partial class AddNewBus : Page
     {
         IBL bl;
-        ListView allBuses;
+        ListBox allBuses;
         public AddNewBus()
         {
             InitializeComponent();
         }
-        public AddNewBus(IBL _bl, ListView _allBuses)
+        public AddNewBus(IBL _bl, ListBox _allBuses)
         {
             InitializeComponent();
             bl = _bl;
@@ -85,7 +85,7 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+            this.Visibility = Visibility.Hidden;
         }
 
         private void numberBus_PreviewTextInput(object sender, TextCompositionEventArgs e)

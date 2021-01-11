@@ -62,10 +62,7 @@ namespace PL
 
         private void update_Click(object sender, RoutedEventArgs e)
         {
-            BO.Bus bus = (sender as Button).DataContext as BO.Bus;
-            UpdateBus updateBus = new UpdateBus(bl, bus, listBus);
-            updateBus.Show();
-            listBus.DataContext = allBuses;
+
         }
 
         private void delete_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -78,9 +75,9 @@ namespace PL
 
         private void listBus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.Bus bus = listBus.SelectedItem as BO.Bus;
+            /*BO.Bus bus = listBus.SelectedItem as BO.Bus;
             DetailOfBus detailOfBus = new DetailOfBus(bus);
-            detailOfBus.Show();
+            detailOfBus.Show();*/
         }
     }
 }

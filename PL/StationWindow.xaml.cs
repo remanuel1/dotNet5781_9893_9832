@@ -111,5 +111,6 @@ namespace PL
             detailStation.DataContext = station;
             lines.ItemsSource = bl.getLineInBusStations(station);
         }
+
     }
 }
