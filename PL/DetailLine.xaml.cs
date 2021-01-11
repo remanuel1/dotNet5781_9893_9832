@@ -112,5 +112,6 @@ namespace PL
             listNumber.Visibility = Visibility.Hidden;
             addStationToLine.Visibility = Visibility.Hidden;
         }
+
     }
 }

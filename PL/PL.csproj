@@ -74,6 +74,9 @@
     <Compile Include="DetailOfBus.xaml.cs">
       <DependentUpon>DetailOfBus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DetailStation.xaml.cs">
+      <DependentUpon>DetailStation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LineWindow.xaml.cs">
       <DependentUpon>LineWindow.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DetailOfBus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetailStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,7 +188,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="backGround.jpg" />
+    <Resource Include="picture\backGround.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="picture\treat.JPG" />

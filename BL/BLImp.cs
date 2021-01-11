@@ -370,9 +370,9 @@ namespace BL
             }
             IEnumerable<DO.LineStation> stationList = dl.getLineStationInLine(line.identifyBus);
 
-            if(indexInLine !=0)
+            if(indexInLine !=1)
                 insertFollowStations(station.numberStation, line.listStaion.ElementAt(indexInLine - 2).numberStation);
-            if(indexInLine!= line.listStaion.Count())
+            if(indexInLine <= line.listStaion.Count())
                 insertFollowStations(station.numberStation, line.listStaion.ElementAt(indexInLine-1).numberStation);
             
             line.listStaion = (from DO.LineStation item in stationList

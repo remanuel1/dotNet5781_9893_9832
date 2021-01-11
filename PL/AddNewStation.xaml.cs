@@ -18,7 +18,7 @@ namespace PL
     /// <summary>
     /// Interaction logic for AddNewStation.xaml
     /// </summary>
-    public partial class AddNewStation : Window
+    public partial class AddNewStation : Page
     {
         IBL bl;
         ListView listAllStation;
@@ -37,15 +37,17 @@ namespace PL
         private void add_Click(object sender, RoutedEventArgs e)
         {
             BO.BusStation station = new BO.BusStation();
-            station.nameStation = nameStation.Text;
-            station.address = addressStation.Text;
-            station.Latitude = double.Parse(locatLatitude.Text);
-            station.Longitude = double.Parse(locatLongitude.Text);
+            station.nameStation = addNameStation.Text;
+            station.address = addAddressStation.Text;
+            station.Latitude = double.Parse(addLocatLatitude.Text);
+            station.Longitude = double.Parse(addLocatLongitude.Text);
             station.lineInStation = null;
             try
             {
                 bl.insertBusStation(station);
                 listAllStation.ItemsSource = bl.getAllBusStations();
+                this.Visibility = Visibility.Hidden;
+                
             }
             catch (BO.BadIDExceptions ex)
             {
@@ -55,7 +57,7 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            this.Close();
         }
+
     }
 }

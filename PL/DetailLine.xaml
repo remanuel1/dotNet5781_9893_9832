@@ -79,16 +79,23 @@
             </ListView.View>
         </ListView>
 
-        <Button x:Name="update" Content="edit line"
-                Width="75" Height="30"
-                Canvas.Left="110" Canvas.Top="360"
+        <Button x:Name="update"
+                Width="60" Height="60"
+                Canvas.Left="50" Canvas.Top="350"
                 Style="{StaticResource FontForButtom}"
-                Click="update_Click"/>
+                Click="update_Click">
+            <Image Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\updateIcon.jpg"
+                   Width="50" Height="50"/>
+        </Button>
 
-        <Button x:Name="delete" Content="delete line"
-                Width="75" Height="30"
-                Canvas.Left="225" Canvas.Top="360"
+        <Button x:Name="delete"
+                Width="60" Height="60"
+                Canvas.Left="130" Canvas.Top="350"
                 Style="{StaticResource FontForButtom}"
-                Click="delete_Click"/>
+                Click="delete_Click">
+            <Image Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\iconGarbage.jpg"
+                  Width="50" Height="50" />
+            
+        </Button>
     </Canvas>
 </Page>

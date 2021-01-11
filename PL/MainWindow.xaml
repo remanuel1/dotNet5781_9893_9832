@@ -11,7 +11,7 @@
     </Window.Background>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="backGround.jpg"/>
+            <ImageBrush ImageSource="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\backGround.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -21,7 +21,11 @@
 
         <Label Content="welcome"
                HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="341" Grid.ColumnSpan="2"
-               FontSize="120" FontFamily="Gabriola" FontWeight="Bold" Margin="227,-28,225.6,0"/>
+               FontSize="120" FontFamily="Gabriola" FontWeight="Bold" Margin="227,0,225.6,0">
+            <Label.Background>
+                <ImageBrush/>
+            </Label.Background>
+        </Label>
 
         <Canvas x:Name="cnAdmin"
                 Grid.Column="0"  HorizontalAlignment="Center"
@@ -45,6 +49,13 @@
                    Password="" Width="250" Height="40" Padding="7"
                    Canvas.Top="180" Canvas.Left="25"
                    Background="White" FontSize="20"/>
+
+            <TextBox x:Name="userPassShow"
+                   Text="{Binding userPass}" Visibility="{Binding}"
+                   Width="250" Height="40" Padding="7"
+                   Canvas.Top="180" Canvas.Left="25"
+                   Background="White" FontSize="20"
+                   Style="{StaticResource FontForTextBox}"/>
 
             <CheckBox x:Name="showPass"
                       Canvas.Left="250" Canvas.Top="195"

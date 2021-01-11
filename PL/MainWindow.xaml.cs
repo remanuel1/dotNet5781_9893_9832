@@ -25,6 +25,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+            userPassShow.Visibility = Visibility.Hidden;
         }
 
         private void admin_Click(object sender, RoutedEventArgs e)
@@ -37,12 +38,15 @@ namespace PL
 
         private void showPass_Checked(object sender, RoutedEventArgs e)
         {
-
+            userPass.Visibility = Visibility.Hidden;
+            userPassShow.Visibility = Visibility.Visible;
+            userPassShow.Text = userPass.Password;
         }
 
         private void showPass_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            userPass.Visibility = Visibility.Visible;
+            userPassShow.Visibility = Visibility.Hidden;
         }
     }
 }

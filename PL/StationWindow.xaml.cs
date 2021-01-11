@@ -37,23 +37,23 @@ namespace PL
             InitializeComponent();
             bl = _bl;
             refreshListBusStation();
-            detailStation.Visibility = Visibility.Hidden;
-            addNewStation.Visibility = Visibility.Hidden;
+            //detailStation.Visibility = Visibility.Hidden;
+            //addNewStation.Visibility = Visibility.Hidden;
         }
 
 
         private void Button_Click_Add(object sender, RoutedEventArgs e)
         {
+            page.Content = new AddNewStation(bl, listStation);
             //addNewStation.Visibility = Visibility.Visible;
-            detailStation.Visibility = Visibility.Hidden;
-            AddNewStation addNewStation = new AddNewStation(bl, listStation);
-            addNewStation.Show();
+            //AddNewStation addNewStation = new AddNewStation(bl, listStation);
+            //addNewStation.Show();
             //busStations = bl.getAllBusStations();
             //allBusStation = convert(busStations);
             //listStation.ItemsSource = allBusStation;
         }
 
-        private void Button_Click_Update(object sender, RoutedEventArgs e)
+        /*private void Button_Click_Update(object sender, RoutedEventArgs e)
         {
             BO.BusStation station = (sender as Button).DataContext as BO.BusStation;
             try
@@ -66,9 +66,9 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
+        }*/
 
-        private void Button_Click_Delete(object sender, RoutedEventArgs e)
+        /*private void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             BO.BusStation station = (sender as Button).DataContext as BO.BusStation;
             try
@@ -82,9 +82,9 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
+        }*/
 
-        private void ADDButton_Click(object sender, RoutedEventArgs e)
+        /*private void ADDButton_Click(object sender, RoutedEventArgs e)
         {
             BO.BusStation station = new BO.BusStation();
             station.nameStation = addNameStation.Text;
@@ -101,15 +101,18 @@ namespace PL
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             addNewStation.Visibility = Visibility.Hidden;
-        }
+        }*/
 
         private void listStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            detailStation.Visibility = Visibility.Visible;
+            BO.BusStation station = (sender as ListBox).SelectedItem as BO.BusStation;
+            page.Content = new DetailStation(bl, station, listStation);
+            /*detailStation.Visibility = Visibility.Visible;
             addNewStation.Visibility = Visibility.Hidden;
             BO.BusStation station = (sender as ListBox).SelectedItem as BO.BusStation;
+
             detailStation.DataContext = station;
-            lines.ItemsSource = bl.getLineInBusStations(station);
+            lines.ItemsSource = bl.getLineInBusStations(station);*/
         }
 
     }

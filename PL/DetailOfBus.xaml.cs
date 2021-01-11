@@ -45,13 +45,11 @@ namespace PL
 
         private void refuel_Click(object sender, RoutedEventArgs e)
         {
-            //BO.Bus bus = listBus.SelectedItem as BO.Bus;
             try
             {
                 bl.refuel(temp);
                 fuel.Text = "" + temp.totalFuel;
                 listBus.DataContext = bl.getAllBusses();
-                //listBus.SelectedItem = bus as BO.Bus;
             }
             catch (BO.BadIDExceptions ex)
             {

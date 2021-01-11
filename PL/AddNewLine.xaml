@@ -52,7 +52,7 @@
                                 <Button x:Name="garbage"
                                            Width="15" Height="15"
                                           MouseDoubleClick="garbage_MouseDoubleClick">
-                                    <Image x:Name="iconG" Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\iconGarbage.jpg"/>
+                                    <Image x:Name="iconG" Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\iconGarbage.jpg"/>
                                 </Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
