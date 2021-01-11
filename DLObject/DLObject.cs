@@ -137,7 +137,7 @@ namespace DL
                 throw new DO.BadTwoIdException(Stations.numberStation1, Stations.numberStation2, "these follow station exist");
             DataSource.allFollowStations.Add(Stations.Clone());
         }
-        public void updateFollowStations(DO.FollowStations Stations)
+        /*public void updateFollowStations(DO.FollowStations Stations)
         {
             // not needed (?)
             if (DataSource.allFollowStations.FirstOrDefault(p => p.numberStation1 == Stations.numberStation1 && p.numberStation2 == Stations.numberStation2 && p.deleted == false) == null)
@@ -151,7 +151,8 @@ namespace DL
             if (DataSource.allFollowStations.FirstOrDefault(p => p.numberStation1 == Stations.numberStation1 && p.numberStation2 == Stations.numberStation2 && p.deleted == false) == null)
                 throw new DO.BadTwoIdException(Stations.numberStation1, Stations.numberStation2, "these follow station not exist");
             DataSource.allFollowStations.Find(p => p.numberStation1 == Stations.numberStation1 && p.numberStation2 == Stations.numberStation2).deleted = true;
-        }
+        }*/
+
         public DO.FollowStations getFollowStations(int numberStation1, int numberStation2)
         {
             DO.FollowStations followStations = DataSource.allFollowStations.Find(p => p.numberStation1 == numberStation1 && p.numberStation2 == numberStation2 && p.deleted == false);

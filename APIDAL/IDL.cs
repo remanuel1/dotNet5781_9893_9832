@@ -33,8 +33,6 @@ namespace DLAPI
 
         // method follow Stations 
         void addFollowStations(FollowStations Stations);
-        void updateFollowStations(FollowStations Stations);
-        void deleteFollowStations(FollowStations Stations);
         FollowStations getFollowStations(int numberStation1, int numberStation2);
         IEnumerable<FollowStations> getAllFollowStations();
 
