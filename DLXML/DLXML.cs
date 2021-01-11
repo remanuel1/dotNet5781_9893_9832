@@ -244,26 +244,37 @@ namespace DL
                 throw new DO.BadIdException(lineBus.identifyBus, "these line not exist");
             XMLTools.SaveListToXMLSerializer(ListLineBus, lineBusPath);
         }
+
+        //////////////////////////////////////////// מפה לעשות
+
         public void deleteLineBus(DO.LineBus lineBus)
         {
-            if (DataSource.allLines.FirstOrDefault(p => p.identifyBus == lineBus.identifyBus && p.deleted == false) == null)
+             List<LineBus> ListLineBus = XMLTools.LoadListFromXMLSerializer<LineBus>(lineBusPath);
+
+            if (ListLineBus.FirstOrDefault(p => p.identifyBus == lineBus.identifyBus && p.deleted == false) == null)
                 throw new DO.BadIdException(lineBus.identifyBus, "these line not exist");
-            DataSource.allLines.Find(p => p.identifyBus == lineBus.identifyBus).deleted = true;
+
+            ListLineBus.Find(p => p.identifyBus == lineBus.identifyBus).deleted = true;
+            XMLTools.SaveListToXMLSerializer(ListLineBus, lineBusPath);
         }
         public DO.LineBus getLineBus(int identifyBus)
         {
-            DO.LineBus lineBus = DataSource.allLines.Find(p => p.identifyBus == identifyBus && p.deleted == false);
+            List<LineBus> ListLineBus = XMLTools.LoadListFromXMLSerializer<LineBus>(lineBusPath);
+
+            DO.LineBus lineBus = ListLineBus.Find(p => p.identifyBus == identifyBus && p.deleted == false);
             if (lineBus != null)
-                return lineBus.Clone();
+                return lineBus;
             else
                 throw new DO.BadIdException(identifyBus, $"IdentifyBus Line {identifyBus} not exist.");
         }
         public IEnumerable<DO.LineBus> getAllLineBus()
         {
-            return (from line in DataSource.allLines
+            List<LineBus> ListLineBus = XMLTools.LoadListFromXMLSerializer<LineBus>(lineBusPath);
+
+            return (from line in ListLineBus
                     where line.deleted == false
                     orderby line.numberLine
-                    select line.Clone()).ToList();
+                    select line;
         }
         #endregion
 
@@ -280,64 +291,84 @@ namespace DL
         #region method Line station
         public void addLineStation(DO.LineStation lineStation)
         {
-            if (DataSource.allLinesStation.FirstOrDefault(p => p.identifyLine == lineStation.identifyLine && p.numberStation == lineStation.numberStation) != null)
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+
+            if (ListLineStation.FirstOrDefault(p => p.identifyLine == lineStation.identifyLine && p.numberStation == lineStation.numberStation) != null)
                 throw new DO.BadIdException(lineStation.identifyLine, "these line station exist");
-            DataSource.allLinesStation.Add(lineStation.Clone());
+
+           ListLineStation.Add(lineStation);
+           XMLTools.SaveListToXMLSerializer(ListLineStation, lineStationPath);
         }
         public void updateLineStation(DO.LineStation lineStationCurrent, DO.LineStation lineStationNew)
         {
-            if (DataSource.allLinesStation.FirstOrDefault(p => p.identifyLine == lineStationCurrent.identifyLine && p.deleted == false) == null)
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+
+            if (ListLineStation.FirstOrDefault(p => p.identifyLine == lineStationCurrent.identifyLine && p.deleted == false) == null)
                 throw new DO.BadIdException(lineStationCurrent.identifyLine, "these line not exist");
-            //DataSource.allLinesStation.Remove(old);
-            //DataSource.allLinesStation.Add(lineStation.Clone());
-            int index = DataSource.allLinesStation.FindIndex(p => p.identifyLine == lineStationCurrent.identifyLine && p.numberStation == lineStationCurrent.numberStation);
-            DataSource.allLinesStation[index] = lineStationNew.Clone();
+            ListLineStation.Remove(old);
+            ListLineStation.Add(lineStation);
+            XMLTools.SaveListToXMLSerializer(ListLineStation, lineStationPath);
+            //int index = DataSource.allLinesStation.FindIndex(p => p.identifyLine == lineStationCurrent.identifyLine && p.numberStation == lineStationCurrent.numberStation);
+            //DataSource.allLinesStation[index] = lineStationNew.Clone();
         }
         public void deleteLineStation(DO.LineStation lineStation)
         {
-            if (DataSource.allLinesStation.FirstOrDefault(p => p.identifyLine == lineStation.identifyLine && p.deleted == false) == null)
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+
+            if (ListLineStation.FirstOrDefault(p => p.identifyLine == lineStation.identifyLine && p.deleted == false) == null)
                 throw new DO.BadIdException(lineStation.identifyLine, "these line not exist");
-            //DataSource.allLinesStation.Find(p => p.identifyLine == lineStation.identifyLine).deleted = true;
-            int index = DataSource.allLinesStation.FindIndex(p => p.identifyLine == lineStation.identifyLine && p.numberStation == lineStation.numberStation);
-            DataSource.allLinesStation[index].deleted = true;
+            ListLineStation.Find(p => p.identifyLine == lineStation.identifyLine).deleted = true;
+            XMLTools.SaveListToXMLSerializer(ListLineStation, lineStationPath);
+            //int index = DataSource.allLinesStation.FindIndex(p => p.identifyLine == lineStation.identifyLine && p.numberStation == lineStation.numberStation);
+            //DataSource.allLinesStation[index].deleted = true;
         }
         public DO.LineStation getLineStation(int numberStation, int identifyLine)
         {
-            DO.LineStation lineStation = DataSource.allLinesStation.Find(p => p.numberStation == numberStation && p.identifyLine == identifyLine && p.deleted == false);
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+
+            DO.LineStation lineStation =ListLineStation.Find(p => p.numberStation == numberStation && p.identifyLine == identifyLine && p.deleted == false);
             if (lineStation != null)
-                return lineStation.Clone();
+                return lineStation;
             else
                 throw new DO.BadIdException(numberStation, $"IdentifyBus Line {numberStation} not exist.");
         }
 
         public DO.LineStation getLineStationIndex(int identifyLine, int numberInLine)
         {
-            DO.LineStation lineStation = DataSource.allLinesStation.Find(p => p.identifyLine == identifyLine && p.numberStationInLine == numberInLine && p.deleted == false);
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+
+            DO.LineStation lineStation =  ListLineStation.Find(p => p.identifyLine == identifyLine && p.numberStationInLine == numberInLine && p.deleted == false);
             if (lineStation != null)
-                return lineStation.Clone();
+                return lineStation;
             else
                 throw new DO.BadIdException(identifyLine, $"IdentifyBus Line {identifyLine} not exist.");
         }
         public IEnumerable<DO.LineStation> getAllLineStation()
         {
-            return (from lineStation in DataSource.allLinesStation
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+
+            return (from lineStation in ListLineStation
                     where lineStation.deleted == false
-                    select lineStation.Clone()).ToList();
+                    select lineStation;
         }
 
         public IEnumerable<DO.LineStation> getLineStationInLine(int identifyLine)
         {
-            return (from lineStation in DataSource.allLinesStation
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+
+            return (from lineStation in ListLineStation
                     where lineStation.identifyLine == identifyLine && lineStation.deleted == false
                     orderby lineStation.numberStationInLine
-                    select lineStation.Clone()).ToList();
+                    select lineStation;
 
         }
         public IEnumerable<DO.LineStation> getLineStationInStation(int numberStation)
         {
-            return (from lineStation in DataSource.allLinesStation
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+
+            return (from lineStation in ListLineStation
                     where lineStation.numberStation == numberStation && lineStation.deleted == false && getLineBus(lineStation.identifyLine).deleted == false
-                    select lineStation.Clone()).ToList();
+                    select lineStation;
 
         }
         #endregion
