@@ -7,9 +7,14 @@ using System.Collections.ObjectModel;
 
 
 namespace BO
+
+    
 {
     public class Bus
     {
+        /// <summary>
+        /// הערות על אוטובס 
+        /// </summary>
             public string numberLicense { get; set; }
             public DateTime startActivity { get; set; }
             public float sumKM { get; set; }
