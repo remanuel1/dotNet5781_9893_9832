@@ -27,24 +27,36 @@ namespace PL
             bl = _bl;
         }
 
-        private void enter_Click(object sender, RoutedEventArgs e)
+        private void btBus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (rbBuses.IsChecked == true)
-            {
-                BusWindow bus = new BusWindow(bl);
-                bus.Show();
-            }
-            else if (rbStations.IsChecked == true)
-            {
-                StationWindow station = new StationWindow(bl);
-                station.Show();
-            }
-            else
-            {
-                LineWindow line = new LineWindow(bl);
-                line.Show();
+            BusWindow bus = new BusWindow(bl);
+            bus.Left = this.Left;
+            bus.Top = this.Top;
+            bus.Show();
+            this.Close();
+        }
 
-            }
+        private void btStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            StationWindow station = new StationWindow(bl);
+            station.Left = this.Left;
+            station.Top = this.Top;
+            station.Show();
+            this.Close();
+        }
+
+        private void btLine_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            LineWindow line = new LineWindow(bl);
+            line.Left = this.Left;
+            line.Top = this.Top;
+            line.Show();
+            this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

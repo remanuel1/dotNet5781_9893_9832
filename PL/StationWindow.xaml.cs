@@ -23,7 +23,6 @@ namespace PL
     {
         IBL bl;
 
-
         void refreshListBusStation()
         {
             listStation.ItemsSource = bl.getAllBusStations();
@@ -37,20 +36,14 @@ namespace PL
             InitializeComponent();
             bl = _bl;
             refreshListBusStation();
-            //detailStation.Visibility = Visibility.Hidden;
-            //addNewStation.Visibility = Visibility.Hidden;
+
         }
 
 
         private void Button_Click_Add(object sender, RoutedEventArgs e)
         {
             page.Content = new AddNewStation(bl, listStation);
-            //addNewStation.Visibility = Visibility.Visible;
-            //AddNewStation addNewStation = new AddNewStation(bl, listStation);
-            //addNewStation.Show();
-            //busStations = bl.getAllBusStations();
-            //allBusStation = convert(busStations);
-            //listStation.ItemsSource = allBusStation;
+
         }
 
         /*private void Button_Click_Update(object sender, RoutedEventArgs e)

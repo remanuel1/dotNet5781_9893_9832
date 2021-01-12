@@ -24,6 +24,14 @@
                    Grid.Row="0" Grid.Column="0" Padding="10" VerticalAlignment="Center"
                    Style="{StaticResource FontForLabel}" Height="37"/>
 
+            <ComboBox Name="showBusORder"
+                      Grid.Row="0" Grid.Column="0" Width="50" Height="30"
+                      HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"
+                      SelectionChanged="showBusORder_SelectionChanged">
+                <ComboBoxItem Content="number liecene"/>
+                <ComboBoxItem Content="manufacturing date"/>
+            </ComboBox>
+
             <ListBox x:Name="listBus"
                       ItemsSource="{Binding}"
                       Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"

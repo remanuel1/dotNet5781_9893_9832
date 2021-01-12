@@ -57,5 +57,13 @@ namespace PL
             frame.Visibility = Visibility.Visible;
             frame.Content = new DetailOfBus(bl, bus, listBus);
         }
+
+        private void showBusORder_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /*if (sender.Equals("number liecene"))
+                listBus.DataContext = bl.getAllBussesBy(b=> b.numberLicense);
+            if (sender.Equals("manufacturing date"))
+                listBus.DataContext = bl.getAllBussesBy(b => b.startActivity);*/
+        }
     }
 }

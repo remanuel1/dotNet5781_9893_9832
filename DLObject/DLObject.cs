@@ -294,6 +294,7 @@ namespace DL
         }
         #endregion
 
+
         #region exit line
         public void deleteExitLine(DO.ExitLine exitLine)
         {
@@ -311,16 +312,16 @@ namespace DL
         }
         public IEnumerable<DO.ExitLine> getAllExitLine()
         {
-            return from item in DataSource.allExitLines
+            return (from item in DataSource.allExitLines
                    orderby item.identifyBus, item.startTime
-                   select item.Clone();
+                   select item.Clone()).ToList();
         }
         public IEnumerable<DO.ExitLine> getAllExitLineBy(Predicate<DO.ExitLine> predicate)
         {
-            return from item in DataSource.allExitLines
-                   where predicate(item)
-                   orderby item.identifyBus, item.startTime
-                   select item.Clone();
+            return (from item in DataSource.allExitLines
+                    where predicate(item)
+                    orderby item.identifyBus, item.startTime
+                    select item.Clone()).ToList(); ;
         }
 
         #endregion

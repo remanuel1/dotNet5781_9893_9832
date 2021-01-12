@@ -1,0 +1,85 @@
+﻿<Window x:Class="PL.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="UserWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="450"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="288"/>
+
+            </Grid.RowDefinitions>
+
+            <Label Content="all bus stations:" 
+                   Grid.Row="0" Grid.Column="0" Padding="10" VerticalAlignment="Bottom"
+                   Style="{StaticResource FontForLabel}" Height="37" Margin="0,0,0.2,0.4"/>
+
+            <ListView x:Name="listStation"
+                 ItemsSource="{Binding}" MouseDoubleClick="listStation_MouseDoubleClick"
+                 Grid.Column="0" Margin="10,50,0.4,-70.8" Grid.RowSpan="2">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name bus staion"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+
+        <Grid Grid.ColumnSpan="2" Margin="250,0,-83.2,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="449*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="300"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.ColumnSpan="2" Margin="0,0,0.4,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <ListView x:Name="lineInStation" Grid.RowSpan="2" Background="Yellow"
+                          ItemsSource="{Binding}" Margin="10,10,5,10"/>
+
+                <Button x:Name="startTimerButton" Content="Start" 
+                Margin="10" Grid.Row="1" Grid.Column="1" FontSize="20" Click="startTimerButton_Click"
+                        Style="{StaticResource FontForButtom}"/>
+                <Button x:Name="stopTimerButton" Content="Stop" 
+                Margin="10" Grid.Row="1" Grid.Column="2" FontSize="20" Click="stopTimerButton_Click"
+                        Style="{StaticResource FontForButtom}"/>
+                <TextBlock x:Name="timerTextBlock"  Text="00:00:00" 
+                   Grid.ColumnSpan="2" Grid.Column="1" FontSize="40" TextAlignment="Center" VerticalAlignment="Center" Foreground="#FFA4E4ED"/>
+            </Grid>
+
+            <ListView x:Name="listLineTiming"  Grid.Row="1" Margin="10,5,100,10">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="No. line" Width="60" DisplayMemberBinding="{Binding LineNumber}"/>
+                        <GridViewColumn Header="Timing" Width="100" DisplayMemberBinding="{Binding ExpectedTimeTillArrive}"/>
+                        <GridViewColumn Header="Started at" Width="100" DisplayMemberBinding="{Binding TripStart}"/>
+                        <GridViewColumn Header="Last station" Width="150" DisplayMemberBinding="{Binding LastStation}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>

@@ -37,10 +37,7 @@ namespace PL
         {
             InitializeComponent();
             bl = _bl;
-            /*detailOfLine.Visibility = Visibility.Hidden;
-            listStationForNewStation.Visibility = Visibility.Hidden;
-            listNumber.Visibility = Visibility.Hidden;
-            addStationToLine.Visibility = Visibility.Hidden;*/
+
             refreshListLines();
         }
 

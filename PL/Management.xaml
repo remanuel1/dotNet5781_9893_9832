@@ -7,29 +7,48 @@
         mc:Ignorable="d"
         Title="Management" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="picture/backGround.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label Content="Welcome!" 
-               Grid.Row="0" Height="41" Width="348"
-               FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>
-        <GroupBox Header="Choose Option:"
-                  Grid.Row="1"
-                  FontSize="16" FontStyle="Italic" FontWeight="SemiBold" Margin="90,10">
-            <StackPanel Margin="21,20,29,24">
-                <RadioButton x:Name ="rbBuses" Content="buses" Height="24" IsChecked="True"/>
-                <RadioButton x:Name ="rbStations" Content="stations" Height="23" Margin="0,0,-11,0"/>
-                <RadioButton x:Name ="rbLines" Content="lines" Height="35"/>
-            </StackPanel>
-        </GroupBox>
-        <Button x:Name="enter" Content="ENTER"
-                Grid.Row="2" Height="42" Width="105"
-                Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" RenderTransformOrigin="0.501,0.505"
-                Click="enter_Click"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal"
+                    Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="10,0,0,0">
+            <Button Height="30" Width="30" Content="ESC" Background="{x:Null}" Click="Button_Click"/>
 
+
+            <Label Name="labForMang" Content=" hello manager"
+               Height="40"
+               Style="{StaticResource FontForLabel}" VerticalContentAlignment="Center" FontSize="25"/>
+        </StackPanel>
+
+        
+
+        <Button x:Name="btBus" Content="bus"
+                Width="150" Height="150" Grid.Column="0" Grid.Row="1"
+                BorderThickness="2" Opacity="0.6"
+                UseLayoutRounding="True"
+                MouseDoubleClick="btBus_MouseDoubleClick">
+            
+        </Button>
+
+        <Button x:Name="btStation" Content="station"
+                Width="150" Height="150" Grid.Column="1" Grid.Row="1"
+                BorderThickness="2" Opacity="0.6"
+                MouseDoubleClick="btStation_MouseDoubleClick" ToolTip="view bus window"/>
+
+        <Button x:Name="btLine" Content="line"
+                Width="150" Height="150" Grid.Column="2" Grid.Row="1"
+                BorderThickness="2" Opacity="0.6" AutomationProperties.HelpText="view bus window"
+                MouseDoubleClick="btLine_MouseDoubleClick"/>
 
     </Grid>
 </Window>

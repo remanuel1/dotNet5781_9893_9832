@@ -23,7 +23,7 @@ namespace DS
         }
         static void InitAllLists()
         {
-            int speed = 100;
+            double speed = 50;
             allBuses = new List<Bus>
             {
                 #region restart 20 buses
@@ -1598,17 +1598,17 @@ namespace DS
                 {
                     numberStation1= 38832,
                     numberStation2= 38838,
-                    distance = 0.013278,
+                    distance = 1.3278,
                     deleted = false,
-                    drivinngTime= TimeSpan.FromMinutes(0.013278/speed),
+                    drivinngTime= TimeSpan.FromMinutes(1.3278/speed),
                 },
 
                 new FollowStations
                 {
                     numberStation1= 38838,
                     numberStation2= 38839,
-                    distance = 0.005246485,
-                    drivinngTime= TimeSpan.FromMinutes(0.005246485/speed),
+                    distance = 0.5246485,
+                    drivinngTime= TimeSpan.FromMinutes(0.5246485/speed),
                 },
 
                 new FollowStations
@@ -2388,7 +2388,7 @@ namespace DS
                 new LineBus
                 {
                     identifyBus = 1005,
-                    numberLine = 220,
+                    numberLine = 221,
                     area = Area.center,
                     firstNumberStation = 38884,
                     lastNumberStation = 38855,
@@ -2408,7 +2408,7 @@ namespace DS
                 new LineBus
                 {
                     identifyBus = 1007,
-                    numberLine = 230,
+                    numberLine = 240,
                     area = Area.center,
                     firstNumberStation = 38832,
                     lastNumberStation = 38852,
@@ -2437,6 +2437,54 @@ namespace DS
 
             };
             #endregion
+            allExitLines = new List<ExitLine>
+            {
+                #region restart exit line
+                new ExitLine
+                {
+                    identifyBus = 1000,
+                    startTime = TimeSpan.Parse("00:00:05"),
+                    frequency = 1,
+                    endTime = TimeSpan.Parse("00:05:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1000,
+                    startTime = TimeSpan.Parse("11:00:00"),
+                    frequency = 60,
+                    endTime = TimeSpan.Parse("17:59:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1000,
+                    startTime = TimeSpan.Parse("18:00:00"),
+                    frequency = 30,
+                    endTime = TimeSpan.Parse("23:59:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1001,
+                    startTime = TimeSpan.Parse("08:00:00"),
+                    frequency = 15,
+                    endTime = TimeSpan.Parse("10:59:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1001,
+                    startTime = TimeSpan.Parse("11:00:00"),
+                    frequency = 45,
+                    endTime = TimeSpan.Parse("17:59:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1001,
+                    startTime = TimeSpan.Parse("18:00:00"),
+                    frequency = 90,
+                    endTime = TimeSpan.Parse("23:59:59")
+                },
+                #endregion
+            };
         }
+
     }
 }

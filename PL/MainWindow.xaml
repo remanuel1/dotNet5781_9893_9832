@@ -5,13 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="550" Width="800">
     <Window.Background>
         <ImageBrush/>
     </Window.Background>
-    <Grid>
+    <Grid RenderTransformOrigin="0.5,0.5">
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\backGround.jpg"/>
+            <ImageBrush ImageSource="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\backGround.jpg">
+                <ImageBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="-1" ScaleX="1"/>
+                        <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
+                        <RotateTransform Angle="180" CenterY="0.5" CenterX="0.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </ImageBrush.RelativeTransform>
+            </ImageBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -20,8 +29,8 @@
 
 
         <Label Content="welcome"
-               HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="341" Grid.ColumnSpan="2"
-               FontSize="120" FontFamily="Gabriola" FontWeight="Bold" Margin="227,0,225.6,0">
+               HorizontalAlignment="Center" VerticalAlignment="Top" Height="140" Width="341" Grid.ColumnSpan="2"
+               FontSize="120" FontFamily="Gabriola" FontWeight="Bold" Margin="226,-28,226.6,0">
             <Label.Background>
                 <ImageBrush/>
             </Label.Background>
@@ -29,9 +38,50 @@
 
         <Canvas x:Name="cnAdmin"
                 Grid.Column="0"  HorizontalAlignment="Center"
-                Width="300" Height="300" Margin="46,190,50.8,80.4">
+                Width="300" Height="300" Margin="46,150,50.8,120.4">
 
             <Label Content="Manager login" Width="300" Height="50" Padding="7"
+                   Background="#FFA4E4ED" FontSize="30" Style="{StaticResource FontForLabel}"/>
+
+            <Label Content=" enter your user name:" Width="300" Height="40" Padding="7"
+                   Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="55"/>
+
+            <TextBox x:Name="managerName"
+                     Text=" " Width="250" Height="40" Padding="7"
+                     Canvas.Top="95" Canvas.Left="25"
+                   Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" />
+
+            <Label Content=" enter your password:" Width="300" Height="40" Padding="7"
+                   Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="140"/>
+
+            <PasswordBox x:Name="managerPass"
+                   Password="" Width="250" Height="40" Padding="7"
+                   Canvas.Top="180" Canvas.Left="25"
+                   Background="White" FontSize="20"/>
+
+            <TextBox x:Name="managerPassShow"
+                   Text="{Binding userPass}" Visibility="{Binding}"
+                   Width="250" Height="40" Padding="7"
+                   Canvas.Top="180" Canvas.Left="25"
+                   Background="White" FontSize="20"
+                   Style="{StaticResource FontForTextBox}"/>
+
+            <CheckBox x:Name="managerShowPass"
+                      Canvas.Left="250" Canvas.Top="195"
+                      Checked="showPass_Checked" Unchecked="showPass_Unchecked"/>
+
+            <Button x:Name="enter"
+                    Content="login" Width="100" Height="40"
+                    Canvas.Left="100" Canvas.Top="245"
+                    Style="{StaticResource FontForButtom}"
+                    Click="admin_Click"/>
+        </Canvas>
+
+        <Canvas x:Name="cnUser"
+                Grid.Column="1" HorizontalAlignment="Center"
+                Width="300" Height="300" Margin="48.2,150,48.6,120.4">
+
+            <Label Content="User login" Width="300" Height="50" Padding="7"
                    Background="#FFA4E4ED" FontSize="30" Style="{StaticResource FontForLabel}"/>
 
             <Label Content=" enter your user name:" Width="300" Height="40" Padding="7"
@@ -57,29 +107,15 @@
                    Background="White" FontSize="20"
                    Style="{StaticResource FontForTextBox}"/>
 
-            <CheckBox x:Name="showPass"
+            <CheckBox x:Name="userShowPass"
                       Canvas.Left="250" Canvas.Top="195"
                       Checked="showPass_Checked" Unchecked="showPass_Unchecked"/>
-
-            <Button x:Name="enter"
-                    Content="login" Width="100" Height="40"
-                    Canvas.Left="100" Canvas.Top="245"
-                    Style="{StaticResource FontForButtom}"
-                    Click="admin_Click"/>
-        </Canvas>
-
-        <Canvas x:Name="cnUser"
-                Grid.Column="1" HorizontalAlignment="Center"
-                Width="300" Height="300" Margin="48.2,190,48.6,80.4">
-
-            <Label Content="User login" Width="300" Height="50" Padding="7"
-                   Background="#FFA4E4ED" FontSize="30" Style="{StaticResource FontForLabel}"/>
 
             <Button x:Name="user"
                     Content="login" Width="100" Height="40"
                     Canvas.Left="100" Canvas.Top="245"
                     Style="{StaticResource FontForButtom}"
-                    Grid.Column="1"/>
+                    Grid.Column="1" Click="user_Click"/>
         </Canvas>
 
 

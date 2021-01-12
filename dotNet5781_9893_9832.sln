@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "item", "item", "{6E9E14A0-E
 		BusStationXML.xml = BusStationXML.xml
 		BusXML.xml = BusXML.xml
 		bin\config.xml = bin\config.xml
+		ExitLineXML.xml = ExitLineXML.xml
 		FollowStationsXML.xml = FollowStationsXML.xml
 		LineBusXML.xml = LineBusXML.xml
 		LineStationXML.xml = LineStationXML.xml

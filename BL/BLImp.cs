@@ -447,6 +447,7 @@ namespace BL
             follow.numberStation1 = station1;
             follow.numberStation2 = station2;
 
+            
             GeoCoordinate s1 = new GeoCoordinate(dl.getBusStation(station1).Latitude, dl.getBusStation(station1).Longitude);
             GeoCoordinate d1 = new GeoCoordinate(dl.getBusStation(station2).Latitude, dl.getBusStation(station2).Longitude);
             follow.distance = s1.GetDistanceTo(d1);
@@ -573,6 +574,75 @@ namespace BL
                     where item.identifyLine == identifyBus && item.deleted == false
                     orderby item.numberStationInLine
                     select lineStationDoBoAdapter(item)).ToList();
+        }
+        #endregion
+
+        #region LineTiming
+        public IEnumerable<BO.LineTiming> GetLineTimingsForStation(int numberStation, TimeSpan time)
+        {
+            List<BO.LineTiming> lineTimings = new List<BO.LineTiming>();
+            IEnumerable<DO.LineStation> stations = dl.getAllLineStationBy(p => p.numberStation == numberStation);
+
+            foreach (DO.LineStation item in stations) // foreach that pass over all line in this statin
+            {
+                IEnumerable<DO.ExitLine> exitLines = dl.getAllExitLineBy(p => p.identifyBus == item.identifyLine);
+                foreach(DO.ExitLine exitLine in exitLines)
+                {
+                    TimeSpan exitTime = exitLine.startTime;
+                    while(exitTime <= exitLine.endTime)
+                    {
+                        BO.LineTiming lineTimingBO = new BO.LineTiming();
+                        lineTimingBO.LineId = item.identifyLine;
+                        lineTimingBO.LineNumber = dl.getLineBus(item.identifyLine).numberLine;
+                        lineTimingBO.LastStation = dl.getBusStation(dl.getLineBus(item.identifyLine).lastNumberStation).nameStation;
+                        lineTimingBO.TripStart = exitTime;
+                        lineTimingBO.ExpectedTimeTillArrive = exitTime + timeFromStartStation(item.identifyLine, numberStation) - time;
+                        exitTime += TimeSpan.FromMinutes(exitLine.frequency);
+                        if(lineTimingBO.ExpectedTimeTillArrive>=time)
+                        {
+                            lineTimings.Add(lineTimingBO);
+                        }
+                    }
+                }
+            }
+            return lineTimings;
+        }
+
+        /*private IEnumerable<BO.LineTiming> timing (DO.LineStation item)
+        {
+            IEnumerable<DO.ExitLine> exitLines = dl.getAllExitLineBy(p => p.identifyBus == item.identifyLine);
+            foreach (DO.ExitLine exitLine in exitLines)
+            {
+                TimeSpan exitTime = exitLine.startTime;
+                while (exitTime <= exitLine.endTime)
+                {
+                    BO.LineTiming lineTimingBO = new BO.LineTiming();
+                    lineTimingBO.LineId = item.identifyLine;
+                    lineTimingBO.LineNumber = dl.getLineBus(item.identifyLine).numberLine;
+                    lineTimingBO.LastStation = dl.getBusStation(dl.getLineBus(item.identifyLine).lastNumberStation).nameStation;
+                    lineTimingBO.TripStart = exitTime;
+                    lineTimingBO.ExpectedTimeTillArrive = exitTime + timeFromStartStation(item.identifyLine, item.numberStation);
+                    exitTime += TimeSpan.FromMinutes(exitLine.frequency);
+                    yield return lineTimingBO;
+                }
+            }
+            
+        }*/
+
+        private TimeSpan timeFromStartStation(int identifyLine, int numberStation)
+        {
+            BO.LineBus line = getLineBus(identifyLine);
+            TimeSpan time = TimeSpan.Zero;
+            if (getLineStation(identifyLine, numberStation) != null)
+            {
+                foreach (BO.LineStation item in line.listStaion)
+                {
+                    time += item.timeFromPriorStation;
+                    if (item.numberStation == numberStation)
+                        break;
+                }
+            }
+            return time;
         }
         #endregion
     }

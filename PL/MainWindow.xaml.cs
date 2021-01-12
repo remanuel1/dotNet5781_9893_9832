@@ -31,9 +31,10 @@ namespace PL
         private void admin_Click(object sender, RoutedEventArgs e)
         {
             Management management = new Management(bl);
+            management.Left = this.Left;
+            management.Top = this.Top;
             management.Show();
-            //Manager manager = new Manager(bl);
-            //manager.Show();
+
         }
 
         private void showPass_Checked(object sender, RoutedEventArgs e)
@@ -47,6 +48,14 @@ namespace PL
         {
             userPass.Visibility = Visibility.Visible;
             userPassShow.Visibility = Visibility.Hidden;
+        }
+
+        private void user_Click(object sender, RoutedEventArgs e)
+        {
+            UserWindow userWindow = new UserWindow(bl);
+            userWindow.Left = this.Left;
+            userWindow.Top = this.Top;
+            userWindow.Show();
         }
     }
 }

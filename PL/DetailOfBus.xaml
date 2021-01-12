@@ -119,7 +119,7 @@
                         Style="{StaticResource FontForButtom}" Padding="5"
                         VerticalAlignment="Center"
                         Click="refuel_Click" Margin="20,117,20,223">
-            <Image Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\fuel.JPG"
+            <Image Source="..\PL\picture\fuel.JPG"
                   Width="50" Height="50" />
         </Button>
 
@@ -128,7 +128,7 @@
                         Style="{StaticResource FontForButtom}" Padding="5"
                         VerticalAlignment="Center"
                         Click="treat_Click" Margin="20,188,20,152">
-            <Image Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\treat.JPG"
+            <Image Source="..\PL\picture\treat.JPG"
                   Width="50" Height="50" />
         </Button>
 
@@ -137,7 +137,7 @@
                 Width="60" Height="60" Click="update_Click"
                 FontFamily="FbExtazi Regular" FontSize="16" FontWeight="Bold"
                 FlowDirection="LeftToRight" Background="#FFA4E4ED" Margin="20,259,20,81">
-            <Image Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\updateIcon.jpg"
+            <Image Source="..\PL\picture\updateIcon.jpg"
                    Width="50" Height="50"/>
             <Button.Style>
                 <Style>
@@ -159,7 +159,7 @@
                         Style="{StaticResource FontForButtom}" Padding="5"
                         VerticalAlignment="Center"
                         Click="delete_Click" Margin="20,330,20,10">
-            <Image Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\iconGarbage.jpg"
+            <Image Source="..\PL\picture\iconGarbage.jpg"
                   Width="50" Height="50" />
         </Button>
     </Grid>

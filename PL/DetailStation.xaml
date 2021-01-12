@@ -92,14 +92,14 @@
                 Width="60" Height="60" VerticalAlignment="Center" HorizontalAlignment="Left"
                 Style="{StaticResource FontForButtom}"
                 Click="update_Click" Margin="52.2,5.4,0,5">
-            <Image Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\updateIcon.jpg"
+            <Image Source="..\PL\picture\updateIcon.jpg"
                   Width="50" Height="50" />
         </Button>
 
         <Button x:Name="delete" Grid.Column="1" Grid.Row="7" Height="60" Width="60" VerticalAlignment="Center"
                     Style="{StaticResource FontForButtom}"
                     Click="delete_Click" Margin="144.2,5.4,51,5">
-            <Image Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\iconGarbage.jpg"
+            <Image Source="..\PL\picture\iconGarbage.jpg"
                   Width="50" Height="50" />
         </Button>
     </Grid>

@@ -68,6 +68,11 @@ namespace BLAPI
 
         #endregion
 
+        #region LineTiming
+        IEnumerable<LineTiming> GetLineTimingsForStation(int numberStation, TimeSpan time);
+
+        #endregion
+
 
     }
 }
