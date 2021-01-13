@@ -15,6 +15,13 @@ namespace BL
     {
         IDL dl = DLFactory.GetDal();
 
+        #region singelton
+        static readonly BLImp instance = new BLImp();
+        static BLImp() { }// static ctor to ensure instance init is done just before first usage
+        BLImp() { } // default => private
+        public static BLImp Instance { get => instance; }// The public Instance property to use
+        #endregion
+
         #region BUS - BONUS
         BO.Bus busDoBoAdapter(DO.Bus busDO)
         {
@@ -206,18 +213,13 @@ namespace BL
         public IEnumerable<int> getLineInBusStations(BO.BusStation station)
         {
             return (from item in station.lineInStation
-                    let line = getLineBus(item.identifyLine)
+                    let line = dl.getLineBus(item.identifyLine)
                     orderby line.numberLine
                     select line.numberLine);
         }
 
         #endregion
 
-        #region DRIVIND
-        /*
-         * מימוש
-         */
-        #endregion
 
         #region LineBus
         BO.LineBus lineBusDoBoAdapter(DO.LineBus lineBusDO)
@@ -233,18 +235,12 @@ namespace BL
                 throw new BO.BadIDExceptions("this line bus not exsist", ex);
             }
             lineBusDO.CopyPropertiesTo(lineBusBO);
-            //IEnumerable<DO.LineStation> station = dl.getLineStationInLine(lineBusBO.identifyBus);
             IEnumerable<DO.LineStation> station = dl.getAllLineStationBy(l => l.identifyLine == lineBusBO.identifyBus);
             lineBusBO.listStaion = (from DO.LineStation item in station
                                    select lineStationDoBoAdapter(item)).ToList();
             return lineBusBO;
         }
 
-        IEnumerable<BO.LineBus> convertLineBusDoBo (IEnumerable<DO.LineBus> lineBusesDO)
-        {
-            return (from item in lineBusesDO
-                    select lineBusDoBoAdapter(item)).ToList();
-        }
         public int insertLineBus(BO.LineBus lineBus)
         {
             int id;
@@ -262,8 +258,6 @@ namespace BL
                 {
                     int first = lineBus.listStaion.ElementAt(i).numberStation;
                     int second = lineBus.listStaion.ElementAt(i + 1).numberStation;
-                    //BO.BusStation first = busStationDoBoAdapter(dl.getBusStation(lineBus.listStaion.ElementAt(i).numberStation));
-                    //BO.BusStation second = busStationDoBoAdapter(dl.getBusStation(lineBus.listStaion.ElementAt(i+1).numberStation));
                     try
                     {
                         insertFollowStations(first, second);
@@ -325,7 +319,8 @@ namespace BL
         public IEnumerable<BO.LineBus> getAllLineBus()
         {
             return (from item in dl.getAllLineBus()
-                   select lineBusDoBoAdapter(item)).ToList();
+                    orderby item.numberLine
+                    select lineBusDoBoAdapter(item)).ToList();
         }
         public IEnumerable<BO.BusStation> getStationInLineBus(BO.LineBus lineBus)
         {
@@ -369,7 +364,6 @@ namespace BL
             {
                 throw new BO.BadIDExceptions("this line station not exist", ex);
             }
-            //IEnumerable<DO.LineStation> stationList = dl.getLineStationInLine(line.identifyBus);
             IEnumerable<DO.LineStation> stationList = dl.getAllLineStationBy(l => l.identifyLine == line.identifyBus);
             if (indexInLine !=1)
                 insertFollowStations(station.numberStation, line.listStaion.ElementAt(indexInLine - 2).numberStation);
@@ -399,7 +393,7 @@ namespace BL
             {
                 throw new BO.BadIDExceptions("this line station not exist", ex);
             }
-            //IEnumerable<DO.LineStation> stationList = dl.getLineStationInLine(line.identifyBus);
+
             IEnumerable<DO.LineStation> stationList = dl.getAllLineStationBy(l => l.identifyLine == line.identifyBus);
             line.listStaion = (from DO.LineStation item in stationList
                                select lineStationDoBoAdapter(item)).ToList();
@@ -415,7 +409,7 @@ namespace BL
             #endregion
 
             #region Follow Stations
-            BO.FollowStations FollowStationsDoBoAdapter(DO.FollowStations stations)
+        BO.FollowStations FollowStationsDoBoAdapter(DO.FollowStations stations)
         {
             BO.FollowStations followStationsBO = new BO.FollowStations();
             int id1 = stations.numberStation1;
@@ -447,7 +441,6 @@ namespace BL
             follow.numberStation1 = station1;
             follow.numberStation2 = station2;
 
-            
             GeoCoordinate s1 = new GeoCoordinate(dl.getBusStation(station1).Latitude, dl.getBusStation(station1).Longitude);
             GeoCoordinate d1 = new GeoCoordinate(dl.getBusStation(station2).Latitude, dl.getBusStation(station2).Longitude);
             follow.distance = s1.GetDistanceTo(d1);
@@ -607,27 +600,6 @@ namespace BL
             }
             return lineTimings;
         }
-
-        /*private IEnumerable<BO.LineTiming> timing (DO.LineStation item)
-        {
-            IEnumerable<DO.ExitLine> exitLines = dl.getAllExitLineBy(p => p.identifyBus == item.identifyLine);
-            foreach (DO.ExitLine exitLine in exitLines)
-            {
-                TimeSpan exitTime = exitLine.startTime;
-                while (exitTime <= exitLine.endTime)
-                {
-                    BO.LineTiming lineTimingBO = new BO.LineTiming();
-                    lineTimingBO.LineId = item.identifyLine;
-                    lineTimingBO.LineNumber = dl.getLineBus(item.identifyLine).numberLine;
-                    lineTimingBO.LastStation = dl.getBusStation(dl.getLineBus(item.identifyLine).lastNumberStation).nameStation;
-                    lineTimingBO.TripStart = exitTime;
-                    lineTimingBO.ExpectedTimeTillArrive = exitTime + timeFromStartStation(item.identifyLine, item.numberStation);
-                    exitTime += TimeSpan.FromMinutes(exitLine.frequency);
-                    yield return lineTimingBO;
-                }
-            }
-            
-        }*/
 
         private TimeSpan timeFromStartStation(int identifyLine, int numberStation)
         {

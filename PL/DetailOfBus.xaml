@@ -112,7 +112,7 @@
                     Style="{StaticResource FontForTextBox}" Height="29"/>
         </Grid>
 
-        
+
 
         <Button x:Name="refuel" Grid.Column="1"
                    Width="60" Height="60"
@@ -121,6 +121,8 @@
                         Click="refuel_Click" Margin="20,117,20,223">
             <Image Source="..\PL\picture\fuel.JPG"
                   Width="50" Height="50" />
+
+
         </Button>
 
         <Button x:Name="treat" Grid.Column="1"
