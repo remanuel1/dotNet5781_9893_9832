@@ -191,9 +191,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="picture\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="backGround.jpg" />
     <Resource Include="fuel.JPG" />
