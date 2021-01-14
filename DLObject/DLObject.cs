@@ -325,5 +325,40 @@ namespace DL
         }
 
         #endregion
+
+        public void addUser(DO.User user)
+        {
+            if (DataSource.allUsers.FirstOrDefault(p => p.userName == user.userName) != null)
+                ;//throw new DO.(user.userName, "these exit line not exists");
+            DataSource.allUsers.Add(user.Clone());
+        }
+        public void deleteUser(DO.User user)
+        {
+            if (DataSource.allUsers.FirstOrDefault(p => p.userName == user.userName) == null)
+                ;// throw new DO.BadIdException(exitLine.identifyBus, "these exit line not exists");
+            int index = DataSource.allUsers.FindIndex(p => p.userName == user.userName);
+            DataSource.allUsers.RemoveAt(index);
+        }
+        public void updateUser(DO.User userCurrent, DO.User userNew)
+        {
+            if (DataSource.allUsers.FirstOrDefault(p => p.userName == userCurrent.userName) == null)
+                ;// throw new DO.BadIdException(exitLine.identifyBus, "these exit line not exists");
+            if (DataSource.allUsers.FirstOrDefault(p => p.userName == userNew.userName) != null)
+                ;// throw new DO.BadIdException(exitLine.identifyBus, "these exit line not exists");
+            int index = DataSource.allUsers.FindIndex(p => p.userName == userCurrent.userName);
+            DataSource.allUsers[index] = userNew.Clone();
+        }
+        public DO.User getUser(string userName)
+        {
+            return (from user in DataSource.allUsers
+                    where user.userName == userName
+                    select user.Clone()).FirstOrDefault();
+        }
+        public IEnumerable<DO.User> getAllUserBy(Predicate<DO.User> predicate)
+        {
+            return (from user in DataSource.allUsers
+                    where predicate(user)
+                    select user.Clone()).ToList();
+        }
     }
 }

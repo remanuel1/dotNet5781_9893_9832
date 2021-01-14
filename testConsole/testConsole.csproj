@@ -8,7 +8,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <WarningLevel>0</WarningLevel>
+    <WarningLevel>3</WarningLevel>
     <OutputPath>..\bin\</OutputPath>
   </PropertyGroup>
 

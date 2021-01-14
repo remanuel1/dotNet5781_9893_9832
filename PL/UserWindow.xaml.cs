@@ -41,7 +41,6 @@ namespace PL
             bl = _bl;
             listStation.ItemsSource = bl.getAllBusStations();
             stopWatch = new Stopwatch();
-
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Worker_DoWork;
             timerworker.ProgressChanged += Worker_ProgressChanged;
@@ -90,10 +89,15 @@ namespace PL
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            string timerText = stopWatch.Elapsed.ToString();
+            /*string timerText = stopWatch.Elapsed.ToString();
             timerText = timerText.Substring(0, 8);
             listLineTiming.ItemsSource = bl.GetLineTimingsForStation(station.numberStation, TimeSpan.Parse(timerText));
-            this.timerTextBlock.Text = timerText;
+            this.timerTextBlock.Text = timerText;*/
+
+            TimeSpan timerText = TimeSpan.Parse(stopWatch.Elapsed.ToString());
+            timerText = timerText + TimeSpan.Parse("08:00:00");
+            listLineTiming.ItemsSource = bl.GetLineTimingsForStation(station.numberStation, timerText);
+            this.timerTextBlock.Text = timerText.ToString().Substring(0, 8);
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)

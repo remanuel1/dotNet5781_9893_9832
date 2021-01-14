@@ -25,37 +25,70 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            userPassShow.Visibility = Visibility.Hidden;
+            managerPassShow.Visibility = Visibility.Hidden;
         }
 
         private void admin_Click(object sender, RoutedEventArgs e)
         {
-            Management management = new Management(bl);
-            management.Left = this.Left;
-            management.Top = this.Top;
-            management.Show();
-
+            BO.User manager = bl.getUser(managerName.Text);
+            if (manager.password == managerPass.Password && manager.type == BO.Type.manager)
+            {
+                Management management = new Management(bl, manager);
+                management.Left = this.Left;
+                management.Top = this.Top;
+                management.Show();
+                
+            }
+            else
+            {
+                if (manager.type == BO.Type.user)
+                    MessageBox.Show("oopps..\n you are not manager. you can try to sing up as user.");
+                else
+                    MessageBox.Show("userName or password is wrong. try again");
+            }
+            managerName.Text= "";
+            managerPass.Password = "";
         }
 
         private void showPass_Checked(object sender, RoutedEventArgs e)
         {
-            userPass.Visibility = Visibility.Hidden;
-            userPassShow.Visibility = Visibility.Visible;
-            userPassShow.Text = userPass.Password;
+            managerPass.Visibility = Visibility.Hidden;
+            managerPassShow.Visibility = Visibility.Visible;
+            managerPassShow.Text = managerPass.Password;
         }
 
         private void showPass_Unchecked(object sender, RoutedEventArgs e)
         {
-            userPass.Visibility = Visibility.Visible;
-            userPassShow.Visibility = Visibility.Hidden;
+            managerPass.Visibility = Visibility.Visible;
+            managerPassShow.Visibility = Visibility.Hidden;
         }
 
         private void user_Click(object sender, RoutedEventArgs e)
         {
-            UserWindow userWindow = new UserWindow(bl);
-            userWindow.Left = this.Left;
-            userWindow.Top = this.Top;
-            userWindow.Show();
+            BO.User user = bl.getUser(managerName.Text);
+            if (user.password == managerPass.Password)
+            {
+                if(user.type == BO.Type.manager)
+                    MessageBox.Show("you connection like user");
+                UserWindow userWindow = new UserWindow(bl);
+                userWindow.Left = this.Left;
+                userWindow.Top = this.Top;
+                userWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("userName or password is wrong. try again");
+            }
+            managerName.Text = "";
+            managerPass.Password = "";
+        }
+
+        private void newUser_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            AddNewUser newUser = new AddNewUser(bl, BO.Type.user);
+            newUser.Top = this.Top + 100;
+            newUser.Left = this.Left + 100;
+            newUser.Show();
         }
     }
 }

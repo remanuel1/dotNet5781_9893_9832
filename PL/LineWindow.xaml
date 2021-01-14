@@ -19,9 +19,20 @@
                 <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
 
-            <Label Content="all lines:" 
+            <Label 
                    Grid.Row="0" Grid.Column="0" Padding="10" VerticalAlignment="Bottom"
-                   Style="{StaticResource FontForLabel}" Height="37" Margin="0,0,0.2,0.4"/>
+                   Style="{StaticResource FontForLabel}" Height="37" Margin="0,0,0.2,0.4">
+            </Label>
+
+            <Menu Height="30" Width="80" Grid.Row="0" Grid.Column="0" Margin="60,10,10,10">
+                <MenuItem Header="show only..">
+                    <MenuItem Header="north" Click="MenuItem_Click"/>
+                    <MenuItem Header="south" Click="MenuItem_Click"/>
+                    <MenuItem Header="center" Click="MenuItem_Click"/>
+                    <MenuItem Header="general" Click="MenuItem_Click"/>
+                </MenuItem>
+                
+            </Menu>
 
             <ListBox x:Name="listLines"
                  ItemsSource="{Binding}" MouseDoubleClick="listLines_MouseDoubleClick" Grid.Column="0" Padding="10" Margin="0,50,0.2,2.4" Grid.RowSpan="2"/>

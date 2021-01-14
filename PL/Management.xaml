@@ -8,7 +8,7 @@
         Title="Management" Height="450" Width="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="picture/backGround.jpg"/>
+            <ImageBrush ImageSource="backGround.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -25,7 +25,7 @@
             <Button Height="30" Width="30" Content="ESC" Background="{x:Null}" Click="Button_Click"/>
 
 
-            <Label Name="labForMang" Content=" hello manager"
+            <Label Name="labForMang" Content="{Binding}"
                Height="40"
                Style="{StaticResource FontForLabel}" VerticalContentAlignment="Center" FontSize="25"/>
         </StackPanel>

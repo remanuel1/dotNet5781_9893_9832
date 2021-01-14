@@ -61,12 +61,16 @@
         <TextBox x:Name="addLocatLatitude" Text=""
                HorizontalAlignment="Right" VerticalAlignment="Center"
                Grid.Column="1" Grid.Row="4" Padding="5" Height="30" Width="100"
-               Style="{StaticResource FontForTextBox}" Margin="0,7.2,14.6,7.6"/>
+               Style="{StaticResource FontForTextBox}" Margin="0,7.2,14.6,7.6"
+               ToolTip="Latitude"
+               ToolTipService.ShowDuration="2000"/>
 
         <TextBox x:Name="addLocatLongitude" Text=""
                HorizontalAlignment="Left" VerticalAlignment="Center"
                Grid.Column="1" Grid.Row="4" Padding="5" Height="30" Width="100"
-               Style="{StaticResource FontForTextBox}" Margin="15,7.2,0,7.6"/>
+               Style="{StaticResource FontForTextBox}" Margin="15,7.2,0,7.6"
+               ToolTip="Longitude"
+               ToolTipService.ShowDuration="2000"/>
 
         <Button x:Name="add" Content="ADD"
                     Grid.Row="6"

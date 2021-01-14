@@ -119,10 +119,10 @@
                         Style="{StaticResource FontForButtom}" Padding="5"
                         VerticalAlignment="Center"
                         Click="refuel_Click" Margin="20,117,20,223">
-            <Image Source="..\PL\picture\fuel.JPG"
-                  Width="50" Height="50" />
-
-
+            <Image Source="fuel.JPG"
+                  Width="50" Height="50"
+                  ToolTip="press to refuel this bus"
+                  ToolTipService.ShowDuration="2000"/>
         </Button>
 
         <Button x:Name="treat" Grid.Column="1"
@@ -130,8 +130,10 @@
                         Style="{StaticResource FontForButtom}" Padding="5"
                         VerticalAlignment="Center"
                         Click="treat_Click" Margin="20,188,20,152">
-            <Image Source="..\PL\picture\treat.JPG"
-                  Width="50" Height="50" />
+            <Image Source="treat.JPG"
+                  Width="50" Height="50"
+                  ToolTip="press to treat this bus"
+                  ToolTipService.ShowDuration="2000"/>
         </Button>
 
         <Button x:Name="update" Grid.Column="1"
@@ -139,8 +141,10 @@
                 Width="60" Height="60" Click="update_Click"
                 FontFamily="FbExtazi Regular" FontSize="16" FontWeight="Bold"
                 FlowDirection="LeftToRight" Background="#FFA4E4ED" Margin="20,259,20,81">
-            <Image Source="..\PL\picture\updateIcon.jpg"
-                   Width="50" Height="50"/>
+            <Image Source="updateIcon.jpg"
+                   Width="50" Height="50"
+                  ToolTip="press to updete this bus"
+                  ToolTipService.ShowDuration="2000"/>
             <Button.Style>
                 <Style>
                     <Style.Triggers>
@@ -161,8 +165,10 @@
                         Style="{StaticResource FontForButtom}" Padding="5"
                         VerticalAlignment="Center"
                         Click="delete_Click" Margin="20,330,20,10">
-            <Image Source="..\PL\picture\iconGarbage.jpg"
-                  Width="50" Height="50" />
+            <Image Source="iconGarbage.jpg"
+                  Width="50" Height="50"
+                  ToolTip="press to delete this bus"
+                  ToolTipService.ShowDuration="2000"/>
         </Button>
     </Grid>
 </Page>

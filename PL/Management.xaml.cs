@@ -21,10 +21,13 @@ namespace PL
     public partial class Management : Window
     {
         IBL bl;
-        public Management(IBL _bl)
+        BO.User manager;
+        public Management(IBL _bl, BO.User _manager)
         {
             InitializeComponent();
             bl = _bl;
+            manager = _manager;
+            labForMang.Content = "hello " + manager.name;
         }
 
         private void btBus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -33,7 +36,7 @@ namespace PL
             bus.Left = this.Left;
             bus.Top = this.Top;
             bus.Show();
-            this.Close();
+            
         }
 
         private void btStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -42,7 +45,7 @@ namespace PL
             station.Left = this.Left;
             station.Top = this.Top;
             station.Show();
-            this.Close();
+            
         }
 
         private void btLine_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -51,7 +54,7 @@ namespace PL
             line.Left = this.Left;
             line.Top = this.Top;
             line.Show();
-            this.Close();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

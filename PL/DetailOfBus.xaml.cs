@@ -130,5 +130,6 @@ namespace PL
         {
             e.Handled = !e.Text.Any(x => char.IsDigit(x));
         }
+
     }
 }

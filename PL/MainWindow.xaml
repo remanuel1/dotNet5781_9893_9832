@@ -11,7 +11,7 @@
     </Window.Background>
     <Grid RenderTransformOrigin="0.5,0.5">
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\backGround.jpg">
+            <ImageBrush ImageSource="backGround.jpg">
                 <ImageBrush.RelativeTransform>
                     <TransformGroup>
                         <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="-1" ScaleX="1"/>
@@ -47,7 +47,7 @@
                    Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="55"/>
 
             <TextBox x:Name="managerName"
-                     Text=" " Width="250" Height="40" Padding="7"
+                     Text="" Width="250" Height="40" Padding="7"
                      Canvas.Top="95" Canvas.Left="25"
                    Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" />
 
@@ -116,6 +116,9 @@
                     Canvas.Left="100" Canvas.Top="245"
                     Style="{StaticResource FontForButtom}"
                     Grid.Column="1" Click="user_Click"/>
+
+            <Label x:Name="newUser" Content="new here? creat new user.." Canvas.Top="290" Canvas.Left="75"
+                   MouseDoubleClick="newUser_MouseDoubleClick" TextOptions.TextHintingMode="Fixed"/>
         </Canvas>
 
 

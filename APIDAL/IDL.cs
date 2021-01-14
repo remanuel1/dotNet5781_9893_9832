@@ -45,13 +45,6 @@ namespace DLAPI
         IEnumerable<LineBus> getLineBusInStation(int numberStation);
 
 
-        /*// method line start driving
-        void addLineStartDriving(LineStartDriving lineBus);
-        void updateLineStartDriving(LineStartDriving lineBus);
-        void deleteLineStartDriving(LineStartDriving lineBus);
-        LineStartDriving readLineStartDriving(int identifyBus);
-        IEnumerable<LineStartDriving> getLineStartDriving();*/
-
         // method Line station
         void addLineStation(LineStation lineStation);
         void updateLineStation(LineStation lineStationCurrent, LineStation lineStationNew);
@@ -68,6 +61,14 @@ namespace DLAPI
         ExitLine getExitLineBy(Predicate<ExitLine> predicate);
         IEnumerable<ExitLine> getAllExitLine();
         IEnumerable<ExitLine> getAllExitLineBy(Predicate<ExitLine> predicate);
+
+        // method User
+        void addUser(User user);
+        void deleteUser(User user);
+        void updateUser(User userCurrent, User userNew);
+        User getUser(string userName);
+        IEnumerable<User> getAllUserBy(Predicate<User> predicate);
+
 
     }
 }

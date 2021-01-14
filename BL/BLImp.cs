@@ -22,6 +22,7 @@ namespace BL
         public static BLImp Instance { get => instance; }// The public Instance property to use
         #endregion
 
+
         #region BUS - BONUS
         BO.Bus busDoBoAdapter(DO.Bus busDO)
         {
@@ -41,7 +42,7 @@ namespace BL
         }
         public void insertBus(BO.Bus bus)
         {
-            if (bus.startActivity.Year < 2018 && bus.numberLicense.Length > 7)
+            if (bus.startActivity.Year < 2018 && bus.numberLicense.Length > 7 || bus.numberLicense.Length <7)
                 throw new BO.BadIDAndDateExceptions(int.Parse(bus.numberLicense), bus.startActivity, "number License not math to this date");
             if (bus.startActivity.Year >= 2018 && bus.numberLicense.Length <= 7)
                 throw new BO.BadIDAndDateExceptions(int.Parse(bus.numberLicense), bus.startActivity, "number License not math to this date");
@@ -210,12 +211,12 @@ namespace BL
                    select busStationDoBoAdapter(item)).ToList();
         }
 
-        public IEnumerable<int> getLineInBusStations(BO.BusStation station)
+        public IEnumerable<object> getLineInBusStations(BO.BusStation station)
         {
             return (from item in station.lineInStation
                     let line = dl.getLineBus(item.identifyLine)
                     orderby line.numberLine
-                    select line.numberLine);
+                    select new { numberLine = line.numberLine });
         }
 
         #endregion
@@ -237,6 +238,7 @@ namespace BL
             lineBusDO.CopyPropertiesTo(lineBusBO);
             IEnumerable<DO.LineStation> station = dl.getAllLineStationBy(l => l.identifyLine == lineBusBO.identifyBus);
             lineBusBO.listStaion = (from DO.LineStation item in station
+                                    orderby item.numberStationInLine
                                    select lineStationDoBoAdapter(item)).ToList();
             return lineBusBO;
         }
@@ -378,6 +380,15 @@ namespace BL
         {
             try
             {
+                if(line.listStaion.Count() == station.numberStationInLine)
+                {
+                    DO.LineBus lineBusDO = new DO.LineBus();
+                    line.CopyPropertiesTo(lineBusDO);
+                    lineBusDO.firstNumberStation = line.listStaion.ElementAt(0).numberStation;
+                    lineBusDO.lastNumberStation = line.listStaion.ElementAt(station.numberStationInLine - 2).numberStation;
+                    dl.updateLineBus(lineBusDO);
+                    
+                }
                 deleteLineStation(station);
                 foreach (BO.LineStation item in line.listStaion)
                 {
@@ -406,9 +417,16 @@ namespace BL
             }
         }
 
-            #endregion
+        public IEnumerable<IGrouping<BO.Area, BO.LineBus>> getLineByArea()
+        {
+            return (from line in getAllLineBus()
+                   group line by line.area into area
+                   select area).ToList();
+        }
 
-            #region Follow Stations
+        #endregion
+
+        #region Follow Stations
         BO.FollowStations FollowStationsDoBoAdapter(DO.FollowStations stations)
         {
             BO.FollowStations followStationsBO = new BO.FollowStations();
@@ -617,5 +635,67 @@ namespace BL
             return time;
         }
         #endregion
+
+        public void addUser(BO.User user)
+        {
+            DO.User userToAdd = new DO.User();
+            user.CopyPropertiesTo(userToAdd);
+            try
+            {
+                dl.addUser(userToAdd);
+            }
+            catch
+            {
+                ;
+            }
+        }
+        public void deleteUser(BO.User user)
+        {
+            DO.User userToDelete = new DO.User();
+            user.CopyPropertiesTo(userToDelete);
+            try
+            {
+                dl.deleteUser(userToDelete);
+            }
+            catch
+            {
+                ;
+            }
+        }
+        public void updateUser(BO.User userCurrent, BO.User userNew)
+        {
+            DO.User userCDO = new DO.User();
+            DO.User userNDO = new DO.User();
+            userCurrent.CopyPropertiesTo(userCDO);
+            userNew.CopyPropertiesTo(userNDO);
+            try
+            {
+                dl.updateUser(userCDO, userNDO);
+            }
+            catch
+            {
+                ;
+            }
+        }
+        public BO.User getUser(string userName)
+        {
+            BO.User user = new BO.User();
+            try
+            {
+                dl.getUser(userName).CopyPropertiesTo(user);
+            }
+            catch
+            {
+                ;
+            }
+            return user;
+
+        }
+        public IEnumerable<BO.User> getAllUserBy(Predicate<BO.User> predicate)
+        {
+            /*return (from item in dl.getAllUserBy(Converter < BO.User, DO.User > predicate)
+                    select predicate(item);*/
+            return null;
+        }
     }
 }

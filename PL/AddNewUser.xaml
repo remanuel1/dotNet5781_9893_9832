@@ -1,0 +1,45 @@
+﻿<Window x:Class="PL.AddNewUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="AddNewUser" Height="350" Width="450">
+    <Canvas>
+        <Label x:Name="newUserLabel"  Content=""  Height="50" Padding="7"
+                   Background="#FFA4E4ED" FontSize="30" Style="{StaticResource FontForLabel}" Width="443"/>
+
+        <Label Content=" enter your name:" Width="170" Height="40" Padding="7"
+                   Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="75"/>
+
+        <TextBox x:Name="nameOfUser"
+                     Text=" " Width="250" Height="35" Padding="7"
+                     Canvas.Top="75" Canvas.Right="25"
+                   Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" />
+
+        <Label Content=" enter your user name:" Width="200" Height="40" Padding="7"
+                   Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="120"/>
+
+        <TextBox x:Name="userName"
+                     Text=" " Width="219" Height="40" Padding="7"
+                     Canvas.Top="120" Canvas.Right="25"
+                   Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" Canvas.Left="199"/>
+
+        <Label Content=" enter your password:" Width="200" Height="40" Padding="7"
+                   Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="170"/>
+
+        <TextBox x:Name="userPass"
+                   Text=""
+                   Width="219" Height="40" Padding="7"
+                   Canvas.Top="170" Canvas.Right="25"
+                   Background="White" FontSize="20"
+                   Style="{StaticResource FontForTextBox}" Canvas.Left="199"/>
+
+        <Button x:Name="loginButton"
+                    Content="login" Width="100" Height="40"
+                    Canvas.Left="169" Canvas.Top="236"
+                    Style="{StaticResource FontForButtom}"
+                    Grid.Column="1" Click="loginButton_Click"/>
+    </Canvas>
+</Window>

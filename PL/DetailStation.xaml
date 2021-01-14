@@ -83,7 +83,7 @@
                Grid.Column="0" Grid.Row="5" Padding="5"
                Style="{StaticResource FontForLabel}" Height="27" Margin="4,9.8,0.8,8.8" Width="140"/>
 
-        <ListBox x:Name="lines" ItemsSource="{Binding lineInStation}"
+        <ListBox x:Name="lines" ItemsSource="{Binding numberLine}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
                Grid.Column="1" Grid.Row="5" Padding="5" Width="150" Height="80"
                Style="{StaticResource FontForListBox}"  Grid.RowSpan="2"/>
@@ -92,15 +92,19 @@
                 Width="60" Height="60" VerticalAlignment="Center" HorizontalAlignment="Left"
                 Style="{StaticResource FontForButtom}"
                 Click="update_Click" Margin="52.2,5.4,0,5">
-            <Image Source="..\PL\picture\updateIcon.jpg"
-                  Width="50" Height="50" />
+            <Image Source="updateIcon.jpg"
+                  Width="50" Height="50"
+                  ToolTip="press to update this station"
+                  ToolTipService.ShowDuration="2000"/>
         </Button>
 
         <Button x:Name="delete" Grid.Column="1" Grid.Row="7" Height="60" Width="60" VerticalAlignment="Center"
                     Style="{StaticResource FontForButtom}"
                     Click="delete_Click" Margin="144.2,5.4,51,5">
-            <Image Source="..\PL\picture\iconGarbage.jpg"
-                  Width="50" Height="50" />
+            <Image Source="iconGarbage.jpg"
+                  Width="50" Height="50"
+                  ToolTip="press to delete this station"
+                  ToolTipService.ShowDuration="2000"/>
         </Button>
     </Grid>
 </Page>

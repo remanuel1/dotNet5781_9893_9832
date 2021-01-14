@@ -68,6 +68,9 @@
     <Compile Include="AddNewStation.xaml.cs">
       <DependentUpon>AddNewStation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddNewUser.xaml.cs">
+      <DependentUpon>AddNewUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DetailLine.xaml.cs">
       <DependentUpon>DetailLine.xaml</DependentUpon>
     </Compile>
@@ -79,9 +82,6 @@
     </Compile>
     <Compile Include="LineWindow.xaml.cs">
       <DependentUpon>LineWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Manager.xaml.cs">
-      <DependentUpon>Manager.xaml</DependentUpon>
     </Compile>
     <Compile Include="StationWindow.xaml.cs">
       <DependentUpon>StationWindow.xaml</DependentUpon>
@@ -98,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNewStation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddNewUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,10 +141,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Management.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Manager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,22 +189,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="picture\updateIcon.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="picture\backGround.jpg" />
+    <Folder Include="picture\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="picture\treat.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="picture\fuel.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="picture\iconGarbage.jpg" />
+    <Resource Include="backGround.jpg" />
+    <Resource Include="fuel.JPG" />
+    <Resource Include="iconGarbage.jpg" />
+    <Resource Include="treat.JPG" />
+    <Resource Include="updateIcon.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

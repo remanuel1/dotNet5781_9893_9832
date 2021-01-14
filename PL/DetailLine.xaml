@@ -40,7 +40,9 @@
                 Width="20" Height="20"
                 Canvas.Left="150" Canvas.Top="150"
                 Style="{StaticResource FontForButtom}"
-                Click="addStation_Click"/>
+                Click="addStation_Click"
+                ToolTip="press to enter new station in this line"
+                ToolTipService.ShowDuration="2000"/>
 
         <ComboBox x:Name="listStationForNewStation" ItemsSource="{Binding}"
                Visibility="{Binding}"
@@ -70,7 +72,7 @@
                                 <Button x:Name="toDeleteStation"
                                        Width="20" Height="20" Click="toDeleteStation_Click">
                                     <Image x:Name="iconDelete" Width="20" Height="20"
-                                               Source="..\PL\picture\iconGarbage.jpg"/>
+                                           Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\iconGarbage.jpg"/>
                                 </Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -84,8 +86,10 @@
                 Canvas.Left="50" Canvas.Top="350"
                 Style="{StaticResource FontForButtom}"
                 Click="update_Click">
-            <Image Source="..\PL\picture\updateIcon.jpg"
-                   Width="50" Height="50"/>
+            <Image Source="updateIcon.jpg"
+                   Width="50" Height="50"
+                   ToolTip="press to update this line"
+                   ToolTipService.ShowDuration="2000"/>
         </Button>
 
         <Button x:Name="delete"
@@ -93,8 +97,10 @@
                 Canvas.Left="130" Canvas.Top="350"
                 Style="{StaticResource FontForButtom}"
                 Click="delete_Click">
-            <Image Source="..\PL\picture\iconGarbage.jpg"
-                  Width="50" Height="50" />
+            <Image Source="iconGarbage.jpg"
+                  Width="50" Height="50"
+                  ToolTip="press to delete this line"
+                  ToolTipService.ShowDuration="2000"/>
             
         </Button>
     </Canvas>

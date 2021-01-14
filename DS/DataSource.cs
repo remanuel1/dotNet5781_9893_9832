@@ -16,6 +16,7 @@ namespace DS
         public static List<FollowStations> allFollowStations;
         public static List<LineBus> allLines;
         public static List<ExitLine> allExitLines;
+        public static List<User> allUsers;
 
         static DataSource()
         {
@@ -2483,6 +2484,21 @@ namespace DS
                     endTime = TimeSpan.Parse("23:59:59")
                 },
                 #endregion
+            };
+            allUsers = new List<User>
+            {
+                new User
+                {
+                    name = "Renana Emanuel",
+                    userName = "renana",
+                    password = "renana"
+                },
+                new User
+                {
+                    name = "Maayan Zohar",
+                    userName = "maayan",
+                    password = "maayan"
+                }
             };
         }
 

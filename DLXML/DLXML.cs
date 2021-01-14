@@ -246,8 +246,6 @@ namespace DL
             XMLTools.SaveListToXMLSerializer(ListLineBus, lineBusPath);
         }
 
-        //////////////////////////////////////////// מפה לעשות
-
         public void deleteLineBus(DO.LineBus lineBus)
         {
             List<LineBus> ListLineBus = XMLTools.LoadListFromXMLSerializer<LineBus>(lineBusPath);
@@ -270,12 +268,117 @@ namespace DL
         }
         public IEnumerable<DO.LineBus> getAllLineBus()
         {
-            List<LineBus> ListLineBus = XMLTools.LoadListFromXMLSerializer<LineBus>(lineBusPath);
+            //List<LineBus> ListLineBus = XMLTools.LoadListFromXMLSerializer<LineBus>(lineBusPath);
+            List<LineBus> allLines = new List<LineBus>
+            {
+                new LineBus
+                {
+                    identifyBus = 1000,
+                    numberLine = 277,
+                    area = Area.center,
+                    firstNumberStation = 38832,
+                    lastNumberStation = 38855,
+                    deleted = false
+                },
 
-            return from line in ListLineBus
-                    where line.deleted == false
-                    orderby line.numberLine
-                    select line;
+                new LineBus
+                {
+                    identifyBus = 1001,
+                    numberLine = 150,
+                    area = Area.center,
+                    firstNumberStation = 38834,
+                    lastNumberStation = 38838,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 1002,
+                    numberLine = 111,
+                    area = Area.general,
+                    firstNumberStation = 38859,
+                    lastNumberStation = 38869,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 1003,
+                    numberLine = 200,
+                    area = Area.center,
+                    firstNumberStation = 38846,
+                    lastNumberStation = 38836,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 1004,
+                    numberLine = 220,
+                    area = Area.center,
+                    firstNumberStation = 38880,
+                    lastNumberStation = 38890,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 1005,
+                    numberLine = 221,
+                    area = Area.center,
+                    firstNumberStation = 38884,
+                    lastNumberStation = 38855,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 1006,
+                    numberLine = 230,
+                    area = Area.center,
+                    firstNumberStation = 38838,
+                    lastNumberStation = 38880,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 1007,
+                    numberLine = 240,
+                    area = Area.center,
+                    firstNumberStation = 38832,
+                    lastNumberStation = 38852,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 1008,
+                    numberLine = 510,
+                    area = Area.center,
+                    firstNumberStation = 38852,
+                    lastNumberStation = 38878,
+                    deleted = false
+                },
+
+                new LineBus
+                {
+                    identifyBus = 1009,
+                    numberLine = 37,
+                    area = Area.south,
+                    firstNumberStation = 38832,
+                    lastNumberStation = 38852,
+                    deleted = false
+                },
+
+            };
+            XMLTools.SaveListToXMLSerializer(allLines, lineBusPath);
+            XMLTools.LoadListFromXMLSerializer<LineBus>(lineBusPath);
+
+            return from line in allLines
+                   where line.deleted == false
+                   orderby line.numberLine
+                   select line;
         }
         #endregion
 
@@ -346,8 +449,8 @@ namespace DL
             List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
 
             return from lineStation in ListLineStation
-                    where lineStation.deleted == false
-                    select lineStation;
+                   where lineStation.deleted == false
+                   select lineStation;
         }
 
         public IEnumerable<DO.LineStation> getLineStationInLine(int identifyLine)
@@ -355,9 +458,9 @@ namespace DL
             List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
 
             return from lineStation in ListLineStation
-                    where lineStation.identifyLine == identifyLine && lineStation.deleted == false
-                    orderby lineStation.numberStationInLine
-                    select lineStation;
+                   where lineStation.identifyLine == identifyLine && lineStation.deleted == false
+                   orderby lineStation.numberStationInLine
+                   select lineStation;
 
         }
         public IEnumerable<DO.LineStation> getLineStationInStation(int numberStation)
@@ -365,8 +468,8 @@ namespace DL
             List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
 
             return from lineStation in ListLineStation
-                    where lineStation.numberStation == numberStation && lineStation.deleted == false && getLineBus(lineStation.identifyLine).deleted == false
-                    select lineStation;
+                   where lineStation.numberStation == numberStation && lineStation.deleted == false && getLineBus(lineStation.identifyLine).deleted == false
+                   select lineStation;
 
         }
         public IEnumerable<DO.LineStation> getAllLineStationBy(Predicate<DO.LineStation> predicate)
@@ -421,5 +524,27 @@ namespace DL
         }
 
         #endregion
+
+        public void addUser(User user)
+        {
+
+        }
+        public void deleteUser(User user)
+        {
+
+        }
+        public void updateUser(User userCurrent, User userNew)
+        {
+
+        }
+        public User getUser(string userName)
+        {
+            return null;
+        }
+        public IEnumerable<User> getAllUserBy(Predicate<User> predicate)
+        {
+            return null;
+        }
+
     }
 }

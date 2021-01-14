@@ -16,4 +16,9 @@ namespace BO
             ready, inDriving, refueling, inTreat, needTreat
         }
 
+        public enum Type
+        {
+            manager, user
+        }
+
 }

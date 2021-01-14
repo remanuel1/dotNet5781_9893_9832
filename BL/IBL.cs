@@ -26,7 +26,7 @@ namespace BLAPI
         void deleteBusStation(BusStation bus);
         BusStation getBusStation(int numberStation);
         IEnumerable<BusStation> getAllBusStations();
-        IEnumerable<int> getLineInBusStations(BusStation station);
+        IEnumerable<object> getLineInBusStations(BusStation station);
         #endregion
 
         #region Driving
@@ -46,6 +46,7 @@ namespace BLAPI
         IEnumerable<BusStation> getStationInLineBus(LineBus lineBus);
         void addStationToLine(LineBus line, BusStation station, int indexInLine);
         void deleteStationInLine(LineBus line, LineStation station);
+        IEnumerable<IGrouping<Area, LineBus>> getLineByArea();
 
 
         #endregion
@@ -73,6 +74,10 @@ namespace BLAPI
 
         #endregion
 
-
+        void addUser(User user);
+        void deleteUser(User user);
+        void updateUser(User userCurrent, User userNew);
+        User getUser(string userName);
+        IEnumerable<User> getAllUserBy(Predicate<User> predicate);
     }
 }
