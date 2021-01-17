@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User>
+    <name>Renana Emanuel</name>
+    <userName>renana</userName>
+    <password>renana</password>
+    <type>manager</type>
+  </User>
+  <User>
+    <name>Maayan Zohar</name>
+    <userName>maayan</userName>
+    <password>maayan</password>
+    <type>manager</type>
+  </User>
+</ArrayOfUser>

@@ -1,0 +1,403 @@
+<?xml version="1.0"?>
+<ArrayOfBusStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BusStation>
+    <numberStation>38831</numberStation>
+    <Latitude>34.917806</Latitude>
+    <Longitude>32.183921</Longitude>
+    <nameStation>Bar Lev School / Ben Yehuda</nameStation>
+    <address>Ben Yehuda 76, Kfar saba</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38832</numberStation>
+    <Latitude>34.819541</Latitude>
+    <Longitude>31.870034</Longitude>
+    <nameStation>Herzel / Bilo</nameStation>
+    <address>Herzel, Kiryat Ekron</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38833</numberStation>
+    <Latitude>34.782828</Latitude>
+    <Longitude>31.984553</Longitude>
+    <nameStation>Yasmin / Arar</nameStation>
+    <address>Yasmin 30, Rison Lezion</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38834</numberStation>
+    <Latitude>34.790904</Latitude>
+    <Longitude>31.88855</Longitude>
+    <nameStation>Frid / Sheshet Hayamim</nameStation>
+    <address>Moshe Frid 9, Rehovot</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38836</numberStation>
+    <Latitude>34.898098</Latitude>
+    <Longitude>31.956392</Longitude>
+    <nameStation>Central Station drop off, Lod</nameStation>
+    <address>Central Station, Lod</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38837</numberStation>
+    <Latitude>34.796071</Latitude>
+    <Longitude>31.892166</Longitude>
+    <nameStation>Hana Avrech / Volkani</nameStation>
+    <address>Hana Avrech 15, Rehovot</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38838</numberStation>
+    <Latitude>34.824106</Latitude>
+    <Longitude>31.857565</Longitude>
+    <nameStation>Herzel / Moshe Sharet</nameStation>
+    <address>Herzel 20, Kiryat Ekron</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38839</numberStation>
+    <Latitude>34.821857</Latitude>
+    <Longitude>31.862305</Longitude>
+    <nameStation>Habanim / Eli Chohen</nameStation>
+    <address>Habanim 4, Kiryat Ekron</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38840</numberStation>
+    <Latitude>34.822237</Latitude>
+    <Longitude>31.865085</Longitude>
+    <nameStation>Waizman / Habanim</nameStation>
+    <address>Waizman 11, Kiryat Ekron</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38841</numberStation>
+    <Latitude>34.818957</Latitude>
+    <Longitude>31.865222</Longitude>
+    <nameStation>Hairus / Hakalanit</nameStation>
+    <address>Hairus 13, Kiryat Ekron</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38842</numberStation>
+    <Latitude>34.818392</Latitude>
+    <Longitude>31.867597</Longitude>
+    <nameStation>Hakalanit / Hanarkis</nameStation>
+    <address>Hakalanit 1, Kiryat Ekron</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38844</numberStation>
+    <Latitude>34.827023</Latitude>
+    <Longitude>31.86244</Longitude>
+    <nameStation>Eli Chohen / Lohami Hagetaot</nameStation>
+    <address>Eli Chohen 62, Kiryat Ekron</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38845</numberStation>
+    <Latitude>34.828702</Latitude>
+    <Longitude>31.863501</Longitude>
+    <nameStation>Shabazi / Shevet Ahim</nameStation>
+    <address>Shabazi 51, Kiryat Ekron</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38846</numberStation>
+    <Latitude>34.827102</Latitude>
+    <Longitude>31.865348</Longitude>
+    <nameStation>Shabazi / Waizman</nameStation>
+    <address>Shabazi 31, Kiryat Ekron</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38847</numberStation>
+    <Latitude>34.763896</Latitude>
+    <Longitude>31.977409</Longitude>
+    <nameStation>Haim Bar Lev / Ytzak Rabin dw.</nameStation>
+    <address>Haim Bar Lev, Rison Lezion</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38848</numberStation>
+    <Latitude>34.912708</Latitude>
+    <Longitude>32.300345</Longitude>
+    <nameStation>Len Hasharon Mental Health Center</nameStation>
+    <address>Tzur Moshe</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38849</numberStation>
+    <Latitude>34.912602</Latitude>
+    <Longitude>32.301347</Longitude>
+    <nameStation>Len Hasharon Mental Health Center</nameStation>
+    <address>Tzur Moshe</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38852</numberStation>
+    <Latitude>34.807944</Latitude>
+    <Longitude>31.914255</Longitude>
+    <nameStation>Holzman / Hamada</nameStation>
+    <address>Haim Holzman 2, Rehovot</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38854</numberStation>
+    <Latitude>34.836363</Latitude>
+    <Longitude>31.963668</Longitude>
+    <nameStation>Mahane Tzrifin / Club</nameStation>
+    <address>Tzrifin</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38855</numberStation>
+    <Latitude>34.825249</Latitude>
+    <Longitude>31.856115</Longitude>
+    <nameStation>Herzel / Golani</nameStation>
+    <address>Herzel 4, Kiryat Ekron</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38856</numberStation>
+    <Latitude>34.81249</Latitude>
+    <Longitude>31.874963</Longitude>
+    <nameStation>Harotem / Hadganyot</nameStation>
+    <address>Harotem 3, Rehovot</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38859</numberStation>
+    <Latitude>34.910842</Latitude>
+    <Longitude>32.300035</Longitude>
+    <nameStation>Haarava</nameStation>
+    <address>Haarava 1, Tzur Moshe</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38860</numberStation>
+    <Latitude>34.948647</Latitude>
+    <Longitude>32.305234</Longitude>
+    <nameStation>Mevo Hagefen / Hateena</nameStation>
+    <address>Mevo Hagefen, Yanuv</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38861</numberStation>
+    <Latitude>34.943393</Latitude>
+    <Longitude>32.304022</Longitude>
+    <nameStation>Mevo Hagefen / Haarhava</nameStation>
+    <address>Mevo Hagefen, Yanuv</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38862</numberStation>
+    <Latitude>34.940529</Latitude>
+    <Longitude>32.302957</Longitude>
+    <nameStation>Haarhava A</nameStation>
+    <address>Haarhava, Geulim</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38863</numberStation>
+    <Latitude>34.939512</Latitude>
+    <Longitude>32.300264</Longitude>
+    <nameStation>Haarhava B</nameStation>
+    <address>Haarhava, Geulim</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38864</numberStation>
+    <Latitude>34.938705</Latitude>
+    <Longitude>32.298171</Longitude>
+    <nameStation>Haarhava / Vatikim</nameStation>
+    <address>Haarhava, Geulim</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38865</numberStation>
+    <Latitude>34.879725</Latitude>
+    <Longitude>31.998767</Longitude>
+    <nameStation> Airports / Aliyah</nameStation>
+    <address> Aliya , Ben Gurion Airport</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38866</numberStation>
+    <Latitude>34.879725</Latitude>
+    <Longitude>31.998767</Longitude>
+    <nameStation> Kanaf/ Barwash</nameStation>
+    <address> Kanaf, Ben Gurion Airport  </address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38867</numberStation>
+    <Latitude>34.818708</Latitude>
+    <Longitude>31.883019</Longitude>
+    <nameStation> HaBurah/ Dov Hoz</nameStation>
+    <address> HaBurah 24, Rehovot </address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38869</numberStation>
+    <Latitude>34.926837</Latitude>
+    <Longitude>32.349776</Longitude>
+    <nameStation> Beit Halevi</nameStation>
+    <address> 100 105, Beit Halevi</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38870</numberStation>
+    <Latitude>34.899465</Latitude>
+    <Longitude>32.352953</Longitude>
+    <nameStation> The first / Route 5700</nameStation>
+    <address> Migdal 13, Kfar Haim </address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38872</numberStation>
+    <Latitude>34.775083</Latitude>
+    <Longitude>31.897286</Longitude>
+    <nameStation> The genius Ben Ish Chai / Ceylon</nameStation>
+    <address>The genius Ben Ish Chai 20, Rehovot </address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38873</numberStation>
+    <Latitude>34.807039</Latitude>
+    <Longitude>31.883941</Longitude>
+    <nameStation> Okashi / Levi Eshkol</nameStation>
+    <address>Israel Okashi 4, Rehovot </address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38875</numberStation>
+    <Latitude>34.816752</Latitude>
+    <Longitude>31.896762</Longitude>
+    <nameStation> Menucha and Nahala / Yehuda Gorodiski</nameStation>
+    <address>Menucha and Nahala 31, Rehovot </address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38876</numberStation>
+    <Latitude>34.823461</Latitude>
+    <Longitude>31.898463</Longitude>
+    <nameStation> Gorodsky / Yechiel Paldi</nameStation>
+    <address>Yehuda Gorodisky 35, Rehovot</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38877</numberStation>
+    <Latitude>34.904907</Latitude>
+    <Longitude>32.076535</Longitude>
+    <nameStation> Derech Menachem Begin / Yaakov Hazan</nameStation>
+    <address>Derech Menachem Begin 30, Petah Tikva</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38878</numberStation>
+    <Latitude>34.878765</Latitude>
+    <Longitude>32.299994</Longitude>
+    <nameStation> Way the Park / Rabbi Neria</nameStation>
+    <address>Way the Park 20, Netanya</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38879</numberStation>
+    <Latitude>34.859437</Latitude>
+    <Longitude>31.865457</Longitude>
+    <nameStation> Hteana / Hgefan</nameStation>
+    <address>Hteana, Yaziz</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38880</numberStation>
+    <Latitude>34.864555</Latitude>
+    <Longitude>31.866772</Longitude>
+    <nameStation> Hteana / Halon</nameStation>
+    <address>Hteana, Yaziz</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38880</numberStation>
+    <Latitude>34.864555</Latitude>
+    <Longitude>31.866772</Longitude>
+    <nameStation> Hteana / Halon</nameStation>
+    <address>Hteana, Yaziz</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38881</numberStation>
+    <Latitude>34.784347</Latitude>
+    <Longitude>31.809325</Longitude>
+    <nameStation> Way the Flowers / Jasmine</nameStation>
+    <address>Way the Flowers 46, Gedera</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38883</numberStation>
+    <Latitude>34.778239</Latitude>
+    <Longitude>31.80037</Longitude>
+    <nameStation> Yitzhak Rabin / Pinchas Sapir</nameStation>
+    <address>Yitzhak Rabin, Gedera</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38884</numberStation>
+    <Latitude>34.782985</Latitude>
+    <Longitude>31.799224</Longitude>
+    <nameStation> Menachem Begin / Yitzhak Rabin</nameStation>
+    <address>Menachem Begin 4, Gedera</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38885</numberStation>
+    <Latitude>34.785069</Latitude>
+    <Longitude>31.800334</Longitude>
+    <nameStation> Haim Herzog / Dolev</nameStation>
+    <address>Haim Herzog 12, Gedera</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38886</numberStation>
+    <Latitude>34.786735</Latitude>
+    <Longitude>31.802319</Longitude>
+    <nameStation> Gvanim School / Erez </nameStation>
+    <address>Erez 2, Gedera</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38887</numberStation>
+    <Latitude>34.786623</Latitude>
+    <Longitude>31.804595</Longitude>
+    <nameStation>Hailanot road/ Alon</nameStation>
+    <address>Hailanot raod 13, Gedera</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38888</numberStation>
+    <Latitude>34.785098</Latitude>
+    <Longitude>31.805041</Longitude>
+    <nameStation>Hailanot road / Menahem Begin  </nameStation>
+    <address>Hailanot raod 3, Gedera</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38889</numberStation>
+    <Latitude>34.782252</Latitude>
+    <Longitude>31.816751</Longitude>
+    <nameStation>Haazmaut / Waiztman</nameStation>
+    <address>Haazmaut 1 , Gedera</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38890</numberStation>
+    <Latitude>34.779753</Latitude>
+    <Longitude>31.816579</Longitude>
+    <nameStation>Waiztman / Marvad Haksamim</nameStation>
+    <address>Waiztman 19 , Gedera</address>
+    <deleted>false</deleted>
+  </BusStation>
+</ArrayOfBusStation>
