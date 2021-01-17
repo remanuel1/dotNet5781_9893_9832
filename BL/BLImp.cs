@@ -46,7 +46,7 @@ namespace BL
                 throw new BO.BadIDAndDateExceptions(int.Parse(bus.numberLicense), bus.startActivity, "number License not math to this date");
             if (bus.startActivity.Year >= 2018 && bus.numberLicense.Length <= 7)
                 throw new BO.BadIDAndDateExceptions(int.Parse(bus.numberLicense), bus.startActivity, "number License not math to this date");
-            if (DateTime.Now < bus.startActivity)
+            if (DateTime.Now < bus.startActivity || DateTime.Now < bus.lastTreat)
                 throw new BO.BadDateExceptions(bus.startActivity, "date is illegal");
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
@@ -65,7 +65,7 @@ namespace BL
                 throw new BO.BadIDAndDateExceptions(int.Parse(bus.numberLicense), bus.startActivity, "number License not math to this date");
             if (bus.startActivity.Year >= 2018 && bus.numberLicense.Length <= 7)
                 throw new BO.BadIDAndDateExceptions(int.Parse(bus.numberLicense), bus.startActivity, "number License not math to this date");
-            if (DateTime.Now < bus.startActivity)
+            if (DateTime.Now < bus.startActivity || DateTime.Now < bus.lastTreat)
                 throw new BO.BadDateExceptions(bus.startActivity, "date is illegal");
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
@@ -117,6 +117,14 @@ namespace BL
                    orderby item.startActivity
                    select busDoBoAdapter(item)).ToList();
         }
+
+        public IEnumerable<BO.Bus> getAllBussesBy(IOrderedEnumerable<string> elements)
+        {
+            return (from item in dl.getAllBusses()
+                    orderby elements
+                    select busDoBoAdapter(item)).ToList();
+        }
+
         public void refuel(BO.Bus bus)
         {
             bus.totalFuel = 1200;
@@ -184,6 +192,11 @@ namespace BL
             busStation.CopyPropertiesTo(busStationDO);
             try
             {
+                foreach(BO.LineStation station in busStation.lineInStation)
+                {
+                    BO.LineBus line = getLineBus(station.identifyLine);
+                    deleteStationInLine(line, station);
+                }
                 dl.deleteBusStation(busStationDO);
             }
             catch (DO.BadIdException ex)
@@ -211,12 +224,12 @@ namespace BL
                    select busStationDoBoAdapter(item)).ToList();
         }
 
-        public IEnumerable<object> getLineInBusStations(BO.BusStation station)
+        public IEnumerable<int> getLineInBusStations(BO.BusStation station)
         {
             return (from item in station.lineInStation
                     let line = dl.getLineBus(item.identifyLine)
                     orderby line.numberLine
-                    select new { numberLine = line.numberLine });
+                    select line.numberLine);
         }
 
         #endregion
@@ -238,7 +251,7 @@ namespace BL
             lineBusDO.CopyPropertiesTo(lineBusBO);
             IEnumerable<DO.LineStation> station = dl.getAllLineStationBy(l => l.identifyLine == lineBusBO.identifyBus);
             lineBusBO.listStaion = (from DO.LineStation item in station
-                                    orderby item.numberStationInLine
+                                   orderby item.numberStationInLine
                                    select lineStationDoBoAdapter(item)).ToList();
             return lineBusBO;
         }
@@ -378,6 +391,8 @@ namespace BL
 
         public void deleteStationInLine(BO.LineBus line, BO.LineStation station)
         {
+            if (line.listStaion.Count() <= 2)
+                throw new BO.BadLineExceptions("impossible to deletete this station");
             try
             {
                 if(line.listStaion.Count() == station.numberStationInLine)
@@ -406,23 +421,25 @@ namespace BL
             }
 
             IEnumerable<DO.LineStation> stationList = dl.getAllLineStationBy(l => l.identifyLine == line.identifyBus);
+
+            if (station.numberStationInLine != line.listStaion.Count() && station.numberStationInLine != 1)
+            {
+                int one = line.listStaion.ElementAt(station.numberStationInLine - 2).numberStation;
+                int two = line.listStaion.ElementAt(station.numberStationInLine).numberStation;
+                insertFollowStations(one, two);
+            }
             line.listStaion = (from DO.LineStation item in stationList
                                select lineStationDoBoAdapter(item)).ToList();
 
-            if (station.numberStationInLine != line.listStaion.Count() + 1 && station.numberStationInLine !=1)
-            {
-                int one = line.listStaion.ElementAt(station.numberStationInLine - 2).numberStation;
-                int two = line.listStaion.ElementAt(station.numberStationInLine - 1).numberStation;
-                insertFollowStations(one, two);
-            }
+            
         }
 
-        public IEnumerable<IGrouping<BO.Area, BO.LineBus>> getLineByArea()
+        /*public IEnumerable<IGrouping<BO.Area, BO.LineBus>> getLineByArea()
         {
             return (from line in getAllLineBus()
                    group line by line.area into area
                    select area).ToList();
-        }
+        }*/
 
         #endregion
 
@@ -459,10 +476,10 @@ namespace BL
             follow.numberStation1 = station1;
             follow.numberStation2 = station2;
 
-            GeoCoordinate s1 = new GeoCoordinate(dl.getBusStation(station1).Latitude, dl.getBusStation(station1).Longitude);
-            GeoCoordinate d1 = new GeoCoordinate(dl.getBusStation(station2).Latitude, dl.getBusStation(station2).Longitude);
+            GeoCoordinate s1 = new GeoCoordinate(dl.getBusStation(station1).Longitude, dl.getBusStation(station1).Latitude);
+            GeoCoordinate d1 = new GeoCoordinate(dl.getBusStation(station2).Longitude, dl.getBusStation(station2).Latitude);
             follow.distance = s1.GetDistanceTo(d1);
-            follow.drivinngTime = TimeSpan.FromMilliseconds(follow.distance / 50*10000);
+            follow.drivinngTime = TimeSpan.FromMinutes(follow.distance/1000 * (60/50));
             follow.deleted = false;
             try
             {
@@ -606,17 +623,18 @@ namespace BL
                         lineTimingBO.LineId = item.identifyLine;
                         lineTimingBO.LineNumber = dl.getLineBus(item.identifyLine).numberLine;
                         lineTimingBO.LastStation = dl.getBusStation(dl.getLineBus(item.identifyLine).lastNumberStation).nameStation;
-                        lineTimingBO.TripStart = exitTime;
+                        lineTimingBO.TripStart = TimeSpan.Parse(exitTime.ToString());
                         lineTimingBO.ExpectedTimeTillArrive = exitTime + timeFromStartStation(item.identifyLine, numberStation) - time;
+                        lineTimingBO.ExpectedTimeTillArrive = TimeSpan.Parse(lineTimingBO.ExpectedTimeTillArrive.ToString().Substring(0, 8));
                         exitTime += TimeSpan.FromMinutes(exitLine.frequency);
-                        if(lineTimingBO.ExpectedTimeTillArrive>=time)
+                        if(lineTimingBO.ExpectedTimeTillArrive + lineTimingBO.TripStart >= time)
                         {
                             lineTimings.Add(lineTimingBO);
                         }
                     }
                 }
             }
-            return lineTimings;
+            return lineTimings.OrderBy(t=> t.ExpectedTimeTillArrive);
         }
 
         private TimeSpan timeFromStartStation(int identifyLine, int numberStation)
@@ -636,6 +654,7 @@ namespace BL
         }
         #endregion
 
+        #region User
         public void addUser(BO.User user)
         {
             DO.User userToAdd = new DO.User();
@@ -697,5 +716,6 @@ namespace BL
                     select predicate(item);*/
             return null;
         }
+        #endregion
     }
 }

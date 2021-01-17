@@ -11,8 +11,25 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="450"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <Grid>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#FFA4E4ED" />
+
+        <Menu x:Name="moveTo" HorizontalAlignment="Left" Height="20" Width="50" 
+              FontFamily="FbExtazi Regular" FontSize="16">
+            <MenuItem Header="go to.." Click="goBus_Click">
+                <MenuItem x:Name="goBus" Header="bus window" Click="goBus_Click"/>
+                <MenuItem x:Name="goLine" Header="line window" Click="goLine_Click"/>
+                <MenuItem x:Name="gouser" Header="user window" Click="gouser_Click"/>
+                <MenuItem x:Name="logOut" Header="log out" Click="logOut_Click"/>
+            </MenuItem>
+        </Menu>
+
+
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="288"/>
@@ -24,7 +41,8 @@
                    Style="{StaticResource FontForLabel}" Height="37" Margin="0,0,0.2,0.4"/>
 
             <ListView x:Name="listStation"
-                 ItemsSource="{Binding}" MouseDoubleClick="listStation_MouseDoubleClick" Grid.Column="0" Padding="10" Margin="0,50,0.2,2.4" Grid.RowSpan="2"/>
+                 ItemsSource="{Binding}" MouseDoubleClick="listStation_MouseDoubleClick"
+                      Grid.Column="0" Padding="10" Margin="10,0.4,0.4,2.6" Grid.Row="1"/>
 
             <Button Content="+"
                     Grid.Row="2" Grid.Column="0" Height="40" Width="140"  VerticalAlignment="Center"
@@ -32,7 +50,7 @@
                 Click="Button_Click_Add"/>
         </Grid>
 
-        <Frame x:Name="page" Grid.Column="1" NavigationUIVisibility="Hidden"
+        <Frame x:Name="page" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"
                HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
     </Grid>

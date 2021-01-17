@@ -62,6 +62,7 @@
                HorizontalAlignment="Right" VerticalAlignment="Center"
                Grid.Column="1" Grid.Row="4" Padding="5" Height="30" Width="100"
                Style="{StaticResource FontForTextBox}" Margin="0,7.2,14.6,7.6"
+               PreviewTextInput="onlyNumber_PreviewTextInput"
                ToolTip="Latitude"
                ToolTipService.ShowDuration="2000"/>
 
@@ -70,14 +71,32 @@
                Grid.Column="1" Grid.Row="4" Padding="5" Height="30" Width="100"
                Style="{StaticResource FontForTextBox}" Margin="15,7.2,0,7.6"
                ToolTip="Longitude"
-               ToolTipService.ShowDuration="2000"/>
+               ToolTipService.ShowDuration="2000"
+               PreviewTextInput="onlyNumber_PreviewTextInput"/>
 
         <Button x:Name="add" Content="ADD"
                     Grid.Row="6"
-                    Width="120" Height="40" Grid.ColumnSpan="2"
+                    Width="110" Height="40" Grid.ColumnSpan="2"
                     VerticalAlignment="Center" HorizontalAlignment="Center"
-                    Style="{StaticResource FontForButtom}"
-                    Click="add_Click"/>
+                    FontFamily="FbExtazi Regular" FontSize="16" FontWeight="Bold"
+                    FlowDirection="LeftToRight" Background="#FFA4E4ED"
+                    Click="add_Click">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=addNameStation, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=addLocatLongitude, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=addLocatLatitude, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
     </Grid>
 </Page>

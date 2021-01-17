@@ -52,7 +52,7 @@
                    Style="{StaticResource FontForLabel}" Height="27" Margin="18,15.4,23,15.2" Width="139"/>
 
             <DatePicker x:Name="dateBus"
-                    SelectedDate="{Binding startActivity}"
+                    
                     Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                     DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}"
                     Height="23" Width="102"/>
@@ -63,7 +63,6 @@
                     Style="{StaticResource FontForLabel}" Height="27" Margin="52,15.8,58,14.8" Width="70"/>
 
             <DatePicker x:Name="dateTreat"
-                    SelectedDate="{Binding lastTreat}"
                     Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                     DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}"
                     Height="23" Width="102"/>

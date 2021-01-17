@@ -1599,9 +1599,9 @@ namespace DS
                 {
                     numberStation1= 38832,
                     numberStation2= 38838,
-                    distance = 1.3278,
+                    distance = 600,
                     deleted = false,
-                    drivinngTime= TimeSpan.FromMinutes(1.3278/speed),
+                    drivinngTime= TimeSpan.FromMinutes(600/speed),
                 },
 
                 new FollowStations
@@ -2444,9 +2444,9 @@ namespace DS
                 new ExitLine
                 {
                     identifyBus = 1000,
-                    startTime = TimeSpan.Parse("00:00:05"),
+                    startTime = TimeSpan.Parse("08:00:05"),
                     frequency = 1,
-                    endTime = TimeSpan.Parse("00:05:59")
+                    endTime = TimeSpan.Parse("08:05:59")
                 },
                 new ExitLine
                 {

@@ -108,5 +108,24 @@ namespace PL
             lines.ItemsSource = bl.getLineInBusStations(station);*/
         }
 
+        private void goBus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void goLine_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void logOut_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void gouser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

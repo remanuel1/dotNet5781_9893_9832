@@ -63,8 +63,15 @@ namespace PL
             BO.LineStation lineStation = (sender as Button).DataContext as BO.LineStation;
             MessageBoxResult add = MessageBox.Show($"did you shure to delete station {lineStation.numberStation}?", "delete station", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (add == MessageBoxResult.Yes)
-                bl.deleteStationInLine(bl.getLineBus(lineStation.identifyLine), lineStation);
-            stationInLine.ItemsSource = bl.getLineBus(lineStation.identifyLine).listStaion;
+                try
+                {
+                    bl.deleteStationInLine(line, lineStation);
+                }
+                catch (BO.BadLineExceptions ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            stationInLine.ItemsSource = line.listStaion;
         }
 
         private void update_Click(object sender, RoutedEventArgs e)
@@ -76,6 +83,11 @@ namespace PL
                 bl.updateLineBus(line);
                 MessageBox.Show("line is change", "O.K.", MessageBoxButton.OK, MessageBoxImage.Information);
                 allLines.ItemsSource = bl.getAllLineBus();
+            }
+            catch (BO.BadLineExceptions ex)
+            {
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (BO.BadIDExceptions ex)
             {
@@ -113,5 +125,9 @@ namespace PL
             addStationToLine.Visibility = Visibility.Hidden;
         }
 
+        private void onlyNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.Any(x => char.IsDigit(x));
+        }
     }
 }

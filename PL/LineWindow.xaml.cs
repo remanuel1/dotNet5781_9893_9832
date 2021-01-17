@@ -54,12 +54,12 @@ namespace PL
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            List<BO.LineBus> lineBusesArea = new List<BO.LineBus>();
+            /*List<BO.LineBus> lineBusesArea = new List<BO.LineBus>();
             foreach(var line in bl.getLineByArea())
             {
                 //if (line.Key.ToString() == (sender as MenuItem).Header.ToString())
                     //lineBusesArea.Add(line.);
-            }
+            }*/
         }
 
     }

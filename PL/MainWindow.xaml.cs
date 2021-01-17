@@ -26,6 +26,7 @@ namespace PL
         {
             InitializeComponent();
             managerPassShow.Visibility = Visibility.Hidden;
+            userPassShow.Visibility = Visibility.Hidden;
         }
 
         private void admin_Click(object sender, RoutedEventArgs e)
@@ -65,8 +66,8 @@ namespace PL
 
         private void user_Click(object sender, RoutedEventArgs e)
         {
-            BO.User user = bl.getUser(managerName.Text);
-            if (user.password == managerPass.Password)
+            BO.User user = bl.getUser(userName.Text);
+            if (user.password == userPass.Password)
             {
                 if(user.type == BO.Type.manager)
                     MessageBox.Show("you connection like user");

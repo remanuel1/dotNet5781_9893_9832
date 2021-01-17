@@ -59,5 +59,9 @@ namespace PL
             }
         }
 
+        private void onlyNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.Any(x => (char.IsDigit(x) || x=='.'));
+        }
     }
 }

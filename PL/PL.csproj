@@ -83,6 +83,9 @@
     <Compile Include="LineWindow.xaml.cs">
       <DependentUpon>LineWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchRideWindow.xaml.cs">
+      <DependentUpon>SearchRideWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StationWindow.xaml.cs">
       <DependentUpon>StationWindow.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Management.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchRideWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

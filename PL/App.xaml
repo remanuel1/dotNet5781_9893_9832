@@ -23,6 +23,7 @@
 
         <Style x:Key="FontForButtom" TargetType="Button" BasedOn="{StaticResource commonTeaget}">
             <Setter Property="Background" Value="#FFA4E4ED"/>
+            <Setter Property="Cursor" Value="Hand"/>
         </Style>
 
         <Style x:Key="FontForLabel" TargetType="Label" BasedOn="{StaticResource commonTeaget}"/>

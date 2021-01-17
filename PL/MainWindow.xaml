@@ -88,7 +88,7 @@
                    Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="55"/>
 
             <TextBox x:Name="userName"
-                     Text=" " Width="250" Height="40" Padding="7"
+                     Text="" Width="250" Height="40" Padding="7"
                      Canvas.Top="95" Canvas.Left="25"
                    Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" />
 

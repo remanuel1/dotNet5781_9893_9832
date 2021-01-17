@@ -6,7 +6,7 @@
       xmlns:System="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="600"
+      d:DesignHeight="400" d:DesignWidth="600"
       Title="DetailLine">
     <Canvas>
         <Label Content="Number line:"
@@ -15,7 +15,8 @@
 
         <TextBox x:Name="numberLineForDetail" Text="" TextAlignment="Center"
                Height="30" Width="100" Canvas.Top="30" Canvas.Left="140"
-               Style="{StaticResource FontForTextBox}"/>
+               Style="{StaticResource FontForTextBox}"
+                 PreviewTextInput="onlyNumber_PreviewTextInput"/>
 
         <Label Content="Number ID line:"
                Height="30" Width="110" Canvas.Top="65" Canvas.Left="30"
@@ -72,7 +73,7 @@
                                 <Button x:Name="toDeleteStation"
                                        Width="20" Height="20" Click="toDeleteStation_Click">
                                     <Image x:Name="iconDelete" Width="20" Height="20"
-                                           Source="C:\Users\renan\source\repos\remanuel1\dotNet5781_9893_9832\PL\picture\iconGarbage.jpg"/>
+                                           Source="iconGarbage.jpg"/>
                                 </Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -83,7 +84,7 @@
 
         <Button x:Name="update"
                 Width="60" Height="60"
-                Canvas.Left="50" Canvas.Top="350"
+                Canvas.Left="50" Canvas.Top="340"
                 Style="{StaticResource FontForButtom}"
                 Click="update_Click">
             <Image Source="updateIcon.jpg"
@@ -94,7 +95,7 @@
 
         <Button x:Name="delete"
                 Width="60" Height="60"
-                Canvas.Left="130" Canvas.Top="350"
+                Canvas.Left="130" Canvas.Top="340"
                 Style="{StaticResource FontForButtom}"
                 Click="delete_Click">
             <Image Source="iconGarbage.jpg"

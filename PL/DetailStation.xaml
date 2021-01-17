@@ -70,13 +70,17 @@
                HorizontalAlignment="Right" VerticalAlignment="Center"
                Grid.Column="1" Grid.Row="4" Padding="5" Height="30" Width="100"
                Style="{StaticResource FontForTextBox}" Margin="0,7.6,15,7.2"
-                 PreviewTextInput="number_PreviewTextInput"/>
+               PreviewTextInput="number_PreviewTextInput"
+               ToolTip="Latitude"
+               ToolTipService.ShowDuration="2000"/>
 
         <TextBox x:Name="locatLongitude" Text="{Binding Longitude}"
                HorizontalAlignment="Left" VerticalAlignment="Center"
                Grid.Column="1" Grid.Row="4" Padding="5" Height="30" Width="100"
                Style="{StaticResource FontForTextBox}" Margin="14.2,7.6,0,7.2"
-                 PreviewTextInput="number_PreviewTextInput"/>
+               PreviewTextInput="number_PreviewTextInput"
+               ToolTip="Longitude"
+               ToolTipService.ShowDuration="2000"/>
 
         <Label Content="Lines in this station"
                HorizontalAlignment="Center" VerticalAlignment="Center" 
@@ -90,12 +94,26 @@
 
         <Button x:Name="update" Grid.Column="1" Grid.Row="7"
                 Width="60" Height="60" VerticalAlignment="Center" HorizontalAlignment="Left"
-                Style="{StaticResource FontForButtom}"
-                Click="update_Click" Margin="52.2,5.4,0,5">
+                Click="update_Click" Margin="52.2,5.4,0,5" Background="#FFA4E4ED">
             <Image Source="updateIcon.jpg"
                   Width="50" Height="50"
                   ToolTip="press to update this station"
                   ToolTipService.ShowDuration="2000"/>
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=nameStation, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=locatLongitude, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=locatLatitude, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
         </Button>
 
         <Button x:Name="delete" Grid.Column="1" Grid.Row="7" Height="60" Width="60" VerticalAlignment="Center"

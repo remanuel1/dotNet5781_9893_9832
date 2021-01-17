@@ -15,7 +15,8 @@
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="288"/>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="50"/>
 
             </Grid.RowDefinitions>
 
@@ -25,13 +26,17 @@
 
             <ListView x:Name="listStation"
                  ItemsSource="{Binding}" MouseDoubleClick="listStation_MouseDoubleClick"
-                 Grid.Column="0" Margin="10,50,0.4,-70.8" Grid.RowSpan="2">
+                 Grid.Column="0" Margin="10,50,0.4,0.2" Grid.RowSpan="2">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name bus staion"/>
                     </GridView>
                 </ListView.View>
             </ListView>
+
+            <Button x:Name="findDriving" Content="search ride"
+               Grid.Row="2" Grid.Column="0" FontSize="20" Click="findDriving_Click"
+                        Style="{StaticResource FontForButtom}" Margin="10,9.8,0.4,-8.4"/>
 
         </Grid>
 
@@ -56,11 +61,11 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
                 <ListView x:Name="lineInStation" Grid.RowSpan="2" Background="Yellow"
                           ItemsSource="{Binding}" Margin="10,10,5,10"/>
 
-                <Button x:Name="startTimerButton" Content="Start" 
+                <Button x:Name="startTimerButton" Content="Start"
                 Margin="10" Grid.Row="1" Grid.Column="1" FontSize="20" Click="startTimerButton_Click"
                         Style="{StaticResource FontForButtom}"/>
                 <Button x:Name="stopTimerButton" Content="Stop" 
@@ -74,9 +79,9 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="No. line" Width="60" DisplayMemberBinding="{Binding LineNumber}"/>
-                        <GridViewColumn Header="Timing" Width="100" DisplayMemberBinding="{Binding ExpectedTimeTillArrive}"/>
-                        <GridViewColumn Header="Started at" Width="100" DisplayMemberBinding="{Binding TripStart}"/>
-                        <GridViewColumn Header="Last station" Width="150" DisplayMemberBinding="{Binding LastStation}"/>
+                        <GridViewColumn x:Name="time" Header="Timing" Width="70" DisplayMemberBinding="{Binding ExpectedTimeTillArrive}"/>
+                        <GridViewColumn Header="Started at" Width="70" DisplayMemberBinding="{Binding TripStart}"/>
+                        <GridViewColumn Header="Last station" Width="200" DisplayMemberBinding="{Binding LastStation}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

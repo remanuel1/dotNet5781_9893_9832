@@ -23,6 +23,17 @@ namespace PL
         IBL bl;
         BO.Bus temp;
         ListBox listBus;
+
+        private void restartPage()
+        {
+            numberBus.DataContext = temp;
+            dateBus.SelectedDate = temp.startActivity;
+            dateTreat.SelectedDate = temp.lastTreat;
+            sumKm.Text = "" + temp.sumKM;
+            fuel.Text = "" + temp.totalFuel;
+            KmFrom.Text = "" + temp.sumKMFromLastTreat;
+            status.DataContext = temp;
+        }
         public DetailOfBus()
         {
             InitializeComponent();
@@ -34,13 +45,7 @@ namespace PL
             listBus = _listBus;
             temp = bus as BO.Bus;
             InitializeComponent();
-            numberBus.DataContext = temp;
-            dateBus.DataContext = temp;
-            dateTreat.DataContext = temp;
-            sumKm.Text = "" + temp.sumKM;
-            fuel.Text = "" + temp.totalFuel;
-            KmFrom.Text = "" + temp.sumKMFromLastTreat;
-            status.DataContext = temp;
+            restartPage();
         }
 
         private void refuel_Click(object sender, RoutedEventArgs e)
@@ -74,22 +79,25 @@ namespace PL
 
         private void update_Click(object sender, RoutedEventArgs e)
         {
-            temp.startActivity = (DateTime)dateBus.SelectedDate;
-            temp.sumKM = float.Parse(sumKm.Text);
-            temp.lastTreat = (DateTime)dateTreat.SelectedDate;
-            temp.totalFuel = int.Parse(fuel.Text);
-            temp.sumKMFromLastTreat = float.Parse(KmFrom.Text);
+            BO.Bus bus = new BO.Bus();
+            bus.numberLicense = temp.numberLicense;
+            bus.startActivity = (DateTime)dateBus.SelectedDate;
+            bus.lastTreat = (DateTime)dateTreat.SelectedDate;
+            bus.sumKM = (sumKm.Text == "") ? temp.sumKM : float.Parse(sumKm.Text);
+            bus.totalFuel = (fuel.Text == "") ? temp.totalFuel : int.Parse(fuel.Text);
+            bus.sumKMFromLastTreat = (KmFrom.Text == "") ? temp.sumKMFromLastTreat : float.Parse(KmFrom.Text);
             DateTime dateNow = DateTime.Now;
-            TimeSpan t = dateNow - temp.lastTreat;
-            if (temp.sumKMFromLastTreat >= 20000 || t.Days > 365)
+            TimeSpan t = dateNow - bus.lastTreat;
+            if (bus.sumKMFromLastTreat >= 20000 || t.Days > 365)
             {
-                temp.Status = BO.Status.needTreat;
+                bus.Status = BO.Status.needTreat;
             }
             else
-                temp.Status = BO.Status.ready;
+                bus.Status = BO.Status.ready;
             try
             {
-                bl.updateBus(temp);
+                bl.updateBus(bus);
+                temp = bus;
                 listBus.ItemsSource = bl.getAllBusses();
                 MessageBox.Show("update complete", "Done", MessageBoxButton.OK, MessageBoxImage.None);
             }
@@ -103,8 +111,9 @@ namespace PL
             }
             catch (BO.BadIDExceptions ex)
             {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);   
             }
+            restartPage();
         }
 
         private void delete_Click(object sender, RoutedEventArgs e)

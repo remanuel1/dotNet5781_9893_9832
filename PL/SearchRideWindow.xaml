@@ -1,0 +1,44 @@
+﻿<Window x:Class="PL.SearchRideWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="SearchRideWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="500"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="choose sourse station:" Grid.Column="0"
+               Height="30"
+               Style="{StaticResource FontForLabel}" HorizontalAlignment="Center" Margin="73,29,73,361"/>
+
+        <ComboBox x:Name="sourseStation" ItemsSource="{Binding}"
+               Visibility="{Binding}" IsEnabled="True"
+               Height="30" Width="200" Margin="50,56,50,334"
+                  Style="{StaticResource commonTeaget}"/>
+
+        <Label Content="choose destination station:" Grid.Column="0"
+               Height="30"
+               Style="{StaticResource FontForLabel}" HorizontalAlignment="Center" Margin="30,105,30,285"/>
+
+        <ComboBox x:Name="destinationStation" ItemsSource="{Binding}"
+               Visibility="{Binding}" IsEnabled="True"
+               Height="30" Width="200" Margin="50,133,50,257"
+               Style="{StaticResource commonTeaget}"/>
+
+        <Button x:Name="search" Content="GO"
+                Height="50" Width="100"
+                Style="{StaticResource FontForButtom}" FontSize="25" Click="search_Click"/>
+
+        <Label Name="numberLine" Grid.Column="1" Height="50" Width="200" VerticalAlignment="Top"/>
+        <ListView x:Name="listLine" Grid.Column="1" Margin="10,56,16,96"/>
+
+
+
+
+    </Grid>
+</Window>

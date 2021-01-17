@@ -110,10 +110,9 @@ namespace PL
 
                 }
                 MessageBoxResult add = MessageBox.Show($"Line {numberLine.Text} was successfully added.\n did you want to add a new line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                listLines.DataContext = bl.getAllLineBus();
+                listLines.ItemsSource = bl.getAllLineBus();
                 if (add == MessageBoxResult.Yes)
                 {
-
                     numberLine.Text = "";
                     stationsInNewLine.Clear();
                     listStationForNewLine.SelectedIndex = -1;

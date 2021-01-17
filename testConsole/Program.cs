@@ -13,9 +13,10 @@ namespace testConsole
 
         static void Main(string[] args)
         {
-            //mybl = BLFactory.GetBL();
-            mydl = DLFactory.GetDal();
-            mydl.getAllLineBus();
+
+            mybl = BLFactory.GetBL();
+            //mydl = DLFactory.GetDal();
+            //mydl.getAllLineBus();
             /*string busPath = @"BusXML.xml"; //XElement
             string busStationPath = @"BusStationXML.xml"; //XMLSerializer
             string followStationsPath = @"FollowStationsXML.xml"; //XMLSerializer

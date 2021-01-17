@@ -65,5 +65,17 @@ namespace PL
             if (sender.Equals("manufacturing date"))
                 listBus.DataContext = bl.getAllBussesBy(b => b.startActivity);*/
         }
+
+        private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+            BO.Bus bus = new BO.Bus();
+
+
+        }
+
+        private void ComboBoxItem_Selected_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
