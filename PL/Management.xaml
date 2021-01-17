@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal"
-                    Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="10,0,0,0">
+                    Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="10,0,0,0">
             <Button Height="30" Width="30" Content="ESC" Background="{x:Null}" Click="Button_Click"/>
 
 
@@ -35,20 +35,22 @@
         <Button x:Name="btBus" Content="bus"
                 Width="150" Height="150" Grid.Column="0" Grid.Row="1"
                 BorderThickness="2" Opacity="0.6"
-                UseLayoutRounding="True"
-                MouseDoubleClick="btBus_MouseDoubleClick">
+                MouseDoubleClick="btBus_MouseDoubleClick" ToolTip="bus window">
             
         </Button>
 
-        <Button x:Name="btStation" Content="station"
+        <Button x:Name="btStation"
                 Width="150" Height="150" Grid.Column="1" Grid.Row="1"
                 BorderThickness="2" Opacity="0.6"
-                MouseDoubleClick="btStation_MouseDoubleClick" ToolTip="view bus window"/>
+                MouseDoubleClick="btStation_MouseDoubleClick" ToolTip="station window">
+            <Image Source="busStationIcon.JPG" Width="130"/>
+        </Button>
+
 
         <Button x:Name="btLine" Content="line"
                 Width="150" Height="150" Grid.Column="2" Grid.Row="1"
-                BorderThickness="2" Opacity="0.6" AutomationProperties.HelpText="view bus window"
-                MouseDoubleClick="btLine_MouseDoubleClick"/>
+                BorderThickness="2" Opacity="0.6"
+                MouseDoubleClick="btLine_MouseDoubleClick" ToolTip="line window"/>
 
     </Grid>
 </Window>

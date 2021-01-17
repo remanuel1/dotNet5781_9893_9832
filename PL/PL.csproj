@@ -86,6 +86,9 @@
     <Compile Include="SearchRideWindow.xaml.cs">
       <DependentUpon>SearchRideWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SendMail.xaml.cs">
+      <DependentUpon>SendMail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StationWindow.xaml.cs">
       <DependentUpon>StationWindow.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SendMail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,7 +205,9 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="busStationIcon.JPG" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="backGround.jpg" />
     <Resource Include="fuel.JPG" />

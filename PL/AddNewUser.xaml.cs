@@ -42,10 +42,15 @@ namespace PL
             userToAdd.name = nameOfUser.Text;
             userToAdd.userName = userName.Text;
             userToAdd.password = userPass.Text;
+            userToAdd.mail = mailOfUser.Text;
             userToAdd.type = typeUser;
             try
             {
                 bl.addUser(userToAdd);
+                UserWindow userWindow = new UserWindow(bl);
+                userWindow.Left = this.Left;
+                userWindow.Top = this.Top;
+                userWindow.Show();
             }
             catch
             {

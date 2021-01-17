@@ -79,6 +79,7 @@ namespace BLAPI
         void deleteUser(User user);
         void updateUser(User userCurrent, User userNew);
         User getUser(string userName);
+        User getUserByMail(string userMail);
         IEnumerable<User> getAllUserBy(Predicate<User> predicate);
     }
 }

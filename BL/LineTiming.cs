@@ -9,10 +9,6 @@ namespace BO
 {
     public class LineTiming
     {
-        private static int counter = 0;
-        public int ID;
-
-        public LineTiming() => ID = ++counter; //unique
 
         public TimeSpan TripStart { get; set; } //time of Ine start the trip, taken from StartAt of ExitLine
 

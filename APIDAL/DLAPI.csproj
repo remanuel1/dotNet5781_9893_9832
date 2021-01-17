@@ -44,7 +44,6 @@
     <Compile Include="DLConfig.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Bus.cs" />
-    <Compile Include="BusInDriving.cs" />
     <Compile Include="BusStation.cs" />
     <Compile Include="DLFactory.cs" />
     <Compile Include="Exceptions.cs" />
@@ -53,7 +52,6 @@
     <Compile Include="DO.cs" />
     <Compile Include="IDL.cs" />
     <Compile Include="LineBus.cs" />
-    <Compile Include="LineStartDriving.cs" />
     <Compile Include="LineStation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools.cs" />

@@ -46,16 +46,16 @@ namespace PL
             frame.Content = new AddNewBus(bl, listBus);
         }
 
-        private void numberBus_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !e.Text.Any(x => char.IsDigit(x));
-        }
-
-        private void listBus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        /*private void listBus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BO.Bus bus = listBus.SelectedItem as BO.Bus;
             frame.Visibility = Visibility.Visible;
             frame.Content = new DetailOfBus(bl, bus, listBus);
+        }*/
+
+        private void numberBus_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.Any(x => char.IsDigit(x));
         }
 
         private void showBusORder_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -76,6 +76,13 @@ namespace PL
         private void ComboBoxItem_Selected_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void listBus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BO.Bus bus = listBus.SelectedItem as BO.Bus;
+            frame.Visibility = Visibility.Visible;
+            frame.Content = new DetailOfBus(bl, bus, listBus);
         }
     }
 }

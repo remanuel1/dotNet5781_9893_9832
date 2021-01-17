@@ -21,11 +21,13 @@ namespace DL
 
         #region DS XML Files
         string busPath = @"BusXML.xml"; //XElement
+        string followStationsPath = @"FollowStationsXML.xml"; //XElement
+
         string busStationPath = @"BusStationXML.xml"; //XMLSerializer
-        string followStationsPath = @"FollowStationsXML.xml"; //XMLSerializer
         string lineBusPath = @"LineBusXML.xml"; //XMLSerializer
         string lineStationPath = @"LineStationXML.xml"; //XMLSerializer
         string exitLinePath = @"ExitLineXML.xml"; //XMLSerializer
+        string userPath = @"UserXML.xml"; //XMLSerializer
         #endregion
 
         #region Bus
@@ -46,7 +48,7 @@ namespace DL
                                    new XElement("Status", bus.Status.ToString()),
                                    new XElement("sumKMFromLastTreat", bus.sumKMFromLastTreat),
                                    new XElement("lastTreat", bus.lastTreat),
-                                   new XElement("deleted", bus.deleted));
+                                   new XElement("deleted", "False"));
             busRootElem.Add(busElem);
             XMLTools.SaveListToXMLElement(busRootElem, busPath);
         }
@@ -55,7 +57,7 @@ namespace DL
             XElement busRootElem = XMLTools.LoadListFromXMLElement(busPath);
 
             XElement bus1 = (from item in busRootElem.Elements()
-                             where item.Element("numberLicense").Value == bus.numberLicense
+                             where item.Element("numberLicense").Value == bus.numberLicense && item.Element("deleted").Value == "False"
                              select item).FirstOrDefault();
 
             if (bus1 != null)
@@ -91,7 +93,7 @@ namespace DL
         {
             XElement busRootElem = XMLTools.LoadListFromXMLElement(busPath);
             Bus bus = (from item in busRootElem.Elements()
-                       where item.Element("numberLicense").Value == numberLicense
+                       where item.Element("numberLicense").Value == numberLicense && item.Element("deleted").Value == false.ToString()
                        select new Bus()
                        {
                            numberLicense = item.Element("numberLicense").Value,
@@ -113,6 +115,7 @@ namespace DL
             XElement busRootElem = XMLTools.LoadListFromXMLElement(busPath);
 
             return (from item in busRootElem.Elements()
+                    where item.Element("deleted").Value == false.ToString()
                     select new Bus()
                     {
                         numberLicense = item.Element("numberLicense").Value,
@@ -192,32 +195,56 @@ namespace DL
         #region method follow Stations 
         public void addFollowStations(DO.FollowStations Stations)
         {
-            List<FollowStations> ListfollowStation = XMLTools.LoadListFromXMLSerializer<FollowStations>(followStationsPath);
+            XElement followStationRootElem = XMLTools.LoadListFromXMLElement(followStationsPath);
 
-            if (ListfollowStation.FirstOrDefault(p => p.numberStation1 == Stations.numberStation1 && p.numberStation2 == Stations.numberStation2) != null)
-                throw new DO.BadTwoIdException(Stations.numberStation1, Stations.numberStation2, "these follow station exist");
-            ListfollowStation.Add(Stations);
-            XMLTools.SaveListToXMLSerializer(ListfollowStation, followStationsPath);
+            XElement followStation1 = (from item in followStationRootElem.Elements()
+                             where item.Element("numberStation1").Value == Stations.numberStation1.ToString()  && item.Element("numberStation2").Value == Stations.numberStation2.ToString()
+                             select item).FirstOrDefault();
+            if (followStation1 != null)
+                throw new DO.BadTwoIdException(Stations.numberStation1, Stations.numberStation2,  "exsits follow stations");
+            XElement followStationElem = new XElement("followStation",
+                                   new XElement("numberStation1", Stations.numberStation1),
+                                   new XElement("numberStation2", Stations.numberStation2),
+                                   new XElement("deleted", Stations.deleted),
+                                   new XElement("distance", Stations.distance),
+                                   new XElement("drivinngTime", Stations.drivinngTime.ToString()));
+            followStationRootElem.Add(followStationElem);
+            XMLTools.SaveListToXMLElement(followStationRootElem, followStationsPath);
 
         }
 
         public DO.FollowStations getFollowStations(int numberStation1, int numberStation2)
         {
-            List<FollowStations> ListfollowStation = XMLTools.LoadListFromXMLSerializer<FollowStations>(followStationsPath);
-            DO.FollowStations followStations = ListfollowStation.Find(p => p.numberStation1 == numberStation1 && p.numberStation2 == numberStation2 && p.deleted == false);
-            if (followStations == null)
-                followStations = ListfollowStation.Find(p => p.numberStation1 == numberStation2 && p.numberStation2 == numberStation1 && p.deleted == false);
-            if (followStations != null)
-                return followStations;
-            else
-                throw new DO.BadTwoIdException(numberStation1, numberStation2, $"Number Stations {numberStation1}, {numberStation2} not exist.");
+            XElement followStationRootElem = XMLTools.LoadListFromXMLElement(followStationsPath);
+
+            FollowStations followStation = (from item in followStationRootElem.Elements()
+                                            where item.Element("numberStation1").Value == numberStation1.ToString() && item.Element("numberStation2").Value == numberStation2.ToString() ||
+                                            item.Element("numberStation1").Value == numberStation2.ToString() && item.Element("numberStation2").Value == numberStation1.ToString()
+                                            select new FollowStations()
+                                            {
+                                                numberStation1 = int.Parse(item.Element("numberStation1").Value),
+                                                numberStation2 = int.Parse(item.Element("numberStation2").Value),
+                                                deleted = bool.Parse(item.Element("deleted").Value),
+                                                distance = double.Parse(item.Element("distance").Value),
+                                                drivinngTime = TimeSpan.Parse(item.Element("drivinngTime").Value),
+                                            }).FirstOrDefault();
+            if (followStation == null)
+                throw new DO.BadTwoIdException(numberStation1, numberStation2, "not exsits follow stations");
+            return followStation;
+
         }
         public IEnumerable<DO.FollowStations> getAllFollowStations()
         {
-            List<FollowStations> ListfollowStation = XMLTools.LoadListFromXMLSerializer<FollowStations>(followStationsPath);
-            return from followStation in ListfollowStation
-                   where followStation.deleted == false
-                   select followStation;
+            XElement followStationRootElem = XMLTools.LoadListFromXMLElement(followStationsPath);
+            return from item in followStationRootElem.Elements()
+                   select new FollowStations()
+                   {
+                       numberStation1 = int.Parse(item.Element("numberStation1").Value),
+                       numberStation2 = int.Parse(item.Element("numberStation2").Value),
+                       deleted = bool.Parse(item.Element("deleted").Value),
+                       distance = double.Parse(item.Element("distance").Value),
+                       drivinngTime = TimeSpan.Parse(item.Element("drivinngTime").Value),
+                   };
         }
         #endregion
 
@@ -268,117 +295,765 @@ namespace DL
         }
         public IEnumerable<DO.LineBus> getAllLineBus()
         {
-            //List<LineBus> ListLineBus = XMLTools.LoadListFromXMLSerializer<LineBus>(lineBusPath);
-            List<LineBus> allLines = new List<LineBus>
+            List<LineBus> ListLineBus = XMLTools.LoadListFromXMLSerializer<LineBus>(lineBusPath);
+
+            double speed = 50;
+            List<FollowStations> allFollow = new List<FollowStations>()
             {
-                new LineBus
+                new FollowStations
                 {
-                    identifyBus = 1000,
-                    numberLine = 277,
-                    area = Area.center,
-                    firstNumberStation = 38832,
-                    lastNumberStation = 38855,
-                    deleted = false
+                    numberStation1= 38832,
+                    numberStation2= 38838,
+                    distance = 600,
+                    deleted = false,
+                    drivinngTime= TimeSpan.FromMinutes(600/speed),
                 },
 
-                new LineBus
+                new FollowStations
                 {
-                    identifyBus = 1001,
-                    numberLine = 150,
-                    area = Area.center,
-                    firstNumberStation = 38834,
-                    lastNumberStation = 38838,
-                    deleted = false
+                    numberStation1= 38838,
+                    numberStation2= 38839,
+                    distance = 0.5246485,
+                    drivinngTime= TimeSpan.FromMinutes(0.5246485/speed),
                 },
 
-                new LineBus
+                new FollowStations
                 {
-                    identifyBus = 1002,
-                    numberLine = 111,
-                    area = Area.general,
-                    firstNumberStation = 38859,
-                    lastNumberStation = 38869,
-                    deleted = false
+                    numberStation1= 38839,
+                    numberStation2= 38840,
+                    distance = 0.002805851,
+                    drivinngTime= TimeSpan.FromMinutes(0.002805851/speed),
                 },
 
-                new LineBus
+                new FollowStations
                 {
-                    identifyBus = 1003,
-                    numberLine = 200,
-                    area = Area.center,
-                    firstNumberStation = 38846,
-                    lastNumberStation = 38836,
-                    deleted = false
+                    numberStation1= 38840,
+                    numberStation2= 38841,
+                    distance = 0.00328286,
+                    drivinngTime= TimeSpan.FromMinutes(0.00328286/speed),
                 },
 
-                new LineBus
+                new FollowStations
                 {
-                    identifyBus = 1004,
-                    numberLine = 220,
-                    area = Area.center,
-                    firstNumberStation = 38880,
-                    lastNumberStation = 38890,
-                    deleted = false
+                    numberStation1= 38841,
+                    numberStation2= 38842,
+                    distance = 0.00244128,
+                    drivinngTime= TimeSpan.FromMinutes(0.00244128/speed),
                 },
 
-                new LineBus
+                new FollowStations
                 {
-                    identifyBus = 1005,
-                    numberLine = 221,
-                    area = Area.center,
-                    firstNumberStation = 38884,
-                    lastNumberStation = 38855,
-                    deleted = false
+                    numberStation1= 38842,
+                    numberStation2= 38844,
+                    distance = 0.010054293,
+                    drivinngTime= TimeSpan.FromMinutes(0.010054293/speed),
                 },
 
-                new LineBus
+                new FollowStations
                 {
-                    identifyBus = 1006,
-                    numberLine = 230,
-                    area = Area.center,
-                    firstNumberStation = 38838,
-                    lastNumberStation = 38880,
-                    deleted = false
+                    numberStation1= 38844,
+                    numberStation2= 38845,
+                    distance = 0.001986142,
+                    drivinngTime= TimeSpan.FromMinutes(0.001986142/speed),
                 },
 
-                new LineBus
+                new FollowStations
                 {
-                    identifyBus = 1007,
-                    numberLine = 240,
-                    area = Area.center,
-                    firstNumberStation = 38832,
-                    lastNumberStation = 38852,
-                    deleted = false
+                    numberStation1= 38845,
+                    numberStation2= 38846,
+                    distance = 0.002443647,
+                    drivinngTime= TimeSpan.FromMinutes(0.002443647/speed),
                 },
 
-                new LineBus
+                new FollowStations
                 {
-                    identifyBus = 1008,
-                    numberLine = 510,
-                    area = Area.center,
-                    firstNumberStation = 38852,
-                    lastNumberStation = 38878,
-                    deleted = false
+                    numberStation1= 38846,
+                    numberStation2= 38855,
+                    distance = 0.009417107,
+                    drivinngTime= TimeSpan.FromMinutes(0.009417107/speed),
                 },
 
-                new LineBus
+                new FollowStations
                 {
-                    identifyBus = 1009,
-                    numberLine = 37,
-                    area = Area.south,
-                    firstNumberStation = 38832,
-                    lastNumberStation = 38852,
-                    deleted = false
+                    numberStation1= 38834,
+                    numberStation2= 38837,
+                    distance = 0.006306611,
+                    drivinngTime= TimeSpan.FromMinutes(0.006306611/speed),
                 },
 
+                new FollowStations
+                {
+                    numberStation1= 38837,
+                    numberStation2= 38856,
+                    distance = 0.023780807,
+                    drivinngTime= TimeSpan.FromMinutes(0.023780807/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38856,
+                    numberStation2= 38867,
+                    distance = 0.010176574,
+                    drivinngTime= TimeSpan.FromMinutes(0.010176574/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38867,
+                    numberStation2= 38841,
+                    distance = 0.017798742,
+                    drivinngTime= TimeSpan.FromMinutes(0.017798742/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38841,
+                    numberStation2= 38873,
+                    distance = 0.022190982,
+                    drivinngTime= TimeSpan.FromMinutes(0.022190982/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38873,
+                    numberStation2= 38875,
+                    distance = 0.016084788,
+                    drivinngTime= TimeSpan.FromMinutes(0.016084788/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38875,
+                    numberStation2= 38876,
+                    distance = 0.006921277,
+                    drivinngTime= TimeSpan.FromMinutes(0.006921277/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38876,
+                    numberStation2= 38832,
+                    distance = 0.028697987,
+                    drivinngTime= TimeSpan.FromMinutes(0.028697987/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38832,
+                    numberStation2= 38838,
+                    distance = 0.013278373,
+                    drivinngTime= TimeSpan.FromMinutes(0.013278373/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38859,
+                    numberStation2= 38860,
+                    distance = 0.038160813,
+                    drivinngTime= TimeSpan.FromMinutes(0.038160813/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38860,
+                    numberStation2= 38861,
+                    distance = 0.005391981,
+                    drivinngTime= TimeSpan.FromMinutes(0.005391981/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38861,
+                    numberStation2= 38862,
+                    distance = 0.003055605,
+                    drivinngTime= TimeSpan.FromMinutes(0.003055605/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38862,
+                    numberStation2= 38863,
+                    distance = 0.002878635,
+                    drivinngTime= TimeSpan.FromMinutes(0.002878635/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38863,
+                    numberStation2= 38864,
+                    distance = 0.002243189,
+                    drivinngTime= TimeSpan.FromMinutes(0.002243189/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38864,
+                    numberStation2= 38865,
+                    distance = 0.310031995,
+                    drivinngTime= TimeSpan.FromMinutes(0.310031995/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38865,
+                    numberStation2= 38866,
+                    distance = 0.019539281,
+                    drivinngTime= TimeSpan.FromMinutes(0.019539281/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38866,
+                    numberStation2= 38867,
+                    distance = 0.130845993,
+                    drivinngTime= TimeSpan.FromMinutes(0.130845993/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38867,
+                    numberStation2= 38869,
+                    distance = 0.479117916,
+                    drivinngTime= TimeSpan.FromMinutes(0.479117916/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38869,
+                    numberStation2= 38846,
+                    distance = 0.494588271,
+                    drivinngTime= TimeSpan.FromMinutes(0.494588271/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38846,
+                    numberStation2= 38845,
+                    distance = 0.002443647,
+                    drivinngTime= TimeSpan.FromMinutes(0.002443647/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38845,
+                    numberStation2= 38844,
+                    distance = 0.001986142,
+                    drivinngTime= TimeSpan.FromMinutes(0.001986142/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38844,
+                    numberStation2= 38842,
+                    distance = 0.010054293,
+                    drivinngTime= TimeSpan.FromMinutes(0.010054293/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38842,
+                    numberStation2= 38841,
+                    distance = 0.00244128,
+                    drivinngTime= TimeSpan.FromMinutes(0.00244128/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38841,
+                    numberStation2= 38840,
+                    distance = 0.00328286,
+                    drivinngTime= TimeSpan.FromMinutes(0.00328286/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38840,
+                    numberStation2= 38839,
+                    distance = 0.002805851,
+                    drivinngTime= TimeSpan.FromMinutes(0.002805851/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38839,
+                    numberStation2= 38838,
+                    distance = 0.005246485,
+                    drivinngTime= TimeSpan.FromMinutes(0.005246485/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38838,
+                    numberStation2= 38837,
+                    distance = 0.044533026,
+                    drivinngTime= TimeSpan.FromMinutes(0.044533026/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38837,
+                    numberStation2= 38836,
+                    distance = 0.120559064,
+                    drivinngTime= TimeSpan.FromMinutes(0.120559064/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38836,
+                    numberStation2= 38880,
+                    distance = 0.095691574,
+                    drivinngTime= TimeSpan.FromMinutes(0.095691574/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38880,
+                    numberStation2= 38881,
+                    distance = 0.098658406,
+                    drivinngTime= TimeSpan.FromMinutes(0.098658406/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38881,
+                    numberStation2= 38883,
+                    distance = 0.010839727,
+                    drivinngTime= TimeSpan.FromMinutes(0.010839727/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38883,
+                    numberStation2= 38884,
+                    distance = 0.0048824,
+                    drivinngTime= TimeSpan.FromMinutes(0.0048824/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38884,
+                    numberStation2= 38885,
+                    distance = 0.002361177,
+                    drivinngTime= TimeSpan.FromMinutes(0.002361177/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38885,
+                    numberStation2= 38886,
+                    distance = 0.002591482,
+                    drivinngTime= TimeSpan.FromMinutes(0.002591482/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38886,
+                    numberStation2= 38887,
+                    distance = 0.002278754,
+                    drivinngTime= TimeSpan.FromMinutes(0.002278754/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38887,
+                    numberStation2= 38888,
+                    distance = 0.00158888,
+                    drivinngTime= TimeSpan.FromMinutes(0.00158888/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38888,
+                    numberStation2= 38889,
+                    distance = 0.012050884,
+                    drivinngTime= TimeSpan.FromMinutes(0.012050884/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38889,
+                    numberStation2= 38890,
+                    distance = 0.002504912,
+                    drivinngTime= TimeSpan.FromMinutes(0.002504912/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38884,
+                    numberStation2= 38885,
+                    distance = 0.002361177,
+                    drivinngTime= TimeSpan.FromMinutes(0.002361177/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38885,
+                    numberStation2= 38883,
+                    distance = 0.006830095,
+                    drivinngTime= TimeSpan.FromMinutes(0.006830095/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38883,
+                    numberStation2= 38886,
+                    distance = 0.008716686,
+                    drivinngTime= TimeSpan.FromMinutes(0.008716686/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38886,
+                    numberStation2= 38887,
+                    distance = 0.002278754,
+                    drivinngTime= TimeSpan.FromMinutes(0.002278754/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38887,
+                    numberStation2= 38888,
+                    distance = 0.00158888,
+                    drivinngTime= TimeSpan.FromMinutes(0.00158888/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38888,
+                    numberStation2= 38881,
+                    distance = 0.004349328,
+                    drivinngTime= TimeSpan.FromMinutes(0.004349328/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38881,
+                    numberStation2= 38890,
+                    distance = 0.008586347,
+                    drivinngTime= TimeSpan.FromMinutes(0.008586347/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38890,
+                    numberStation2= 38889,
+                    distance = 0.002504912,
+                    drivinngTime= TimeSpan.FromMinutes(0.002504912/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38889,
+                    numberStation2= 38855,
+                    distance = 0.058294652,
+                    drivinngTime= TimeSpan.FromMinutes(0.058294652/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38838,
+                    numberStation2= 38839,
+                    distance = 0.005246485,
+                    drivinngTime= TimeSpan.FromMinutes(0.005246485/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38838,
+                    numberStation2= 38839,
+                    distance = 0.005246485,
+                    drivinngTime= TimeSpan.FromMinutes(0.005246485/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38839,
+                    numberStation2= 38844,
+                    distance = 0.005167764,
+                    drivinngTime= TimeSpan.FromMinutes(0.005167764/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38844,
+                    numberStation2= 38845,
+                    distance = 0.001986142,
+                    drivinngTime= TimeSpan.FromMinutes(0.001986142/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38845,
+                    numberStation2= 38840,
+                    distance = 0.006656221,
+                    drivinngTime= TimeSpan.FromMinutes(0.006656221/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38840,
+                    numberStation2= 38841,
+                    distance = 0.00328286,
+                    drivinngTime= TimeSpan.FromMinutes(0.00328286/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38841,
+                    numberStation2= 38846,
+                    distance = 0.008145975,
+                    drivinngTime= TimeSpan.FromMinutes(0.008145975/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38846,
+                    numberStation2= 38842,
+                    distance = 0.008145975,
+                    drivinngTime= TimeSpan.FromMinutes(0.008145975/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38842,
+                    numberStation2= 38879,
+                    distance = 0.04110075,
+                    drivinngTime= TimeSpan.FromMinutes(0.04110075/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38879,
+                    numberStation2= 38880,
+                    distance = 0.005284236,
+                    drivinngTime= TimeSpan.FromMinutes(0.005284236/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38856,
+                    numberStation2= 38867,
+                    distance = 0.010176574,
+                    drivinngTime= TimeSpan.FromMinutes(0.010176574/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38867,
+                    numberStation2= 38873,
+                    distance = 0.011705368,
+                    drivinngTime= TimeSpan.FromMinutes(0.011705368/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38873,
+                    numberStation2= 38834,
+                    distance = 0.016780379,
+                    drivinngTime= TimeSpan.FromMinutes(0.016780379/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38834,
+                    numberStation2= 38837,
+                    distance = 0.006306611,
+                    drivinngTime= TimeSpan.FromMinutes(0.006306611/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38837,
+                    numberStation2= 38875,
+                    distance = 0.021185537,
+                    drivinngTime= TimeSpan.FromMinutes(0.021185537/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38875,
+                    numberStation2= 38872,
+                    distance = 0.041672295,
+                    drivinngTime= TimeSpan.FromMinutes(0.041672295/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38872,
+                    numberStation2= 38876,
+                    distance = 0.048392316,
+                    drivinngTime= TimeSpan.FromMinutes(0.048392316/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38876,
+                    numberStation2= 38852,
+                    distance = 0.02213966,
+                    drivinngTime= TimeSpan.FromMinutes(0.02213966/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38852,
+                    numberStation2= 38854,
+                    distance = 0.057002492,
+                    drivinngTime= TimeSpan.FromMinutes(0.057002492/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38854,
+                    numberStation2= 38847,
+                    distance = 0.073758262,
+                    drivinngTime= TimeSpan.FromMinutes(0.073758262/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38847,
+                    numberStation2= 38833,
+                    distance = 0.020235053,
+                    drivinngTime= TimeSpan.FromMinutes(0.020235053/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38833,
+                    numberStation2= 38865,
+                    distance = 0.114946041,
+                    drivinngTime= TimeSpan.FromMinutes(0.114946041/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38865,
+                    numberStation2= 38866,
+                    distance = 0.019539281,
+                    drivinngTime= TimeSpan.FromMinutes(0.019539281/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38866,
+                    numberStation2= 38877,
+                    distance = 0.08174347,
+                    drivinngTime= TimeSpan.FromMinutes(0.08174347/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38877,
+                    numberStation2= 38831,
+                    distance = 0.108157927,
+                    drivinngTime= TimeSpan.FromMinutes(0.108157927/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38864,
+                    numberStation2= 38878,
+                    distance = 0.059967716,
+                    drivinngTime= TimeSpan.FromMinutes(0.059967716/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38832,
+                    numberStation2= 38856,
+                    distance = 0.008603002,
+                    drivinngTime= TimeSpan.FromMinutes(0.008603002/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38856,
+                    numberStation2= 38867,
+                    distance = 0.010176574,
+                    drivinngTime= TimeSpan.FromMinutes(0.010176574/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38867,
+                    numberStation2= 38873,
+                    distance = 0.011705368,
+                    drivinngTime= TimeSpan.FromMinutes(0.011705368/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38873,
+                    numberStation2= 38834,
+                    distance = 0.016780379,
+                    drivinngTime= TimeSpan.FromMinutes(0.016780379/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38834,
+                    numberStation2= 38837,
+                    distance = 0.006306611,
+                    drivinngTime= TimeSpan.FromMinutes(0.006306611/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38837,
+                    numberStation2= 38875,
+                    distance = 0.021185537,
+                    drivinngTime= TimeSpan.FromMinutes(0.021185537/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38875,
+                    numberStation2= 38872,
+                    distance = 0.041672295,
+                    drivinngTime= TimeSpan.FromMinutes(0.041672295/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38872,
+                    numberStation2= 38876,
+                    distance = 0.048392316,
+                    drivinngTime= TimeSpan.FromMinutes(0.048392316/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38876,
+                    numberStation2= 38852,
+                    distance = 0.02213966,
+                    drivinngTime= TimeSpan.FromMinutes(0.02213966/speed),
+                },
+
+                new FollowStations
+                {
+                    numberStation1= 38831,
+                    numberStation2= 38864,
+                    distance = 0.11614573,
+                    drivinngTime= TimeSpan.FromMinutes(0.11614573/speed),
+                }
             };
-            XMLTools.SaveListToXMLSerializer(allLines, lineBusPath);
-            XMLTools.LoadListFromXMLSerializer<LineBus>(lineBusPath);
+            XElement root = new XElement(followStationsPath);
 
-            return from line in allLines
+            root.Add(XMLTools.ToXML(allFollow[0]));
+            for (int i = 1; i < allFollow.Count(); i++)
+            {
+                root.Add(XMLTools.ToXML(allFollow[i]));
+            }
+            XMLTools.SaveListToXMLElement(root, followStationsPath);
+            XMLTools.LoadListFromXMLElement(followStationsPath);
+
+            return from line in ListLineBus
                    where line.deleted == false
                    orderby line.numberLine
                    select line;
+
+            
+
         }
         #endregion
 
@@ -487,64 +1162,96 @@ namespace DL
         #region exit line
         public void deleteExitLine(DO.ExitLine exitLine)
         {
-            List<ExitLine> ListExitLine = XMLTools.LoadListFromXMLSerializer<ExitLine>(exitLinePath);
-
-            if (ListExitLine.FirstOrDefault(p => p.identifyBus == exitLine.identifyBus) == null)
-                throw new DO.BadIdException(exitLine.identifyBus, "these exit line not exists");
-            int index = ListExitLine.FindIndex(p => p.identifyBus == exitLine.identifyBus && p.startTime == exitLine.startTime);
-            ListExitLine.RemoveAt(index);
-
-            XMLTools.SaveListToXMLSerializer(ListExitLine, exitLinePath);
 
         }
         public DO.ExitLine getExitLineBy(Predicate<DO.ExitLine> predicate)
         {
-            List<ExitLine> ListExitLine = XMLTools.LoadListFromXMLSerializer<ExitLine>(exitLinePath);
+            return null;
 
-            return (from item in ListExitLine
-                    where predicate(item)
-                    select item).FirstOrDefault();
         }
         public IEnumerable<DO.ExitLine> getAllExitLine()
         {
-            List<ExitLine> ListExitLine = XMLTools.LoadListFromXMLSerializer<ExitLine>(exitLinePath);
+            return null;
+            /*List<ExitLine> ListExitLine = XMLTools.LoadListFromXMLSerializer<ExitLine>(exitLinePath);
 
             return from item in ListExitLine
                    orderby item.identifyBus, item.startTime
-                   select item;
+                   select item;*/
         }
-        public IEnumerable<DO.ExitLine> getAllExitLineBy(Predicate<DO.ExitLine> predicate)
+        public IEnumerable<DO.ExitLine> getAllExitLineBy(int identifyBus)
         {
-            List<ExitLine> ListExitLine = XMLTools.LoadListFromXMLSerializer<ExitLine>(exitLinePath);
-
-            return from item in ListExitLine
-                   where predicate(item)
-                   orderby item.identifyBus, item.startTime
-                   select item;
+            XElement exitLineRootElem = XMLTools.LoadListFromXMLElement(exitLinePath);
+            return from item in exitLineRootElem.Elements()
+                   where item.Element("identifyBus").Value == identifyBus.ToString()
+                   orderby item.Element("identifyBus").Value, item.Element("startTime").Value
+                   select new ExitLine()
+                   {
+                       identifyBus = int.Parse(item.Element("identifyBus").Value),
+                       startTime = TimeSpan.Parse(item.Element("startTime").Value),
+                       endTime = TimeSpan.Parse(item.Element("endTime").Value),
+                       frequency = int.Parse(item.Element("frequency").Value)
+                   };
         }
 
         #endregion
 
+        #region user
         public void addUser(User user)
         {
-
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            if (ListUser.FirstOrDefault(p => p.userName == user.userName) != null)
+                throw new DO.BadUserException(user.name);
+            ListUser.Add(user);
+            XMLTools.SaveListToXMLSerializer(ListUser, userPath);
         }
         public void deleteUser(User user)
         {
-
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            if (ListUser.FirstOrDefault(p => p.userName == user.userName) == null)
+                throw new DO.BadUserException(user.name);
+            ListUser.Remove(user);
+            XMLTools.SaveListToXMLSerializer(ListUser, userPath);
         }
         public void updateUser(User userCurrent, User userNew)
         {
-
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            if (ListUser.FirstOrDefault(p => p.userName == userCurrent.userName) == null)
+                throw new DO.BadUserException(userCurrent.name);
+            ListUser.Remove(userCurrent);
+            ListUser.Add(userNew);
+            XMLTools.SaveListToXMLSerializer(ListUser, userPath);
         }
         public User getUser(string userName)
         {
-            return null;
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+
+            DO.User user = ListUser.Find(p => p.userName == userName);
+            if (user != null)
+                return user;
+            else
+                throw new DO.BadUserException(userName);
         }
+
+        public User getUserByMail(string userMail)
+        {
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+
+            DO.User user = ListUser.Find(p => p.mail == userMail);
+            if (user != null)
+                return user;
+            else
+                throw new DO.BadUserException(userMail);
+        }
+
         public IEnumerable<User> getAllUserBy(Predicate<User> predicate)
         {
-            return null;
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            return from item in ListUser
+                   where predicate(item)
+                   orderby item.name
+                   select item;
         }
+        #endregion
 
     }
 }

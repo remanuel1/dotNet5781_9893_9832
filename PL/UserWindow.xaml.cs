@@ -26,6 +26,7 @@ namespace PL
     {
         IBL bl;
         BO.BusStation station;
+        TimeSpan startTime = TimeSpan.Parse("08:00:00");
         private Stopwatch stopWatch;
         private bool isTimerRun;
         BackgroundWorker timerworker;
@@ -90,11 +91,15 @@ namespace PL
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             TimeSpan timerText = TimeSpan.Parse(stopWatch.Elapsed.ToString());
-            timerText = timerText + TimeSpan.Parse("08:00:00");
+            timerText = timerText + startTime;
             listLineTiming.ItemsSource = bl.GetLineTimingsForStation(station.numberStation, timerText);
             this.timerTextBlock.Text = timerText.ToString().Substring(0, 8);
-            
-            
+            if (this.timerTextBlock.Text == "23:59:59")
+            {
+                startTime = TimeSpan.Zero;
+                stopWatch.Restart();
+            }
+
             /*if (this.timerTextBlock.Text == "23:59:59")
                 this.timerTextBlock.Text = "00:00:00";*/
         }

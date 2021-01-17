@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace DL
 {
-    public class XMLTools
+    public static class XMLTools
     {
         static string dir = @"xml\";
         static XMLTools()
@@ -50,6 +50,42 @@ namespace DL
                 throw new DO.XMLFileLoadCreateException(filePath, $"fail to load xml file: {filePath}", ex);
             }
         }
+
+        /*public static XElement ToXML(this DO.ExitLine line)
+        {
+            XElement result = new XElement("ExitLine",
+                new XElement("identifyBus", line.identifyBus),
+                new XElement("startTime", line.startTime.ToString()),
+                new XElement("endTime", line.endTime.ToString()),
+                new XElement("frequency", line.frequency));
+            return result;
+        }*/
+
+        public static XElement ToXML(this DO.FollowStations follow)
+        {
+            XElement result = new XElement("FollowStations",
+                new XElement("numberStation1", follow.numberStation1.ToString()),
+                new XElement("numberStation2", follow.numberStation2.ToString()),
+                new XElement("deleted", follow.deleted.ToString()),
+                new XElement("drivinngTime", follow.drivinngTime.ToString()),
+                new XElement("distance", follow.distance.ToString()));
+            return result;
+        }
+
+        /*public static XElement ToXML(this DO.Bus bus)
+        {
+            XElement result = new XElement("Bus",
+                new XElement("numberLicense", bus.numberLicense.ToString()),
+                new XElement("startActivity", bus.startActivity.ToString()),
+                new XElement("sumKM", bus.sumKM.ToString()),
+                new XElement("totalFuel", bus.totalFuel.ToString()),
+                new XElement("Status", bus.Status.ToString()),
+                new XElement("sumKMFromLastTreat", bus.sumKMFromLastTreat.ToString()),
+                new XElement("lastTreat", bus.lastTreat.ToString()),
+                new XElement("deleted", bus.deleted.ToString()));
+
+            return result;
+        }*/
         #endregion
 
         #region SaveLoadWithXMLSerializer

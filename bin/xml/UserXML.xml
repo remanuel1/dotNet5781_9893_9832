@@ -4,12 +4,22 @@
     <name>Renana Emanuel</name>
     <userName>renana</userName>
     <password>renana</password>
+    <mail>renana12ema@gmail.com</mail>
     <type>manager</type>
   </User>
   <User>
     <name>Maayan Zohar</name>
     <userName>maayan</userName>
     <password>maayan</password>
+    <mail>maayan659@gmail.com</mail>
     <type>manager</type>
+    
+  </User>
+  <User>
+    <name>tamar</name>
+    <userName>tamar</userName>
+    <password>tamar</password>
+    <mail>tamarchohen522@gmail.com</mail>
+    <type>user</type>
   </User>
 </ArrayOfUser>

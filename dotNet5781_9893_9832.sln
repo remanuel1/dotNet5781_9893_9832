@@ -26,7 +26,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL", "DL\DL.csproj", "{4B91
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "item", "item", "{6E9E14A0-E4A1-4C07-A3AE-57D7FBCF63E2}"
 	ProjectSection(SolutionItems) = preProject
+		bin\xml\BusStationXML.xml = bin\xml\BusStationXML.xml
+		bin\xml\BusXML.xml = bin\xml\BusXML.xml
 		bin\config.xml = bin\config.xml
+		bin\xml\ExitLineXML.xml = bin\xml\ExitLineXML.xml
+		bin\xml\FollowStationsXML.xml = bin\xml\FollowStationsXML.xml
+		bin\xml\LineBusXML.xml = bin\xml\LineBusXML.xml
+		bin\xml\LineStationXML.xml = bin\xml\LineStationXML.xml
+		bin\xml\UserXML.xml = bin\xml\UserXML.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLObject", "DLObject\DLObject.csproj", "{FC51673F-01B7-4F24-85CD-1495DF617BA2}"

@@ -53,15 +53,15 @@ namespace PL
 
         private void showPass_Checked(object sender, RoutedEventArgs e)
         {
-            managerPass.Visibility = Visibility.Hidden;
-            managerPassShow.Visibility = Visibility.Visible;
-            managerPassShow.Text = managerPass.Password;
+            userPass.Visibility = Visibility.Hidden;
+            userPassShow.Visibility = Visibility.Visible;
+            userPassShow.Text = userPass.Password;
         }
 
         private void showPass_Unchecked(object sender, RoutedEventArgs e)
         {
-            managerPass.Visibility = Visibility.Visible;
-            managerPassShow.Visibility = Visibility.Hidden;
+            userPass.Visibility = Visibility.Visible;
+            userPassShow.Visibility = Visibility.Hidden;
         }
 
         private void user_Click(object sender, RoutedEventArgs e)
@@ -90,6 +90,27 @@ namespace PL
             newUser.Top = this.Top + 100;
             newUser.Left = this.Left + 100;
             newUser.Show();
+        }
+
+        private void managerShowPass_Checked(object sender, RoutedEventArgs e)
+        {
+            managerPass.Visibility = Visibility.Hidden;
+            managerPassShow.Visibility = Visibility.Visible;
+            managerPassShow.Text = managerPass.Password;
+        }
+
+        private void managerShowPass_Unchecked(object sender, RoutedEventArgs e)
+        {
+            managerPass.Visibility = Visibility.Visible;
+            managerPassShow.Visibility = Visibility.Hidden;
+        }
+
+        private void forget_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SendMail sendMail = new SendMail(bl);
+            sendMail.Top = this.Top + 100;
+            sendMail.Left = this.Left + 100;
+            sendMail.Show();
         }
     }
 }

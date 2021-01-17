@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="BUSES" Height="550" Width="800">
-    <Grid Margin="20">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="500"/>
@@ -16,6 +16,8 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Background="AntiqueWhite" Margin="0,0,-92.4,0.4" />
 
         <Grid Width="150" Grid.Row="1">
             <Grid.RowDefinitions>
@@ -47,8 +49,7 @@
                 Height="36" Width="40" Grid.Row="2"
                 Style="{StaticResource FontForButtom}"
                 MouseDoubleClick="DoubleClickToAddNewBus"
-                ToolTip="press to enter new bus"
-                ToolTipService.ShowDuration="2000"/>
+                ToolTip="press double click to enter a new bus"/>
         </Grid>
 
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="1" Width="400"/>

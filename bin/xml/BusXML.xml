@@ -1,203 +1,243 @@
-<?xml version="1.0"?>
-<ArrayOfBus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BusXML.xml>
   <Bus>
     <numberLicense>12548022</numberLicense>
-    <startActivity>2020-01-01T00:00:00</startActivity>
+    <startActivity>01/01/2020 00:00:00</startActivity>
     <sumKM>0</sumKM>
     <totalFuel>1200</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>0</sumKMFromLastTreat>
-    <lastTreat>2020-03-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/04/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>5284250</numberLicense>
-    <startActivity>2016-01-08T00:00:00</startActivity>
+    <startActivity>08/01/2016 00:00:00</startActivity>
     <sumKM>1000</sumKM>
     <totalFuel>800</totalFuel>
     <Status>needTreat</Status>
     <sumKMFromLastTreat>200</sumKMFromLastTreat>
-    <lastTreat>2018-01-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/01/2018 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>28695248</numberLicense>
-    <startActivity>2020-05-01T00:00:00</startActivity>
+    <startActivity>01/05/2020 00:00:00</startActivity>
     <sumKM>100</sumKM>
     <totalFuel>500</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>0</sumKMFromLastTreat>
-    <lastTreat>2020-05-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/05/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
-    <numberLicense>13562531</numberLicense>
-    <startActivity>2020-09-09T00:00:00</startActivity>
+    <numberLicense>13572531</numberLicense>
+    <startActivity>09/09/2020 00:00:00</startActivity>
     <sumKM>0</sumKM>
     <totalFuel>1200</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>0</sumKMFromLastTreat>
-    <lastTreat>2020-09-09T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>09/09/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>22800822</numberLicense>
-    <startActivity>2020-10-15T00:00:00</startActivity>
+    <startActivity>15/10/2020 00:00:00</startActivity>
     <sumKM>0</sumKM>
     <totalFuel>1200</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>0</sumKMFromLastTreat>
-    <lastTreat>2020-10-15T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>15/10/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>26108567</numberLicense>
-    <startActivity>2019-09-01T00:00:00</startActivity>
+    <startActivity>01/09/2019 00:00:00</startActivity>
     <sumKM>400</sumKM>
     <totalFuel>1200</totalFuel>
     <Status>needTreat</Status>
     <sumKMFromLastTreat>400</sumKMFromLastTreat>
-    <lastTreat>2019-09-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/09/2019 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>12855201</numberLicense>
-    <startActivity>2020-12-01T00:00:00</startActivity>
+    <startActivity>01/12/2020 00:00:00</startActivity>
     <sumKM>0</sumKM>
     <totalFuel>1200</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>0</sumKMFromLastTreat>
-    <lastTreat>2020-12-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/12/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
-    <numberLicense>30454703</numberLicense>
-    <startActivity>2019-06-01T00:00:00</startActivity>
+    <numberLicense>30454403</numberLicense>
+    <startActivity>01/06/2019 00:00:00</startActivity>
     <sumKM>344</sumKM>
     <totalFuel>120</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>344</sumKMFromLastTreat>
-    <lastTreat>2020-06-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/06/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>1277096</numberLicense>
-    <startActivity>2017-07-07T00:00:00</startActivity>
+    <startActivity>07/07/2017 00:00:00</startActivity>
     <sumKM>770</sumKM>
     <totalFuel>500</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>50</sumKMFromLastTreat>
-    <lastTreat>2020-12-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/12/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>1487520</numberLicense>
-    <startActivity>2016-01-01T00:00:00</startActivity>
+    <startActivity>01/01/2016 00:00:00</startActivity>
     <sumKM>20000</sumKM>
     <totalFuel>100</totalFuel>
-    <Status>ready</Status>
+    <Status>needTreat</Status>
     <sumKMFromLastTreat>500</sumKMFromLastTreat>
-    <lastTreat>2020-08-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/01/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>3462058</numberLicense>
-    <startActivity>2014-01-01T00:00:00</startActivity>
+    <startActivity>01/01/2014 00:00:00</startActivity>
     <sumKM>140000</sumKM>
-    <totalFuel>200</totalFuel>
+    <totalFuel>1200</totalFuel>
     <Status>ready</Status>
-    <sumKMFromLastTreat>100</sumKMFromLastTreat>
-    <lastTreat>2020-11-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <sumKMFromLastTreat>0</sumKMFromLastTreat>
+    <lastTreat>17/01/2021 18:52:48</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>3622541</numberLicense>
-    <startActivity>2015-05-01T00:00:00</startActivity>
+    <startActivity>01/05/2015 00:00:00</startActivity>
     <sumKM>100000</sumKM>
     <totalFuel>1100</totalFuel>
     <Status>needTreat</Status>
     <sumKMFromLastTreat>19000</sumKMFromLastTreat>
-    <lastTreat>2019-09-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/09/2019 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
-    <numberLicense>12108021</numberLicense>
-    <startActivity>2020-06-01T00:00:00</startActivity>
+    <numberLicense>12107021</numberLicense>
+    <startActivity>01/06/2020 00:00:00</startActivity>
     <sumKM>200</sumKM>
     <totalFuel>1000</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>200</sumKMFromLastTreat>
-    <lastTreat>2020-06-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/06/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>6582451</numberLicense>
-    <startActivity>2017-08-01T00:00:00</startActivity>
+    <startActivity>01/08/2017 00:00:00</startActivity>
     <sumKM>50000</sumKM>
-    <totalFuel>1200</totalFuel>
+    <totalFuel>1000</totalFuel>
     <Status>ready</Status>
-    <sumKMFromLastTreat>10</sumKMFromLastTreat>
-    <lastTreat>2020-12-20T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <sumKMFromLastTreat>0</sumKMFromLastTreat>
+    <lastTreat>17/01/2021 23:16:53</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
-    <numberLicense>12454251</numberLicense>
-    <startActivity>2020-12-01T00:00:00</startActivity>
+    <numberLicense>12455421</numberLicense>
+    <startActivity>01/12/2020 00:00:00</startActivity>
     <sumKM>0</sumKM>
     <totalFuel>1200</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>0</sumKMFromLastTreat>
-    <lastTreat>2020-12-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>17/01/2021 18:44:25</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>5248102</numberLicense>
-    <startActivity>2014-01-01T00:00:00</startActivity>
+    <startActivity>01/01/2014 00:00:00</startActivity>
     <sumKM>122500</sumKM>
-    <totalFuel>400</totalFuel>
-    <Status>needTreat</Status>
-    <sumKMFromLastTreat>14000</sumKMFromLastTreat>
-    <lastTreat>2019-10-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <totalFuel>1200</totalFuel>
+    <Status>ready</Status>
+    <sumKMFromLastTreat>0</sumKMFromLastTreat>
+    <lastTreat>17/01/2021 18:49:02</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>6528456</numberLicense>
-    <startActivity>2017-01-01T00:00:00</startActivity>
+    <startActivity>01/01/2017 00:00:00</startActivity>
     <sumKM>362510</sumKM>
     <totalFuel>666</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>2000</sumKMFromLastTreat>
-    <lastTreat>2020-10-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/10/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>6251002</numberLicense>
-    <startActivity>2013-01-01T00:00:00</startActivity>
+    <startActivity>01/01/2013 00:00:00</startActivity>
     <sumKM>152014</sumKM>
     <totalFuel>802</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>15000</sumKMFromLastTreat>
-    <lastTreat>2020-03-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/03/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>5148235</numberLicense>
-    <startActivity>2016-03-01T00:00:00</startActivity>
+    <startActivity>01/03/2016 00:00:00</startActivity>
     <sumKM>165003</sumKM>
     <totalFuel>400</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>3000</sumKMFromLastTreat>
-    <lastTreat>2020-08-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/08/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
   <Bus>
     <numberLicense>12100121</numberLicense>
-    <startActivity>2020-10-01T00:00:00</startActivity>
+    <startActivity>01/10/2020 00:00:00</startActivity>
     <sumKM>150</sumKM>
     <totalFuel>1100</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>150</sumKMFromLastTreat>
-    <lastTreat>2020-10-01T00:00:00</lastTreat>
-    <deleted>false</deleted>
+    <lastTreat>01/10/2020 00:00:00</lastTreat>
+    <deleted>False</deleted>
   </Bus>
-</ArrayOfBus>
+  <Bus>
+    <numberLicense>11111111</numberLicense>
+    <startActivity>2021-01-17T00:00:00</startActivity>
+    <sumKM>0</sumKM>
+    <totalFuel>1200</totalFuel>
+    <Status>ready</Status>
+    <sumKMFromLastTreat>0</sumKMFromLastTreat>
+    <lastTreat>2021-01-17T00:00:00</lastTreat>
+    <deleted>False</deleted>
+  </Bus>
+  <Bus>
+    <numberLicense>22222222</numberLicense>
+    <startActivity>2021-01-14T00:00:00</startActivity>
+    <sumKM>0</sumKM>
+    <totalFuel>1200</totalFuel>
+    <Status>ready</Status>
+    <sumKMFromLastTreat>0</sumKMFromLastTreat>
+    <lastTreat>2021-01-14T00:00:00</lastTreat>
+    <deleted>False</deleted>
+  </Bus>
+  <Bus>
+    <numberLicense>12121212</numberLicense>
+    <startActivity>2021-01-12T00:00:00</startActivity>
+    <sumKM>0</sumKM>
+    <totalFuel>1200</totalFuel>
+    <Status>ready</Status>
+    <sumKMFromLastTreat>0</sumKMFromLastTreat>
+    <lastTreat>2021-01-12T00:00:00</lastTreat>
+    <deleted>False</deleted>
+  </Bus>
+  <Bus>
+    <numberLicense>14141414</numberLicense>
+    <startActivity>2021-01-10T00:00:00</startActivity>
+    <sumKM>0</sumKM>
+    <totalFuel>1200</totalFuel>
+    <Status>ready</Status>
+    <sumKMFromLastTreat>0</sumKMFromLastTreat>
+    <lastTreat>2021-01-10T00:00:00</lastTreat>
+    <deleted>False</deleted>
+  </Bus>
+</BusXML.xml>

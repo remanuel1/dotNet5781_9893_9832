@@ -34,6 +34,15 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad identify number1: {ID1} and identify number2: {ID2}";
     }
+
+    public class BadUserException : Exception
+    {
+        public string n1;
+        public BadUserException(string _n1) : base() { n1 = _n1;}
+
+        public override string ToString() => base.ToString() + $", user name: {n1} not exsits";
+    }
+
     public class XMLFileLoadCreateException : Exception
     {
         public string xmlFilePath;

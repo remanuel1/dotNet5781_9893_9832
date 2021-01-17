@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="AddNewUser" Height="350" Width="450">
+        Title="AddNewUser" Height="400" Width="450">
     <Canvas>
         <Label x:Name="newUserLabel"  Content=""  Height="50" Padding="7"
                    Background="#FFA4E4ED" FontSize="30" Style="{StaticResource FontForLabel}" Width="443"/>
@@ -18,27 +18,35 @@
                      Canvas.Top="75" Canvas.Right="25"
                    Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" />
 
+        <Label Content=" enter your mail:" Width="170" Height="40" Padding="7"
+                   Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="119"/>
+
+        <TextBox x:Name="mailOfUser"
+                     Text=" " Width="250" Height="35" Padding="7"
+                     Canvas.Top="119" Canvas.Right="25"
+                   Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" Canvas.Left="169" />
+
         <Label Content=" enter your user name:" Width="200" Height="40" Padding="7"
-                   Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="120"/>
+                   Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="164"/>
 
         <TextBox x:Name="userName"
                      Text=" " Width="219" Height="40" Padding="7"
-                     Canvas.Top="120" Canvas.Right="25"
+                     Canvas.Top="164" Canvas.Right="25"
                    Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" Canvas.Left="199"/>
 
         <Label Content=" enter your password:" Width="200" Height="40" Padding="7"
-                   Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="170"/>
+                   Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="214"/>
 
         <TextBox x:Name="userPass"
                    Text=""
                    Width="219" Height="40" Padding="7"
-                   Canvas.Top="170" Canvas.Right="25"
+                   Canvas.Top="214" Canvas.Right="25"
                    Background="White" FontSize="20"
                    Style="{StaticResource FontForTextBox}" Canvas.Left="199"/>
 
         <Button x:Name="loginButton"
                     Content="login" Width="100" Height="40"
-                    Canvas.Left="169" Canvas.Top="236"
+                    Canvas.Left="169" Canvas.Top="280"
                     Style="{StaticResource FontForButtom}"
                     Grid.Column="1" Click="loginButton_Click"/>
     </Canvas>

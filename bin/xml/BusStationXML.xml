@@ -400,4 +400,20 @@
     <address>Waiztman 19 , Gedera</address>
     <deleted>false</deleted>
   </BusStation>
+  <BusStation>
+    <numberStation>3891</numberStation>
+    <Latitude>34</Latitude>
+    <Longitude>32</Longitude>
+    <nameStation>gimzo</nameStation>
+    <address>gimzo</address>
+    <deleted>true</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>3891</numberStation>
+    <Latitude>34</Latitude>
+    <Longitude>31</Longitude>
+    <nameStation>gimzo 22</nameStation>
+    <address>gimzo</address>
+    <deleted>false</deleted>
+  </BusStation>
 </ArrayOfBusStation>

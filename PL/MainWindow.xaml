@@ -67,14 +67,16 @@
                    Style="{StaticResource FontForTextBox}"/>
 
             <CheckBox x:Name="managerShowPass"
-                      Canvas.Left="250" Canvas.Top="195"
-                      Checked="showPass_Checked" Unchecked="showPass_Unchecked"/>
+                      Canvas.Left="250" Canvas.Top="195" ToolTip="show password"
+                      Checked="managerShowPass_Checked" Unchecked="managerShowPass_Unchecked"/>
 
             <Button x:Name="enter"
                     Content="login" Width="100" Height="40"
                     Canvas.Left="100" Canvas.Top="245"
                     Style="{StaticResource FontForButtom}"
                     Click="admin_Click"/>
+            <Label Content="forget password" Canvas.Top="284" Canvas.Left="102"
+                   MouseDoubleClick="forget_MouseDoubleClick"/>
         </Canvas>
 
         <Canvas x:Name="cnUser"
@@ -108,7 +110,7 @@
                    Style="{StaticResource FontForTextBox}"/>
 
             <CheckBox x:Name="userShowPass"
-                      Canvas.Left="250" Canvas.Top="195"
+                      Canvas.Left="250" Canvas.Top="195" ToolTip="show password"
                       Checked="showPass_Checked" Unchecked="showPass_Unchecked"/>
 
             <Button x:Name="user"
@@ -117,8 +119,11 @@
                     Style="{StaticResource FontForButtom}"
                     Grid.Column="1" Click="user_Click"/>
 
-            <Label x:Name="newUser" Content="new here? creat new user.." Canvas.Top="290" Canvas.Left="75"
+            <Label x:Name="newUser" Content="new here? creat new user.." Canvas.Top="310" Canvas.Left="75"
                    MouseDoubleClick="newUser_MouseDoubleClick" TextOptions.TextHintingMode="Fixed"/>
+
+            <Label Content="forget password" Canvas.Top="284" Canvas.Left="102"
+                   MouseDoubleClick="forget_MouseDoubleClick"/>
         </Canvas>
 
 

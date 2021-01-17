@@ -316,10 +316,10 @@ namespace DL
                    orderby item.identifyBus, item.startTime
                    select item.Clone()).ToList();
         }
-        public IEnumerable<DO.ExitLine> getAllExitLineBy(Predicate<DO.ExitLine> predicate)
+        public IEnumerable<DO.ExitLine> getAllExitLineBy(int identifyBus)
         {
             return (from item in DataSource.allExitLines
-                    where predicate(item)
+                    where item.identifyBus == identifyBus
                     orderby item.identifyBus, item.startTime
                     select item.Clone()).ToList(); ;
         }
@@ -353,6 +353,10 @@ namespace DL
             return (from user in DataSource.allUsers
                     where user.userName == userName
                     select user.Clone()).FirstOrDefault();
+        }
+        public DO.User getUserByMail(string userMail)
+        {
+            return null;
         }
         public IEnumerable<DO.User> getAllUserBy(Predicate<DO.User> predicate)
         {

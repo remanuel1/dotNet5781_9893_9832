@@ -60,13 +60,15 @@ namespace DLAPI
         void deleteExitLine(ExitLine exitLine);
         ExitLine getExitLineBy(Predicate<ExitLine> predicate);
         IEnumerable<ExitLine> getAllExitLine();
-        IEnumerable<ExitLine> getAllExitLineBy(Predicate<ExitLine> predicate);
+        //IEnumerable<ExitLine> getAllExitLineBy(Predicate<ExitLine> predicate);
+        IEnumerable<ExitLine> getAllExitLineBy(int identifyLine);
 
         // method User
         void addUser(User user);
         void deleteUser(User user);
         void updateUser(User userCurrent, User userNew);
         User getUser(string userName);
+        User getUserByMail(string userMail);
         IEnumerable<User> getAllUserBy(Predicate<User> predicate);
 
 

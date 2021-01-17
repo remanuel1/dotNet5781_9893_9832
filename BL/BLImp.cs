@@ -613,7 +613,7 @@ namespace BL
 
             foreach (DO.LineStation item in stations) // foreach that pass over all line in this statin
             {
-                IEnumerable<DO.ExitLine> exitLines = dl.getAllExitLineBy(p => p.identifyBus == item.identifyLine);
+                IEnumerable<DO.ExitLine> exitLines = dl.getAllExitLineBy(item.identifyLine);
                 foreach(DO.ExitLine exitLine in exitLines)
                 {
                     TimeSpan exitTime = exitLine.startTime;
@@ -709,6 +709,20 @@ namespace BL
             }
             return user;
 
+        }
+
+        public BO.User getUserByMail(string userMail)
+        {
+            BO.User user = new BO.User();
+            try
+            {
+                dl.getUserByMail(userMail).CopyPropertiesTo(user);
+            }
+            catch
+            {
+                ;
+            }
+            return user;
         }
         public IEnumerable<BO.User> getAllUserBy(Predicate<BO.User> predicate)
         {

@@ -99,6 +99,7 @@
                         <DataTrigger Binding="{Binding ElementName=dateBus, Path=Text}" Value="">
                             <Setter Property="Button.IsEnabled" Value="false"/>
                         </DataTrigger>
+                        
                     </Style.Triggers>
                 </Style>
             </Button.Style>
