@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="AddNewStation" Height="400" Width="450">
+    <Page.Background>
+        <SolidColorBrush Color="White" Opacity="0.8"/>
+    </Page.Background>
     
-    <Grid x:Name="addNewStation" Grid.Column="1" Width="450"
+    <Grid x:Name="addNewStation" Grid.Column="1" Width="420"
               Visibility="{Binding}" DataContext="{Binding}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -63,16 +66,18 @@
                Grid.Column="1" Grid.Row="4" Padding="5" Height="30" Width="100"
                Style="{StaticResource FontForTextBox}" Margin="0,7.2,14.6,7.6"
                PreviewTextInput="onlyNumber_PreviewTextInput"
-               ToolTip="Latitude"
+               ToolTip="Latitude: 33.7 - 36.3"
                ToolTipService.ShowDuration="2000"/>
 
         <TextBox x:Name="addLocatLongitude" Text=""
                HorizontalAlignment="Left" VerticalAlignment="Center"
                Grid.Column="1" Grid.Row="4" Padding="5" Height="30" Width="100"
                Style="{StaticResource FontForTextBox}" Margin="15,7.2,0,7.6"
-               ToolTip="Longitude"
+               ToolTip="Longitude: 29.3 - 33.5"
                ToolTipService.ShowDuration="2000"
                PreviewTextInput="onlyNumber_PreviewTextInput"/>
+
+
 
         <Button x:Name="add" Content="ADD"
                     Grid.Row="6"

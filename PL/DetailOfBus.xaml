@@ -7,7 +7,10 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DetailOfBus" Height="400" Width="400">
-    
+    <Page.Background>
+        <SolidColorBrush Color="White" Opacity="0.8"/>
+    </Page.Background>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>

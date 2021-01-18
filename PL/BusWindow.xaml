@@ -6,53 +6,56 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="BUSES" Height="550" Width="800">
+        Title="BUSES" Height="550" Width="800" RenderTransformOrigin="0.5,0.5">
+
+
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="background1.jpg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="400"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.ColumnSpan="2" Background="AntiqueWhite" Margin="0,0,-92.4,0.4" />
+        <Label Grid.Column="0" Grid.RowSpan="2" Background="#FFA4E4ED"/>
 
-        <Grid Width="150" Grid.Row="1">
+        <Grid Width="150" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="300"/>
+                <RowDefinition Height="350"/>
                 <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
 
             <Label Content="all buses:" 
                    Grid.Row="0" Grid.Column="0" Padding="10" VerticalAlignment="Center"
-                   Style="{StaticResource FontForLabel}" Height="37"/>
-
-            <ComboBox Name="showBusORder"
-                      Grid.Row="0" Grid.Column="0" Width="50" Height="30"
-                      HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"
-                      SelectionChanged="showBusORder_SelectionChanged">
-                <ComboBoxItem Content="number liecene" Selected="ComboBoxItem_Selected"/>
-                <ComboBoxItem Content="manufacturing date" Selected="ComboBoxItem_Selected_1"/>
-            </ComboBox>
+                   Style="{StaticResource FontForLabel}" FontSize="20" Height="37"/>
 
             <ListBox x:Name="listBus"
                       ItemsSource="{Binding}"
-                      Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"
+                      Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top"
                       MouseDoubleClick="listBus_MouseDoubleClick"
-                      Width="150"/>
+                      Width="150"
+                     Style="{StaticResource FontForListBox}" FontSize="18">
+                <ListBox.Background>
+                    <SolidColorBrush Color="White" Opacity="0.8"/>
+                </ListBox.Background>
+            </ListBox>
 
             <Button Content="+"
                 HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5"
-                Height="36" Width="40" Grid.Row="2"
+                Height="40" Width="100" Grid.Row="2"
                 Style="{StaticResource FontForButtom}"
                 MouseDoubleClick="DoubleClickToAddNewBus"
                 ToolTip="press double click to enter a new bus"/>
         </Grid>
 
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="1" Width="400"/>
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Grid.Column="2" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>

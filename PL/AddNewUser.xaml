@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="AddNewUser" Height="400" Width="450">
     <Canvas>
-        <Label x:Name="newUserLabel"  Content=""  Height="50" Padding="7"
+        <Label x:Name="newUserLabel" Content="{Binding}"  Height="50" Padding="7"
                    Background="#FFA4E4ED" FontSize="30" Style="{StaticResource FontForLabel}" Width="443"/>
 
         <Label Content=" enter your name:" Width="170" Height="40" Padding="7"

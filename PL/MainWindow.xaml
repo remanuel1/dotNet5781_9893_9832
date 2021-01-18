@@ -40,7 +40,7 @@
                 Grid.Column="0"  HorizontalAlignment="Center"
                 Width="300" Height="300" Margin="46,150,50.8,120.4">
 
-            <Label Content="Manager login" Width="300" Height="50" Padding="7"
+            <Label Content=" Manager login" Width="300" Height="50" Padding="7"
                    Background="#FFA4E4ED" FontSize="30" Style="{StaticResource FontForLabel}"/>
 
             <Label Content=" enter your user name:" Width="300" Height="40" Padding="7"
@@ -75,15 +75,15 @@
                     Canvas.Left="100" Canvas.Top="245"
                     Style="{StaticResource FontForButtom}"
                     Click="admin_Click"/>
-            <Label Content="forget password" Canvas.Top="284" Canvas.Left="102"
-                   MouseDoubleClick="forget_MouseDoubleClick"/>
+            <Label Content="forget password" Canvas.Top="284" Canvas.Left="92"
+                   MouseDoubleClick="forget_MouseDoubleClick" Style="{StaticResource FontForLabel}"/>
         </Canvas>
 
         <Canvas x:Name="cnUser"
                 Grid.Column="1" HorizontalAlignment="Center"
                 Width="300" Height="300" Margin="48.2,150,48.6,120.4">
 
-            <Label Content="User login" Width="300" Height="50" Padding="7"
+            <Label Content=" User login" Width="300" Height="50" Padding="7"
                    Background="#FFA4E4ED" FontSize="30" Style="{StaticResource FontForLabel}"/>
 
             <Label Content=" enter your user name:" Width="300" Height="40" Padding="7"
@@ -119,11 +119,12 @@
                     Style="{StaticResource FontForButtom}"
                     Grid.Column="1" Click="user_Click"/>
 
-            <Label x:Name="newUser" Content="new here? creat new user.." Canvas.Top="310" Canvas.Left="75"
-                   MouseDoubleClick="newUser_MouseDoubleClick" TextOptions.TextHintingMode="Fixed"/>
+            <Label x:Name="newUser" Content="new here? creat new user.." Canvas.Top="311" Canvas.Left="61"
+                   MouseDoubleClick="newUser_MouseDoubleClick"
+                   Style="{StaticResource FontForLabel}" TextOptions.TextHintingMode="Fixed"/>
 
-            <Label Content="forget password" Canvas.Top="284" Canvas.Left="102"
-                   MouseDoubleClick="forget_MouseDoubleClick"/>
+            <Label Content="forget password" Canvas.Top="284" Canvas.Left="92"
+                   MouseDoubleClick="forget_MouseDoubleClick" Style="{StaticResource FontForLabel}"/>
         </Canvas>
 
 

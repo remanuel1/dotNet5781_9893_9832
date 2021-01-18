@@ -7,6 +7,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="AddNewBus" Height="420" Width="300">
+    <Page.Background>
+        <SolidColorBrush Color="White" Opacity="0.8"/>
+    </Page.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="181*"/>

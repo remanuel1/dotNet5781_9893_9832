@@ -65,27 +65,19 @@
     <deleted>false</deleted>
   </LineBus>
   <LineBus>
-    <identifyBus>1009</identifyBus>
-    <numberLine>36</numberLine>
-    <area>south</area>
-    <firstNumberStation>0</firstNumberStation>
-    <lastNumberStation>0</lastNumberStation>
-    <deleted>false</deleted>
-  </LineBus>
-  <LineBus>
     <identifyBus>1002</identifyBus>
     <numberLine>112</numberLine>
     <area>general</area>
-    <firstNumberStation>0</firstNumberStation>
-    <lastNumberStation>0</lastNumberStation>
+    <firstNumberStation>38859</firstNumberStation>
+    <lastNumberStation>38869</lastNumberStation>
     <deleted>false</deleted>
   </LineBus>
   <LineBus>
-    <identifyBus>1011</identifyBus>
-    <numberLine>100</numberLine>
-    <area>general</area>
-    <firstNumberStation>3891</firstNumberStation>
-    <lastNumberStation>38832</lastNumberStation>
+    <identifyBus>1009</identifyBus>
+    <numberLine>62</numberLine>
+    <area>center</area>
+    <firstNumberStation>38832</firstNumberStation>
+    <lastNumberStation>38852</lastNumberStation>
     <deleted>false</deleted>
   </LineBus>
 </ArrayOfLineBus>

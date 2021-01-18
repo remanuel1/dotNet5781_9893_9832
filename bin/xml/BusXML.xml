@@ -174,10 +174,10 @@
     <numberLicense>6251002</numberLicense>
     <startActivity>01/01/2013 00:00:00</startActivity>
     <sumKM>152014</sumKM>
-    <totalFuel>802</totalFuel>
+    <totalFuel>1200</totalFuel>
     <Status>ready</Status>
-    <sumKMFromLastTreat>15000</sumKMFromLastTreat>
-    <lastTreat>01/03/2020 00:00:00</lastTreat>
+    <sumKMFromLastTreat>0</sumKMFromLastTreat>
+    <lastTreat>18/01/2021 16:08:40</lastTreat>
     <deleted>False</deleted>
   </Bus>
   <Bus>

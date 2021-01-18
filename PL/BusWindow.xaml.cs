@@ -46,36 +46,10 @@ namespace PL
             frame.Content = new AddNewBus(bl, listBus);
         }
 
-        /*private void listBus_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            BO.Bus bus = listBus.SelectedItem as BO.Bus;
-            frame.Visibility = Visibility.Visible;
-            frame.Content = new DetailOfBus(bl, bus, listBus);
-        }*/
 
         private void numberBus_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !e.Text.Any(x => char.IsDigit(x));
-        }
-
-        private void showBusORder_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            /*if (sender.Equals("number liecene"))
-                listBus.DataContext = bl.getAllBussesBy(b=> b.numberLicense);
-            if (sender.Equals("manufacturing date"))
-                listBus.DataContext = bl.getAllBussesBy(b => b.startActivity);*/
-        }
-
-        private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
-        {
-            BO.Bus bus = new BO.Bus();
-
-
-        }
-
-        private void ComboBoxItem_Selected_1(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void listBus_MouseDoubleClick(object sender, MouseButtonEventArgs e)

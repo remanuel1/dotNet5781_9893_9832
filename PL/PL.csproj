@@ -215,5 +215,14 @@
     <Resource Include="treat.JPG" />
     <Resource Include="updateIcon.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="iconBus.JPG" />
+    <Resource Include="iconLine.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="background1.jpg" />
+    <Resource Include="3040791.jpg" />
+    <Resource Include="81744.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

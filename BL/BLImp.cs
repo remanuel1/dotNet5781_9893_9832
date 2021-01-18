@@ -294,6 +294,8 @@ namespace BL
 
             DO.LineBus lineBusDO = new DO.LineBus();
             lineBus.CopyPropertiesTo(lineBusDO);
+            lineBusDO.firstNumberStation = lineBus.listStaion.First().numberStation;
+            lineBusDO.lastNumberStation = lineBus.listStaion.Last().numberStation;
             try
             {
                 dl.updateLineBus(lineBusDO);
@@ -480,6 +482,7 @@ namespace BL
             GeoCoordinate d1 = new GeoCoordinate(dl.getBusStation(station2).Longitude, dl.getBusStation(station2).Latitude);
             follow.distance = s1.GetDistanceTo(d1);
             follow.drivinngTime = TimeSpan.FromMinutes(follow.distance/1000 * (60/50));
+            follow.drivinngTime = TimeSpan.Parse(follow.drivinngTime.ToString().Substring(0, 8));
             follow.deleted = false;
             try
             {

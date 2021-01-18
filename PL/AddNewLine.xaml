@@ -7,6 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="400"
       Title="AddNewLine">
+    <Page.Background>
+        <SolidColorBrush Color="White" Opacity="0.8"/>
+    </Page.Background>
 
     <Canvas x:Name="addNewLine">
 

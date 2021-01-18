@@ -27,6 +27,7 @@ namespace PL
         IBL bl;
         BO.BusStation station;
         TimeSpan startTime = TimeSpan.Parse("08:00:00");
+        TimeSpan speed = TimeSpan.Parse("00:00:00");
         private Stopwatch stopWatch;
         private bool isTimerRun;
         BackgroundWorker timerworker;
@@ -90,7 +91,7 @@ namespace PL
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            TimeSpan timerText = TimeSpan.Parse(stopWatch.Elapsed.ToString());
+            TimeSpan timerText = TimeSpan.Parse(stopWatch.Elapsed.ToString()) + speed;
             timerText = timerText + startTime;
             listLineTiming.ItemsSource = bl.GetLineTimingsForStation(station.numberStation, timerText);
             this.timerTextBlock.Text = timerText.ToString().Substring(0, 8);
@@ -100,8 +101,6 @@ namespace PL
                 stopWatch.Restart();
             }
 
-            /*if (this.timerTextBlock.Text == "23:59:59")
-                this.timerTextBlock.Text = "00:00:00";*/
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -117,6 +116,16 @@ namespace PL
         {
             SearchRideWindow searchRideWindow = new SearchRideWindow(bl);
             searchRideWindow.Show();
+        }
+
+        private void speed_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            speed = TimeSpan.FromMinutes(double.Parse(speedTb.Text));
+        }
+
+        private void speedTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            speed = TimeSpan.FromMinutes(double.Parse(speedTb.Text));
         }
     }
 }

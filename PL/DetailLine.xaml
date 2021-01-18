@@ -6,40 +6,43 @@
       xmlns:System="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="600"
+      d:DesignHeight="400" d:DesignWidth="500"
       Title="DetailLine">
+    <Page.Background>
+        <SolidColorBrush Color="White" Opacity="0.8"/>
+    </Page.Background>
     <Canvas>
         <Label Content="Number line:"
-               Height="30" Width="100" Canvas.Top="30" Canvas.Left="30"
+               Height="30" Width="100" Canvas.Top="31" Canvas.Left="16"
                Style="{StaticResource FontForLabel}" FontWeight="ExtraBlack"/>
 
         <TextBox x:Name="numberLineForDetail" Text="" TextAlignment="Center"
-               Height="30" Width="100" Canvas.Top="30" Canvas.Left="140"
+               Height="30" Width="100" Canvas.Top="31" Canvas.Left="126"
                Style="{StaticResource FontForTextBox}"
                  PreviewTextInput="onlyNumber_PreviewTextInput"/>
 
         <Label Content="Number ID line:"
-               Height="30" Width="110" Canvas.Top="65" Canvas.Left="30"
+               Height="30" Width="110" Canvas.Top="65" Canvas.Left="17"
                Style="{StaticResource FontForLabel}" FontWeight="ExtraBlack"/>
 
         <TextBox x:Name="numberIdForDetail" Text="" TextAlignment="Center"
-               Height="30" Width="100" Canvas.Top="65" Canvas.Left="140"
+               Height="30" Width="100" Canvas.Top="65" Canvas.Left="126"
                Style="{StaticResource FontForTextBox}" IsEnabled="False"/>
 
         <Label Content="Area:"
-               Height="30" Width="100" Canvas.Top="100" Canvas.Left="30"
+               Height="30" Width="100" Canvas.Top="100" Canvas.Left="16"
                Style="{StaticResource FontForLabel}" FontWeight="ExtraBlack"/>
 
         <ComboBox x:Name="lineArea" ItemsSource="{Binding}"
-               Height="30" Width="100" Canvas.Top="100" Canvas.Left="140"/>
+               Height="30" Width="100" Canvas.Top="100" Canvas.Left="126"/>
 
         <Label Content="station in line:"
-               Height="30" Width="110" Canvas.Top="147" Canvas.Left="31"
+               Height="30" Width="110" Canvas.Top="147" Canvas.Left="17"
                Style="{StaticResource FontForLabel}" FontWeight="ExtraBlack"/>
 
         <Button x:Name="addStation" Content="+"
                 Width="20" Height="20"
-                Canvas.Left="150" Canvas.Top="150"
+                Canvas.Left="136" Canvas.Top="150"
                 Style="{StaticResource FontForButtom}"
                 Click="addStation_Click"
                 ToolTip="press to enter new station in this line"
@@ -47,20 +50,20 @@
 
         <ComboBox x:Name="listStationForNewStation" ItemsSource="{Binding}"
                Visibility="{Binding}"
-               Height="30" Width="150" Canvas.Top="100" Canvas.Left="350"/>
+               Height="30" Width="150" Canvas.Top="100" Canvas.Left="292"/>
 
         <ComboBox x:Name="listNumber" ItemsSource="{Binding}"
                Visibility="{Binding}"
-               Height="30" Width="40" Canvas.Top="100" Canvas.Left="509"/>
+               Height="30" Width="40" Canvas.Top="100" Canvas.Left="448"/>
 
         <Button x:Name="addStationToLine" Content="ADD station"
                 Width="100" Height="25" Visibility="{Binding}"
-                Canvas.Left="449" Canvas.Top="140"
+                Canvas.Left="388" Canvas.Top="140"
                 Style="{StaticResource FontForButtom}"
                 Click="addStationToLine_Click"/>
 
-        <ListView x:Name="stationInLine" Height="145" Width="500"
-                  Canvas.Left="50" Canvas.Top="177">
+        <ListView x:Name="stationInLine" Height="145" Width="473"
+                  Canvas.Left="17" Canvas.Top="177">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="25" DisplayMemberBinding="{Binding numberStationInLine}"/>
@@ -73,7 +76,7 @@
                                 <Button x:Name="toDeleteStation"
                                        Width="20" Height="20" Click="toDeleteStation_Click">
                                     <Image x:Name="iconDelete" Width="20" Height="20"
-                                           Source="iconGarbage.jpg"/>
+                                           Source="iconGarbage.jpg" ToolTip="press to delete this station"/>
                                 </Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -84,25 +87,23 @@
 
         <Button x:Name="update"
                 Width="60" Height="60"
-                Canvas.Left="50" Canvas.Top="340"
+                Canvas.Left="17" Canvas.Top="330"
                 Style="{StaticResource FontForButtom}"
                 Click="update_Click">
             <Image Source="updateIcon.jpg"
                    Width="50" Height="50"
-                   ToolTip="press to update this line"
-                   ToolTipService.ShowDuration="2000"/>
+                   ToolTip="press to update this line"/>
         </Button>
 
         <Button x:Name="delete"
                 Width="60" Height="60"
-                Canvas.Left="130" Canvas.Top="340"
+                Canvas.Left="96" Canvas.Top="330"
                 Style="{StaticResource FontForButtom}"
                 Click="delete_Click">
             <Image Source="iconGarbage.jpg"
                   Width="50" Height="50"
-                  ToolTip="press to delete this line"
-                  ToolTipService.ShowDuration="2000"/>
-            
+                  ToolTip="press to delete this line"/>
+
         </Button>
     </Canvas>
 </Page>

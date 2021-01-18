@@ -61,7 +61,7 @@ namespace DL
             return result;
         }*/
 
-        public static XElement ToXML(this DO.FollowStations follow)
+        /*public static XElement ToXML(this DO.FollowStations follow)
         {
             XElement result = new XElement("FollowStations",
                 new XElement("numberStation1", follow.numberStation1.ToString()),
@@ -70,7 +70,7 @@ namespace DL
                 new XElement("drivinngTime", follow.drivinngTime.ToString()),
                 new XElement("distance", follow.distance.ToString()));
             return result;
-        }
+        }*/
 
         /*public static XElement ToXML(this DO.Bus bus)
         {
@@ -127,7 +127,7 @@ namespace DL
         #endregion
 
         public static int numberBusLineID { get; set; } = 1010;
-        public static int numberBusStationID { get; set; } = 3890;
+        public static int numberBusStationID { get; set; } = 38891;
 
     }
 }

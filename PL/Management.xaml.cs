@@ -36,7 +36,6 @@ namespace PL
             bus.Left = this.Left;
             bus.Top = this.Top;
             bus.Show();
-            
         }
 
         private void btStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
