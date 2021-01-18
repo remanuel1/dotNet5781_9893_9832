@@ -8,6 +8,9 @@ namespace BO
 {
     public class BusStation
     {
+        /// <summary>
+        /// bus station - there are data for one bus station and all line which passing at this station
+        /// </summary>
         public int numberStation { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }

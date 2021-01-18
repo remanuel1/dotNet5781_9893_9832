@@ -8,6 +8,9 @@ namespace BO
 {
     public class LineStation
     {
+        /// <summary>
+        /// line station - there are data for one line station (one station in line bus) and time from preior station
+        /// </summary>
         public int identifyLine { get; set; }
         public string nameStation { get; set; }
         public int numberStation { get; set; }

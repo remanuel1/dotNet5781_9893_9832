@@ -8,6 +8,9 @@ namespace DO
 {
     public class LineBus
     {
+        /// <summary>
+        /// line bus - there are data for one line bus
+        /// </summary>
         public int identifyBus { get; set; }
         public int numberLine { get; set; }
         public Area area { get; set; }

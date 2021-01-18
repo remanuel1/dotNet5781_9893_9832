@@ -108,24 +108,42 @@ namespace PL
             lines.ItemsSource = bl.getLineInBusStations(station);*/
         }
 
-        private void goBus_Click(object sender, RoutedEventArgs e)
+        private void toBus_Click(object sender, RoutedEventArgs e)
+        {
+            BusWindow bus = new BusWindow(bl);
+            bus.Left = this.Left;
+            bus.Top = this.Top;
+            bus.Show();
+            this.Close();
+        }
+
+        private void toline_Click(object sender, RoutedEventArgs e)
+        {
+            LineWindow line = new LineWindow(bl);
+            line.Left = this.Left;
+            line.Top = this.Top;
+            line.Show();
+            this.Close();
+        }
+
+        private void touser_Click(object sender, RoutedEventArgs e)
+        {
+            UserWindow userWindow = new UserWindow(bl);
+            userWindow.Left = this.Left;
+            userWindow.Top = this.Top;
+            userWindow.Show();
+            this.Close();
+        }
+
+        private void toexit_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void goLine_Click(object sender, RoutedEventArgs e)
+        private void toMain_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
-
-        private void logOut_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void gouser_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+    
     }
 }

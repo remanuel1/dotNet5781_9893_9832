@@ -62,5 +62,43 @@ namespace PL
             }*/
         }
 
+        
+
+        private void toMain_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void toBus_Click(object sender, RoutedEventArgs e)
+        {
+            BusWindow bus = new BusWindow(bl);
+            bus.Left = this.Left;
+            bus.Top = this.Top;
+            bus.Show();
+            this.Close();
+        }
+
+        private void toStation_Click(object sender, RoutedEventArgs e)
+        {
+            StationWindow station = new StationWindow(bl);
+            station.Left = this.Left;
+            station.Top = this.Top;
+            station.Show();
+            this.Close();
+        }
+
+        private void toUser_Click(object sender, RoutedEventArgs e)
+        {
+            UserWindow userWindow = new UserWindow(bl);
+            userWindow.Left = this.Left;
+            userWindow.Top = this.Top;
+            userWindow.Show();
+            this.Close();
+        }
+
+        private void toexit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

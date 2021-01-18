@@ -9,6 +9,7 @@
     <Window.Background>
         <ImageBrush ImageSource="background1.jpg"/>
     </Window.Background>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
@@ -20,18 +21,29 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.RowSpan="2" Grid.Column="0" Background="#FFA4E4ED" />
+        <Canvas Grid.Column="0" Grid.RowSpan="2" Background="#FFA4E4ED">
 
-        <Menu x:Name="moveTo" HorizontalAlignment="Left" Height="20" Width="50" Grid.Column="1"
-              FontFamily="FbExtazi Regular" FontSize="16">
-            <MenuItem Header="go to.." Click="goBus_Click">
-                <MenuItem x:Name="goBus" Header="bus window" Click="goBus_Click"/>
-                <MenuItem x:Name="goLine" Header="line window" Click="goLine_Click"/>
-                <MenuItem x:Name="gouser" Header="user window" Click="gouser_Click"/>
-                <MenuItem x:Name="logOut" Header="log out" Click="logOut_Click"/>
-            </MenuItem>
-        </Menu>
+            <Button x:Name="toMain" Height="40" Width="80" Canvas.Top="30" Canvas.Left="10" Background="{x:Null}"
+                    ToolTip="move to main window" Click="toMain_Click">
+                <Image Source="busStationIcon.JPG" Width="70"/>
+            </Button>
 
+            <Button x:Name="toBus" Height="80" Width="80" Canvas.Top="80" Canvas.Left="10" Background="{x:Null}"
+                    ToolTip="move to bus window" Click="toBus_Click">
+                <Image Source="iconBus.JPG" Width="70"/>
+            </Button>
+            <Button x:Name="toline" Height="80" Width="80" Canvas.Top="170" Canvas.Left="10" Background="{x:Null}"
+                    ToolTip="move to line window" Click="toline_Click">
+                <Image Source="iconLine.JPG" Width="70"/>
+            </Button>
+            <Button x:Name="touser" Height="80" Width="80" Canvas.Top="260" Canvas.Left="10" Background="{x:Null}"
+                    ToolTip="move to user window" Click="touser_Click">
+                <Image Source="iconUser.jpg" Width="70"/>
+            </Button>
+            <Button x:Name="toexit" Content="EXIT" FontSize="20"
+                    Height="40" Width="80" Canvas.Top="350" Canvas.Left="10"
+                    Style="{StaticResource FontForButtom}" Click="toexit_Click"/>
+        </Canvas>
 
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>

@@ -222,8 +222,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="background1.jpg" />
-    <Resource Include="3040791.jpg" />
-    <Resource Include="81744.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="iconUser.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

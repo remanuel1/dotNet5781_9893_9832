@@ -23,7 +23,7 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal"
                     Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="10,0,0,0">
-            <Button Height="30" Width="30" Content="ESC" Background="{x:Null}" Click="Button_Click"/>
+            <Button Height="25" Width="55" Content="ESC" Background="{x:Null}" Click="Button_Click"/>
 
 
             <Label Name="labForMang" Content="{Binding}"

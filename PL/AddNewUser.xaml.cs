@@ -58,5 +58,10 @@ namespace PL
             }
             this.Close();
         }
+
+        private void notSpace_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = e.Text.Any(x => char.IsWhiteSpace(x));
+        }
     }
 }

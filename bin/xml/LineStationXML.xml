@@ -600,34 +600,4 @@
     <numberStationInLine>10</numberStationInLine>
     <deleted>false</deleted>
   </LineStation>
-  <LineStation>
-    <identifyLine>1011</identifyLine>
-    <numberStation>38839</numberStation>
-    <numberStationInLine>1</numberStationInLine>
-    <deleted>false</deleted>
-  </LineStation>
-  <LineStation>
-    <identifyLine>1011</identifyLine>
-    <numberStation>3891</numberStation>
-    <numberStationInLine>2</numberStationInLine>
-    <deleted>false</deleted>
-  </LineStation>
-  <LineStation>
-    <identifyLine>1011</identifyLine>
-    <numberStation>38837</numberStation>
-    <numberStationInLine>3</numberStationInLine>
-    <deleted>false</deleted>
-  </LineStation>
-  <LineStation>
-    <identifyLine>1011</identifyLine>
-    <numberStation>3891</numberStation>
-    <numberStationInLine>1</numberStationInLine>
-    <deleted>false</deleted>
-  </LineStation>
-  <LineStation>
-    <identifyLine>1011</identifyLine>
-    <numberStation>3892</numberStation>
-    <numberStationInLine>2</numberStationInLine>
-    <deleted>false</deleted>
-  </LineStation>
 </ArrayOfLineStation>

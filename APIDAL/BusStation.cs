@@ -8,6 +8,9 @@ namespace DO
 {
     public class BusStation
     {
+        /// <summary>
+        /// bus station - there are data for one bus station
+        /// </summary>
         public int numberStation { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
@@ -15,10 +18,6 @@ namespace DO
         public string address { get; set; }
         public bool deleted { get; set; }
 
-        /*public override string ToString()
-        {
-            return this.ToStringProperty();
-        }*/
 
     }
 }

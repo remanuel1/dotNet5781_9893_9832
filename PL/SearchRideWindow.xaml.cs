@@ -36,6 +36,9 @@ namespace PL
 
         private void search_Click(object sender, RoutedEventArgs e)
         {
+            listLine.ItemsSource = null;
+            numberLine.Content = null;
+
             BO.BusStation sourse = sourseStation.SelectedItem as BO.BusStation;
             BO.BusStation destination = destinationStation.SelectedItem as BO.BusStation;
             if(sourse == destination)
@@ -57,7 +60,12 @@ namespace PL
                     }
 
                 }
+                if(numberLine.Content == null)
+                    MessageBox.Show("sorry.. \n not found line between these stations.", "not found", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+
+            sourseStation.SelectedItem = -1;
+            sourseStation.SelectedItem = -1;
         }
     }
 }

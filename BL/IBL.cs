@@ -45,9 +45,7 @@ namespace BLAPI
         #region Follow Stations
         void insertFollowStations(int station1, int station2);
         FollowStations getFollowStations(int station1, int station2);
-        //void updateFollowStations(FollowStations stations);
-        //void deleteFollowStations(FollowStations stations);
-        //IEnumerable<FollowStations> getAllFollowStations();
+
         #endregion
 
         #region Line Station

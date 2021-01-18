@@ -42,7 +42,8 @@ namespace PL
 
         private void number_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-
+            e.Handled = !e.Text.Any(x => (char.IsDigit(x) || x == '.'));
+            
         }
 
         private void delete_Click(object sender, RoutedEventArgs e)

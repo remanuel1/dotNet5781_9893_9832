@@ -8,6 +8,9 @@ namespace DO
 {
     public class Bus
     {
+        /// <summary>
+        /// bus - there are data for one bus
+        /// </summary>
         public string numberLicense { get; set; }
         public DateTime startActivity { get; set; }
         public float sumKM { get; set; }

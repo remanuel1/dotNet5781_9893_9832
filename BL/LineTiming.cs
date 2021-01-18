@@ -9,16 +9,24 @@ namespace BO
 {
     public class LineTiming
     {
+        /// <summary>
+        /// line timing - contain:
+        /// trip start - time of line start the trip, taken from StartAt of ExitLine
+        /// line id - Line ID from Line
+        /// line number - Line Number as understood by the people
+        /// last station name - so the passengers will know better which direction it is
+        /// expected time till arrive - Expected time of arrival 
+        /// </summary>
 
-        public TimeSpan TripStart { get; set; } //time of Ine start the trip, taken from StartAt of ExitLine
+        public TimeSpan TripStart { get; set; }
 
-        public int LineId { get; set; } //Line ID from Line
+        public int LineId { get; set; }
 
-        public int LineNumber { get; set; } //Line Number as understood by the people
+        public int LineNumber { get; set; }
 
-        public string LastStation { get; set; }// Last station name - so the passengers will know better which direction it is
+        public string LastStation { get; set; }
 
-        public TimeSpan ExpectedTimeTillArrive { get; set; } //Expected time of arrival
+        public TimeSpan ExpectedTimeTillArrive { get; set; }
 
     }
 }

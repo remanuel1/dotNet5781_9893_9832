@@ -347,7 +347,9 @@ namespace BL
         }
         public void addStationToLine(BO.LineBus line, BO.BusStation station, int indexInLine)
         {
-            if (indexInLine < 1 || indexInLine > line.listStaion.Count() + 1)
+            //this func is to add station to exists line
+
+            if (indexInLine < 1 || indexInLine > line.listStaion.Count() + 1) //check if index is legal
                 throw new BO.BadIDExceptions("index to insert station is illegal");
             BO.LineStation newLineStation = new BO.LineStation();
             newLineStation.identifyLine = line.identifyBus;
@@ -364,7 +366,7 @@ namespace BL
                 throw new BO.BadIDExceptions("this line bus not exists", ex);
             }
 
-            foreach (BO.LineStation item in line.listStaion)
+            foreach (BO.LineStation item in line.listStaion) //change stations after this station with new place in line
             {
                 if (item.numberStationInLine >= indexInLine)
                     item.numberStationInLine++;
@@ -374,7 +376,7 @@ namespace BL
                 foreach(BO.LineStation item in line.listStaion)
                 {
                     if(item.numberStationInLine>indexInLine) //station that change
-                        updateLineStation(item, item);
+                        updateLineStation(item, item); //update all station after this station with new place in line
                 }
             }
             catch (DO.BadIdException ex)
@@ -383,17 +385,19 @@ namespace BL
             }
             IEnumerable<DO.LineStation> stationList = dl.getAllLineStationBy(l => l.identifyLine == line.identifyBus);
             if (indexInLine !=1)
-                insertFollowStations(station.numberStation, line.listStaion.ElementAt(indexInLine - 2).numberStation);
+                insertFollowStations(station.numberStation, line.listStaion.ElementAt(indexInLine - 2).numberStation); //new follow with perior station
             if(indexInLine <= line.listStaion.Count())
-                insertFollowStations(station.numberStation, line.listStaion.ElementAt(indexInLine-1).numberStation);
-            
+                insertFollowStations(station.numberStation, line.listStaion.ElementAt(indexInLine-1).numberStation); //new follow with next station
+
             line.listStaion = (from DO.LineStation item in stationList
                                select lineStationDoBoAdapter(item)).ToList();
         }
 
         public void deleteStationInLine(BO.LineBus line, BO.LineStation station)
         {
-            if (line.listStaion.Count() <= 2)
+            //this func is to delete station from exists line
+
+            if (line.listStaion.Count() <= 2) //check if it is legal
                 throw new BO.BadLineExceptions("impossible to deletete this station");
             try
             {
@@ -407,12 +411,12 @@ namespace BL
                     
                 }
                 deleteLineStation(station);
-                foreach (BO.LineStation item in line.listStaion)
+                foreach (BO.LineStation item in line.listStaion) //change stations after this station with new place in line
                 {
                     if (item.numberStationInLine > station.numberStationInLine)
                     {
                         item.numberStationInLine--;
-                        updateLineStation(item, item);
+                        updateLineStation(item, item); //update all station after this station with new place in line
                     }
 
                 }
@@ -424,7 +428,7 @@ namespace BL
 
             IEnumerable<DO.LineStation> stationList = dl.getAllLineStationBy(l => l.identifyLine == line.identifyBus);
 
-            if (station.numberStationInLine != line.listStaion.Count() && station.numberStationInLine != 1)
+            if (station.numberStationInLine != line.listStaion.Count() && station.numberStationInLine != 1) // check if need to insert follow station
             {
                 int one = line.listStaion.ElementAt(station.numberStationInLine - 2).numberStation;
                 int two = line.listStaion.ElementAt(station.numberStationInLine).numberStation;
@@ -435,13 +439,6 @@ namespace BL
 
             
         }
-
-        /*public IEnumerable<IGrouping<BO.Area, BO.LineBus>> getLineByArea()
-        {
-            return (from line in getAllLineBus()
-                   group line by line.area into area
-                   select area).ToList();
-        }*/
 
         #endregion
 
@@ -611,16 +608,17 @@ namespace BL
         #region LineTiming
         public IEnumerable<BO.LineTiming> GetLineTimingsForStation(int numberStation, TimeSpan time)
         {
+            // this func is to find all line timing in specific station and time
             List<BO.LineTiming> lineTimings = new List<BO.LineTiming>();
-            IEnumerable<DO.LineStation> stations = dl.getAllLineStationBy(p => p.numberStation == numberStation);
+            IEnumerable<DO.LineStation> stations = dl.getAllLineStationBy(p => p.numberStation == numberStation); //get all line station with same number station to get all line in this station
 
-            foreach (DO.LineStation item in stations) // foreach that pass over all line in this statin
+            foreach (DO.LineStation item in stations) // foreach that pass over all line in this stations
             {
-                IEnumerable<DO.ExitLine> exitLines = dl.getAllExitLineBy(item.identifyLine);
-                foreach(DO.ExitLine exitLine in exitLines)
+                IEnumerable<DO.ExitLine> exitLines = dl.getAllExitLineBy(item.identifyLine); // get all exit line according line
+                foreach(DO.ExitLine exitLine in exitLines) // foreach that pass over all exit line
                 {
                     TimeSpan exitTime = exitLine.startTime;
-                    while(exitTime <= exitLine.endTime)
+                    while(exitTime <= exitLine.endTime) //add new line trip while the exit time smaller than end time
                     {
                         BO.LineTiming lineTimingBO = new BO.LineTiming();
                         lineTimingBO.LineId = item.identifyLine;
@@ -632,7 +630,7 @@ namespace BL
                         exitTime += TimeSpan.FromMinutes(exitLine.frequency);
                         if(lineTimingBO.ExpectedTimeTillArrive + lineTimingBO.TripStart >= time)
                         {
-                            lineTimings.Add(lineTimingBO);
+                            lineTimings.Add(lineTimingBO); // if this ExpectedTimeTillArrive not over
                         }
                     }
                 }
@@ -642,6 +640,8 @@ namespace BL
 
         private TimeSpan timeFromStartStation(int identifyLine, int numberStation)
         {
+            // this func is calculating for station the time driving from first station
+
             BO.LineBus line = getLineBus(identifyLine);
             TimeSpan time = TimeSpan.Zero;
             if (getLineStation(identifyLine, numberStation) != null)

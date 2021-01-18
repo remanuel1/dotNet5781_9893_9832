@@ -58,5 +58,42 @@ namespace PL
             frame.Visibility = Visibility.Visible;
             frame.Content = new DetailOfBus(bl, bus, listBus);
         }
+
+        private void toStation_Click(object sender, RoutedEventArgs e)
+        {
+            StationWindow station = new StationWindow(bl);
+            station.Left = this.Left;
+            station.Top = this.Top;
+            station.Show();
+            this.Close();
+        }
+
+        private void toline_Click(object sender, RoutedEventArgs e)
+        {
+            LineWindow line = new LineWindow(bl);
+            line.Left = this.Left;
+            line.Top = this.Top;
+            line.Show();
+            this.Close();
+        }
+
+        private void touser_Click(object sender, RoutedEventArgs e)
+        {
+            UserWindow userWindow = new UserWindow(bl);
+            userWindow.Left = this.Left;
+            userWindow.Top = this.Top;
+            userWindow.Show();
+            this.Close();
+        }
+
+        private void toexit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void toMain_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

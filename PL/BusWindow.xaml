@@ -7,12 +7,12 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="BUSES" Height="550" Width="800" RenderTransformOrigin="0.5,0.5">
+    <Window.Background>
+        <ImageBrush ImageSource="background1.jpg"/>
+    </Window.Background>
 
 
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="background1.jpg"/>
-        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="200"/>
@@ -23,7 +23,29 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.RowSpan="2" Background="#FFA4E4ED"/>
+        <Canvas Grid.Column="0" Grid.RowSpan="2" Background="#FFA4E4ED">
+            
+            <Button x:Name="toMain" Height="40" Width="80" Canvas.Top="30" Canvas.Left="10" Background="{x:Null}"
+                    ToolTip="move to main window" Click="toMain_Click">
+                <Image Source="busStationIcon.JPG" Width="70"/>
+            </Button>
+            
+            <Button x:Name="toStation" Height="80" Width="80" Canvas.Top="80" Canvas.Left="10" Background="{x:Null}"
+                    ToolTip="move to station window" Click="toStation_Click">
+                <Image Source="busStationIcon.JPG" Width="70"/>
+            </Button>
+            <Button x:Name="toline" Height="80" Width="80" Canvas.Top="170" Canvas.Left="10" Background="{x:Null}"
+                    ToolTip="move to line window" Click="toline_Click">
+                <Image Source="iconLine.JPG" Width="70"/>
+            </Button>
+            <Button x:Name="touser" Height="80" Width="80" Canvas.Top="260" Canvas.Left="10" Background="{x:Null}"
+                    ToolTip="move to user window" Click="touser_Click">
+                <Image Source="iconUser.jpg" Width="70"/>
+            </Button>
+            <Button x:Name="toexit" Content="EXIT" FontSize="20"
+                    Height="40" Width="80" Canvas.Top="350" Canvas.Left="10"
+                    Style="{StaticResource FontForButtom}" Click="toexit_Click"/>
+        </Canvas>
 
         <Grid Width="150" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>

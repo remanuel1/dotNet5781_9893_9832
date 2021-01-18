@@ -8,6 +8,9 @@ namespace BO
 {
     public class LineBus
     {
+        /// <summary>
+        /// line bus - there are data for one line bus and all stations through which this line passes
+        /// </summary>
         public int identifyBus { get; set; }
         public int numberLine { get; set; }
         public Area area { get; set; }

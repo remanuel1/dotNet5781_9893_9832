@@ -32,7 +32,8 @@
         <TextBox x:Name="userName"
                      Text=" " Width="219" Height="40" Padding="7"
                      Canvas.Top="164" Canvas.Right="25"
-                   Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" Canvas.Left="199"/>
+                   Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" Canvas.Left="199"
+                 PreviewTextInput="notSpace_PreviewTextInput"/>
 
         <Label Content=" enter your password:" Width="200" Height="40" Padding="7"
                    Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="214"/>

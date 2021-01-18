@@ -80,8 +80,8 @@ namespace PL
             {
                 MessageBox.Show("userName or password is wrong. try again");
             }
-            managerName.Text = "";
-            managerPass.Password = "";
+            userName.Text = "";
+            userPass.Password = "";
         }
 
         private void newUser_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -111,6 +111,11 @@ namespace PL
             sendMail.Top = this.Top + 100;
             sendMail.Left = this.Left + 100;
             sendMail.Show();
+        }
+
+        private void notSpace_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            
         }
     }
 }

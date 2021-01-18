@@ -47,7 +47,6 @@
     <Compile Include="BLFactory.cs" />
     <Compile Include="BusStation.cs" />
     <Compile Include="DeepCopyUtilities.cs" />
-    <Compile Include="Driving.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="FollowStations.cs" />

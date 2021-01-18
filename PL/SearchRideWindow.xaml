@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="SearchRideWindow" Height="450" Width="800">
+        Title="SearchRideWindow" Height="450" Width="550">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="500"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Label Content="choose sourse station:" Grid.Column="0"
@@ -34,8 +34,15 @@
                 Height="50" Width="100"
                 Style="{StaticResource FontForButtom}" FontSize="25" Click="search_Click"/>
 
-        <Label Name="numberLine" Grid.Column="1" Height="50" Width="200" VerticalAlignment="Top"/>
-        <ListView x:Name="listLine" Grid.Column="1" Margin="10,56,16,96"/>
+        <Label Name="numberLine"
+               Grid.Column="1" Height="50" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center"
+               Style="{StaticResource FontForLabel}" FontSize="25" Margin="72,8,72,0"/>
+
+        <ListView x:Name="listLine" Grid.Column="1"
+                  Width="150" Height="300"
+                  FontFamily="FBEXTAZI-REGULAR.OTF">
+            <ListViewItem Height="30"/>
+        </ListView>
 
 
 

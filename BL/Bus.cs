@@ -13,7 +13,7 @@ namespace BO
     public class Bus
     {
         /// <summary>
-        /// הערות על אוטובס 
+        /// bus - there are data for one bus
         /// </summary>
             public string numberLicense { get; set; }
             public DateTime startActivity { get; set; }
