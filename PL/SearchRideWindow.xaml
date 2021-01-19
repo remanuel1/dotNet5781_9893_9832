@@ -38,10 +38,9 @@
                Grid.Column="1" Height="50" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center"
                Style="{StaticResource FontForLabel}" FontSize="25" Margin="72,8,72,0"/>
 
-        <ListView x:Name="listLine" Grid.Column="1"
-                  Width="150" Height="300"
-                  FontFamily="FBEXTAZI-REGULAR.OTF">
-            <ListViewItem Height="30"/>
+        <ListView x:Name="listLine" Grid.Column="1" ItemsSource="{Binding}"
+                  Width="200" Height="300"
+                  Style="{StaticResource FontForListBox}">
         </ListView>
 
 

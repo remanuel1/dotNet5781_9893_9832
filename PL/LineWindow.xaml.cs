@@ -23,6 +23,12 @@ namespace PL
     {
         IBL bl;
         ObservableCollection<BO.BusStation> stationsInNewLine = new ObservableCollection<BO.BusStation>();
+        ObservableCollection<BO.LineBus> lineBusesAreaCenter = new ObservableCollection<BO.LineBus>();
+        ObservableCollection<BO.LineBus> lineBusesAreaGeneral = new ObservableCollection<BO.LineBus>();
+        ObservableCollection<BO.LineBus> lineBusesAreaNorth = new ObservableCollection<BO.LineBus>();
+        ObservableCollection<BO.LineBus> lineBusesAreaSouth = new ObservableCollection<BO.LineBus>();
+        IEnumerable<BO.LineBus> all = new ObservableCollection<BO.LineBus>();
+        BO.Area area;
 
         void refreshListLines()
         {
@@ -37,7 +43,8 @@ namespace PL
         {
             InitializeComponent();
             bl = _bl;
-
+            comboBoxArea.ItemsSource = Enum.GetValues(typeof(BO.Area));
+            //comboBoxArea.SelectedIndex = 0;
             refreshListLines();
         }
 
@@ -51,17 +58,6 @@ namespace PL
             BO.LineBus line = listLines.SelectedItem as BO.LineBus;
             frame.Content = new DetailLine(bl, line, listLines);
         }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            /*List<BO.LineBus> lineBusesArea = new List<BO.LineBus>();
-            foreach(var line in bl.getLineByArea())
-            {
-                //if (line.Key.ToString() == (sender as MenuItem).Header.ToString())
-                    //lineBusesArea.Add(line.);
-            }*/
-        }
-
         
 
         private void toMain_Click(object sender, RoutedEventArgs e)
@@ -100,5 +96,73 @@ namespace PL
         {
 
         }
+
+        private void loadGroupToList()
+        {
+            all = null;
+            switch (area)
+            {
+                case BO.Area.center:
+                    {
+                        all = lineBusesAreaCenter;
+                        break;
+                    }
+                case BO.Area.general:
+                    {
+                        all = lineBusesAreaGeneral;
+                        break;
+                    }
+
+                case BO.Area.north:
+                    {
+                        all = lineBusesAreaNorth;
+                        break;
+                    }
+                case BO.Area.south:
+                    {
+                        all = lineBusesAreaSouth;
+                        break;
+                    }
+                case BO.Area.all:
+                    {
+                        all = bl.getAllLineBus();
+                        break;
+                    }
+            }
+            listLines.ItemsSource = all;
+            listLines.Items.Refresh();
+        }
+
+        private void creatGroupLine()
+        {
+            lineBusesAreaCenter.Clear();
+            lineBusesAreaGeneral.Clear();
+            lineBusesAreaNorth.Clear();
+            lineBusesAreaSouth.Clear();
+
+            foreach (var group in bl.getAllLineBusByArea())
+            {
+                if (group.Key == BO.Area.center)
+                    foreach (var line in group)
+                        lineBusesAreaCenter.Add(line);
+                if (group.Key == BO.Area.general)
+                    foreach (var line in group)
+                        lineBusesAreaGeneral.Add(line);
+                if (group.Key == BO.Area.north)
+                    foreach (var line in group)
+                        lineBusesAreaNorth.Add(line);
+                if (group.Key == BO.Area.south)
+                    foreach (var line in group)
+                        lineBusesAreaSouth.Add(line);
+            }
+
+        }
+        private void comboBoxArea_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            creatGroupLine();
+            area = (BO.Area)(comboBoxArea.SelectedItem);
+            loadGroupToList();
+        }
+
     }
 }

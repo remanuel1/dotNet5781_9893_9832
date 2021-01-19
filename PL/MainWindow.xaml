@@ -7,21 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="800">
     <Window.Background>
-        <ImageBrush/>
+        <ImageBrush ImageSource="18410.jpg"/>
     </Window.Background>
     <Grid RenderTransformOrigin="0.5,0.5">
-        <Grid.Background>
-            <ImageBrush ImageSource="backGround.jpg">
-                <ImageBrush.RelativeTransform>
-                    <TransformGroup>
-                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="-1" ScaleX="1"/>
-                        <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
-                        <RotateTransform Angle="180" CenterY="0.5" CenterX="0.5"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </ImageBrush.RelativeTransform>
-            </ImageBrush>
-        </Grid.Background>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -75,7 +64,8 @@
                     Canvas.Left="100" Canvas.Top="245"
                     Style="{StaticResource FontForButtom}"
                     Click="admin_Click"/>
-            <Label Content="forget password" Canvas.Top="284" Canvas.Left="92"
+
+            <Label Content="I'm forget password" Canvas.Top="290" Canvas.Left="69"
                    MouseDoubleClick="forget_MouseDoubleClick" Style="{StaticResource FontForLabel}"/>
         </Canvas>
 
@@ -120,11 +110,11 @@
                     Style="{StaticResource FontForButtom}"
                     Grid.Column="1" Click="user_Click"/>
 
-            <Label x:Name="newUser" Content="new here? creat new user.." Canvas.Top="311" Canvas.Left="61"
+            <Label x:Name="newUser" Content="new here? creat new user.." Canvas.Top="319" Canvas.Left="49"
                    MouseDoubleClick="newUser_MouseDoubleClick"
                    Style="{StaticResource FontForLabel}" TextOptions.TextHintingMode="Fixed"/>
 
-            <Label Content="forget password" Canvas.Top="284" Canvas.Left="92"
+            <Label Content="I'm forget password" Canvas.Top="290" Canvas.Left="67"
                    MouseDoubleClick="forget_MouseDoubleClick" Style="{StaticResource FontForLabel}"/>
         </Canvas>
 

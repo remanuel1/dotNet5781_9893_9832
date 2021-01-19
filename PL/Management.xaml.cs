@@ -60,5 +60,21 @@ namespace PL
         {
             this.Close();
         }
+
+        private void addMan_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewUser newUser = new AddNewUser(bl, BO.Type.manager);
+            newUser.Top = this.Top + 100;
+            newUser.Left = this.Left + 100;
+            newUser.Show();
+        }
+
+        private void addUser_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewUser newUser = new AddNewUser(bl, BO.Type.user);
+            newUser.Top = this.Top + 100;
+            newUser.Left = this.Left + 100;
+            newUser.Show();
+        }
     }
 }

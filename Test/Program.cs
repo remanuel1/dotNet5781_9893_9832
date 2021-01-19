@@ -15,9 +15,10 @@ namespace Test
         static IDL mydl;
         static void Main(string[] args)
         {
+
             //mybl = BLFactory.GetBL();
-            mydl = DLFactory.GetDal();
-            mydl.getAllLineBus();
+            //mydl = DLFactory.GetDal();
+            //mydl.getAllLineBus();
         }
     }
 }

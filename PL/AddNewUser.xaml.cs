@@ -32,12 +32,14 @@ namespace PL
             InitializeComponent();
             bl = _bl;
             typeUser = _typeUser;
-            newUserLabel.Content = "    add new " + typeUser;
+            newUserLabel.Content = "  add new " + typeUser;
             
         }
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
+            // add a new user
+
             BO.User userToAdd = new BO.User();
             userToAdd.name = nameOfUser.Text;
             userToAdd.userName = userName.Text;
@@ -48,9 +50,10 @@ namespace PL
             {
                 bl.addUser(userToAdd);
                 UserWindow userWindow = new UserWindow(bl);
-                userWindow.Left = this.Left;
-                userWindow.Top = this.Top;
+                userWindow.Left = this.Left -100;
+                userWindow.Top = this.Top -100;
                 userWindow.Show();
+
             }
             catch
             {

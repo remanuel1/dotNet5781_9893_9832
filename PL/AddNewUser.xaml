@@ -48,7 +48,30 @@
         <Button x:Name="loginButton"
                     Content="login" Width="100" Height="40"
                     Canvas.Left="169" Canvas.Top="280"
-                    Style="{StaticResource FontForButtom}"
-                    Grid.Column="1" Click="loginButton_Click"/>
+                    Background="#FFA4E4ED" FontFamily="../#FbExtazi Regular" FontSize="16" FontWeight="Bold"
+                    Grid.Column="1" Click="loginButton_Click">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=nameOfUser, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding ElementName=mailOfUser, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding ElementName=userName, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding ElementName=userPass, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Canvas>
 </Window>

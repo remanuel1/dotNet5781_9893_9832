@@ -121,7 +121,7 @@
                         Style="{StaticResource FontForButtom}" Padding="5"
                         VerticalAlignment="Center"
                         Click="refuel_Click" Margin="20,117,20,223">
-            <Image Source="fuel.JPG"
+            <Image Source="iconFuel.JPG"
                   Width="50" Height="50"
                   ToolTip="press to refuel this bus"
                   ToolTipService.ShowDuration="2000"/>
@@ -132,7 +132,7 @@
                         Style="{StaticResource FontForButtom}" Padding="5"
                         VerticalAlignment="Center"
                         Click="treat_Click" Margin="20,188,20,152">
-            <Image Source="treat.JPG"
+            <Image Source="iconTreat.JPG"
                   Width="50" Height="50"
                   ToolTip="press to treat this bus"
                   ToolTipService.ShowDuration="2000"/>

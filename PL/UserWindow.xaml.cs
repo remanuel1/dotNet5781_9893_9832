@@ -60,10 +60,12 @@ namespace PL
 
         private void listStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+
             station = (sender as ListBox).SelectedItem as BO.BusStation;
             nameStation.Content = "satation: " + station.nameStation;
             listLineTiming.ItemsSource = bl.GetLineTimingsForStation(station.numberStation, TimeSpan.Parse(timerTextBlock.Text));
             lineInStation.ItemsSource = bl.getLineInBusStations(station);
+
         }
 
         void setTextInvok(string text)
@@ -132,12 +134,16 @@ namespace PL
 
         private void speedTb_TextChanged(object sender, TextChangedEventArgs e)
         {
-            speed = int.Parse(speedTb.Text);
+            if (speedTb.Text == "")
+                speed = 1;
+            else
+                speed = int.Parse(speedTb.Text);
         }
 
         private void speedTb_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !e.Text.Any(x => char.IsDigit(x));
         }
+
     }
 }

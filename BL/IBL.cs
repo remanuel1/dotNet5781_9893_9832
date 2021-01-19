@@ -36,6 +36,7 @@ namespace BLAPI
         void deleteLineBus(LineBus bus);
         LineBus getLineBus(int identifyBus);
         IEnumerable<LineBus> getAllLineBus();
+        IEnumerable<IGrouping<Area, LineBus>> getAllLineBusByArea();
         IEnumerable<BusStation> getStationInLineBus(LineBus lineBus);
         void addStationToLine(LineBus line, BusStation station, int indexInLine);
         void deleteStationInLine(LineBus line, LineStation station);

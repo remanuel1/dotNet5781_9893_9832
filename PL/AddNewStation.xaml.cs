@@ -36,6 +36,7 @@ namespace PL
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
+            // add new bus station
             BO.BusStation station = new BO.BusStation();
             station.nameStation = addNameStation.Text;
             station.address = addAddressStation.Text;
@@ -61,6 +62,7 @@ namespace PL
 
         private void onlyNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+            // func to able only enter digit or '.'
             e.Handled = !e.Text.Any(x => (char.IsDigit(x) || x=='.'));
         }
     }

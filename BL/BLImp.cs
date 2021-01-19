@@ -339,6 +339,15 @@ namespace BL
                     orderby item.numberLine
                     select lineBusDoBoAdapter(item)).ToList();
         }
+
+        public IEnumerable<IGrouping<BO.Area, BO.LineBus>> getAllLineBusByArea()
+        {
+            var listByArea = from line in getAllLineBus()
+                             group line by line.area into g
+                             select g;
+            return listByArea;
+        }
+
         public IEnumerable<BO.BusStation> getStationInLineBus(BO.LineBus lineBus)
         {
             return (from item in lineBus.listStaion

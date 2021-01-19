@@ -304,6 +304,7 @@ namespace DL
             {
                 root.Add(XMLTools.ToXML(allFollow[i]));
             }
+            
             XMLTools.SaveListToXMLElement(root, followStationsPath);
             XMLTools.LoadListFromXMLElement(followStationsPath);*/
 

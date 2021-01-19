@@ -21,6 +21,7 @@ namespace PL
     public partial class SearchRideWindow : Window
     {
         IBL bl;
+
         public SearchRideWindow()
         {
             InitializeComponent();
@@ -55,6 +56,7 @@ namespace PL
                                                where item.numberStationInLine >= s.numberStationInLine && item.numberStationInLine <= d.numberStationInLine
                                                orderby item.numberStationInLine
                                                select item.nameStation).ToList();
+
                         numberLine.Content = line.numberLine;
                         break;
                     }

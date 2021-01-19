@@ -57,6 +57,7 @@ namespace PL
 
         private void addLine_Click(object sender, RoutedEventArgs e)
         {
+            // func to add new line.
             if (stationsInNewLine.Count < 2)
                 MessageBox.Show("Line must to contain at least 2 stations.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             else
@@ -68,8 +69,6 @@ namespace PL
                 newLine.area = (BO.Area)allArea.SelectedItem;
                 for (int i = 0; i < stationsInNewLine.Count; i++)
                 {
-                    if (stationsInNewLine.ElementAt(0) == null)
-                        stationsInNewLine.RemoveAt(0);
                     BO.LineStation temp = new BO.LineStation();
                     temp.numberStation = stationsInNewLine.ElementAt(i).numberStation;
                     temp.numberStationInLine = i + 1;
@@ -109,25 +108,18 @@ namespace PL
                     }
 
                 }
-                MessageBoxResult add = MessageBox.Show($"Line {numberLine.Text} was successfully added.\n did you want to add a new line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                MessageBox.Show($"Line {numberLine.Text} was successfully added", "O.K.", MessageBoxButton.OK, MessageBoxImage.Information);
                 listLines.ItemsSource = bl.getAllLineBus();
-                if (add == MessageBoxResult.Yes)
-                {
-                    numberLine.Text = "";
-                    stationsInNewLine.Clear();
-                    listStationForNewLine.SelectedIndex = -1;
-                    allArea.SelectedIndex = -1;
-                }
-                else
-                {
-                    this.Visibility = Visibility.Hidden;
-                }
+
+                this.Visibility = Visibility.Hidden;
                 
             }
         }
 
         private void numberLine_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+            // func to able only enter digit.
             e.Handled = !e.Text.Any(x => char.IsDigit(x));
         }
 

@@ -36,6 +36,8 @@ namespace PL
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
+            //func that try to add new bus to all exists bus in XML.
+
             BO.Bus temp = new BO.Bus();
             temp.numberLicense = (string)numberBus.Text;
             temp.startActivity = (DateTime)dateBus.SelectedDate;
@@ -90,6 +92,7 @@ namespace PL
 
         private void numberBus_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+            // func to able only enter digit.
             e.Handled = !e.Text.Any(x => char.IsDigit(x));
         }
     }

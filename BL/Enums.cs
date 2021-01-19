@@ -8,7 +8,7 @@ namespace BO
 {
         public enum Area
         {
-            north, center, south, general
+            north, center, south, general, all
         }
 
         public enum Status

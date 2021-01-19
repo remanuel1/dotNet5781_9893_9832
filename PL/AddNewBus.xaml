@@ -90,7 +90,7 @@
         <Button x:Name="add" Content="ADD"
                 Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Width="75" Click="add_Click"
-                FontFamily="FbExtazi Regular" FontSize="16" FontWeight="Bold"
+                FontFamily="../#FbExtazi Regular" FontSize="16" FontWeight="Bold"
                 FlowDirection="LeftToRight" Background="#FFA4E4ED" Height="30" Grid.ColumnSpan="2">
             <Button.Style>
                 <Style>

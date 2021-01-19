@@ -8,7 +8,7 @@
         Title="Management" Height="550" Width="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="backGround.jpg"/>
+            <ImageBrush ImageSource="18410.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -16,44 +16,63 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="260*"/>
+            <RowDefinition Height="81*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal"
-                    Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="10,0,0,0">
-            <Button Height="25" Width="55" Content="ESC" Background="{x:Null}" Click="Button_Click"/>
 
+        <Canvas Grid.Row="0" Grid.ColumnSpan="3">
+            <Button Height="55" Width="55"
+                    Style="{StaticResource FontForButtom}"
+                    Background="{x:Null}" Click="Button_Click" Canvas.Left="10" Canvas.Top="10"
+                    ToolTip="exit">
+                <Image Source="iconHome.JPG"/>
+            </Button>
 
             <Label Name="labForMang" Content="{Binding}"
                Height="40"
-               Style="{StaticResource FontForLabel}" VerticalContentAlignment="Center" FontSize="25"/>
-        </StackPanel>
+               Style="{StaticResource FontForLabel}" VerticalContentAlignment="Center" FontSize="25" Canvas.Left="70" Canvas.Top="10"/>
 
-        
+            <Button x:Name="addMan" Height="55" Width="55"
+                    Style="{StaticResource FontForButtom}"
+                    Background="{x:Null}" Click="addMan_Click" Canvas.Left="721" Canvas.Top="10"
+                    ToolTip="add a new admin">
+                <Image Source="iconAdmin.jpg"/>
+            </Button>
+
+            <Button x:Name="addUser" Height="55" Width="56" Margin="0"
+                    Style="{StaticResource FontForButtom}"
+                    Background="{x:Null}" Click="addUser_Click" Canvas.Left="654" Canvas.Top="10"
+                    ToolTip="add new user">
+                <Image Source="iconUser.jpg"/>
+            </Button>
+        </Canvas>
+
+
 
         <Button x:Name="btBus"
                 Width="150" Height="150" Grid.Column="0" Grid.Row="1"
-                BorderThickness="2" Opacity="0.6"
+                BorderThickness="2"
                 Style="{StaticResource FontForButtom}"
-                MouseDoubleClick="btBus_MouseDoubleClick" ToolTip="bus window">
+                MouseDoubleClick="btBus_MouseDoubleClick" ToolTip="bus window" Margin="57,95,57.8,15.2">
             <Image Source="iconBus.JPG" Width="130"/>
         </Button>
 
         <Button x:Name="btStation"
                 Width="150" Height="150" Grid.Column="1" Grid.Row="1"
-                BorderThickness="2" Opacity="0.6"
+                BorderThickness="2"
                 Style="{StaticResource FontForButtom}"
-                MouseDoubleClick="btStation_MouseDoubleClick" ToolTip="station window">
-            <Image Source="busStationIcon.JPG" Width="130"/>
+                MouseDoubleClick="btStation_MouseDoubleClick" ToolTip="station window" Margin="57.2,95,57.6,15.2">
+            <Image Source="iconStationBus.JPG" Width="130"/>
         </Button>
 
         <Button x:Name="btLine"
                 Width="150" Height="150" Grid.Column="2" Grid.Row="1"
-                BorderThickness="2" Opacity="0.6"
+                BorderThickness="2"
                 Style="{StaticResource FontForButtom}"
-                MouseDoubleClick="btLine_MouseDoubleClick" ToolTip="line window">
+                MouseDoubleClick="btLine_MouseDoubleClick" ToolTip="line window" Margin="57.4,95,56.6,15.2">
             <Image Source="iconLine.JPG" Width="130"/>
         </Button>
 

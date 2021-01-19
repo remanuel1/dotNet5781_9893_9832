@@ -21,7 +21,7 @@
 
             <Button x:Name="toMain" Height="40" Width="80" Canvas.Top="30" Canvas.Left="10" Background="{x:Null}"
                     ToolTip="move to station window" Click="toMain_Click">
-                <Image Source="busStationIcon.JPG" Width="70"/>
+                <Image Source="iconHome.JPG" Width="70"/>
             </Button>
 
             <Button x:Name="toBus" Height="80" Width="80" Canvas.Top="80" Canvas.Left="10" Background="{x:Null}"
@@ -30,15 +30,18 @@
             </Button>
             <Button x:Name="toStation" Height="80" Width="80" Canvas.Top="170" Canvas.Left="10" Background="{x:Null}"
                     ToolTip="move to station window" Click="toStation_Click">
-                <Image Source="busStationIcon.JPG" Width="70"/>
+                <Image Source="iconStationBus.JPG" Width="70"/>
             </Button>
-            <Button x:Name="toUser" Height="80" Width="80" Canvas.Top="260" Canvas.Left="10" Background="{x:Null}"
+            <Button Height="80" Width="80" Canvas.Top="260" Canvas.Left="10" Background="{x:Null}"
+                    IsEnabled="False" Opacity="0.6">
+                <Image Source="iconLine.jpg" Width="70"/>
+            </Button>
+
+            <Button x:Name="toUser" Height="80" Width="80" Canvas.Top="350" Canvas.Left="10" Background="{x:Null}"
                     ToolTip="move to user window" Click="toUser_Click">
                 <Image Source="iconUser.jpg" Width="70"/>
             </Button>
-            <Button x:Name="toexit" Content="EXIT" FontSize="20"
-                    Height="40" Width="80" Canvas.Top="350" Canvas.Left="10"
-                    Style="{StaticResource FontForButtom}" Click="toexit_Click"/>
+
         </Canvas>
 
         <Grid Grid.Column="1">
@@ -53,15 +56,9 @@
                    Style="{StaticResource FontForLabel}" Height="37" Margin="0,0,0.2,0.4">
             </Label>
 
-            <Menu Height="30" Width="80" Grid.Row="0" Grid.Column="0" Margin="60,10,10,10">
-                <MenuItem Header="show only..">
-                    <MenuItem Header="north" Click="MenuItem_Click"/>
-                    <MenuItem Header="south" Click="MenuItem_Click"/>
-                    <MenuItem Header="center" Click="MenuItem_Click"/>
-                    <MenuItem Header="general" Click="MenuItem_Click"/>
-                </MenuItem>
-                
-            </Menu>
+            <ComboBox x:Name="comboBoxArea" HorizontalAlignment="Center"
+                      VerticalAlignment="Center" Width="120" Height="35" SelectionChanged="comboBoxArea_SelectionChanged"
+                      Style="{StaticResource commonTeaget}"/>
 
             <ListBox x:Name="listLines"
                  ItemsSource="{Binding}" Grid.Column="0" Padding="10" Grid.Row="1" Opacity="0.8"

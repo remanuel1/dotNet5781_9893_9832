@@ -49,6 +49,7 @@ namespace PL
             }
             managerName.Text= "";
             managerPass.Password = "";
+            managerPassShow.Text = "";
         }
 
         private void showPass_Checked(object sender, RoutedEventArgs e)
@@ -82,6 +83,7 @@ namespace PL
             }
             userName.Text = "";
             userPass.Password = "";
+            userPassShow.Text = "";
         }
 
         private void newUser_MouseDoubleClick(object sender, MouseButtonEventArgs e)
