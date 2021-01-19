@@ -6,14 +6,14 @@
     <Application.Resources>
 
         <Style x:Key="commonTeaget" TargetType="Control">
-            <Setter Property="FontFamily" Value="FbExtazi Regular"/>
+            <Setter Property="FontFamily" Value="../#FbExtazi Regular"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FlowDirection" Value="LeftToRight"/>
         </Style>
 
         <Style x:Key="FontForTextBlock" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="FbExtazi Regular"/>
+            <Setter Property="FontFamily" Value="../#FbExtazi Regular"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FlowDirection" Value="LeftToRight"/>
