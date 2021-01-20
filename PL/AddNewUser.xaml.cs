@@ -33,7 +33,10 @@ namespace PL
             bl = _bl;
             typeUser = _typeUser;
             newUserLabel.Content = "  add new " + typeUser;
-            
+            if (_typeUser == BO.Type.manager)
+                loginButton.Content = "add";
+            else
+                loginButton.Content = "sign up";
         }
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
@@ -49,11 +52,7 @@ namespace PL
             try
             {
                 bl.addUser(userToAdd);
-                UserWindow userWindow = new UserWindow(bl);
-                userWindow.Left = this.Left -100;
-                userWindow.Top = this.Top -100;
-                userWindow.Show();
-
+                MessageBox.Show("addition " +userToAdd.name + " as "+ userToAdd.type + " was done");
             }
             catch
             {

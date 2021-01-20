@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="AddNewUser" Height="400" Width="450">
+    <Window.Background>
+        <ImageBrush ImageSource="background2.jpg"/>
+    </Window.Background>
     <Canvas>
         <Label x:Name="newUserLabel" Content="{Binding}"  Height="50" Padding="7"
                    Background="#FFA4E4ED" FontSize="30" Style="{StaticResource FontForLabel}" Width="443"/>
@@ -14,7 +17,7 @@
                    Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="75"/>
 
         <TextBox x:Name="nameOfUser"
-                     Text=" " Width="250" Height="35" Padding="7"
+                     Text="" Width="250" Height="35" Padding="7"
                      Canvas.Top="75" Canvas.Right="25"
                    Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" />
 
@@ -22,7 +25,7 @@
                    Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="119"/>
 
         <TextBox x:Name="mailOfUser"
-                     Text=" " Width="250" Height="35" Padding="7"
+                     Text="" Width="250" Height="35" Padding="7"
                      Canvas.Top="119" Canvas.Right="25"
                    Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" Canvas.Left="169" />
 
@@ -30,7 +33,7 @@
                    Background="{x:Null}" FontSize="20" Style="{StaticResource FontForLabel}" Canvas.Top="164"/>
 
         <TextBox x:Name="userName"
-                     Text=" " Width="219" Height="40" Padding="7"
+                     Text="" Width="219" Height="40" Padding="7"
                      Canvas.Top="164" Canvas.Right="25"
                    Background="White" FontSize="20" Style="{StaticResource FontForTextBox}" Canvas.Left="199"
                  PreviewTextInput="notSpace_PreviewTextInput"/>
@@ -46,7 +49,7 @@
                    Style="{StaticResource FontForTextBox}" Canvas.Left="199"/>
 
         <Button x:Name="loginButton"
-                    Content="login" Width="100" Height="40"
+                    Content="{Binding}" Width="100" Height="40"
                     Canvas.Left="169" Canvas.Top="280"
                     Background="#FFA4E4ED" FontFamily="../#FbExtazi Regular" FontSize="16" FontWeight="Bold"
                     Grid.Column="1" Click="loginButton_Click">

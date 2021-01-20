@@ -57,7 +57,7 @@ namespace PL
                                                orderby item.numberStationInLine
                                                select item.nameStation).ToList();
 
-                        numberLine.Content = line.numberLine;
+                        numberLine.Content = "number line: "+ line.numberLine;
                         break;
                     }
 

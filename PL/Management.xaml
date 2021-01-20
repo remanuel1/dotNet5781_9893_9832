@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Management" Height="550" Width="800">
+        Title="Management" Height="550" Width="800" Icon="iconAdmin.JPG">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="18410.jpg"/>
+            <ImageBrush ImageSource="background2.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -45,8 +45,15 @@
             <Button x:Name="addUser" Height="55" Width="56" Margin="0"
                     Style="{StaticResource FontForButtom}"
                     Background="{x:Null}" Click="addUser_Click" Canvas.Left="654" Canvas.Top="10"
-                    ToolTip="add new user">
+                    ToolTip="add a new user">
                 <Image Source="iconUser.jpg"/>
+            </Button>
+
+            <Button x:Name="getAllUser" Height="55" Width="56" Margin="0"
+                    Style="{StaticResource FontForButtom}"
+                    Background="{x:Null}" Click="getAllUser_Click" Canvas.Left="587" Canvas.Top="10"
+                    ToolTip="see all users">
+                <Image Source="iconListUsers.jpg"/>
             </Button>
         </Canvas>
 

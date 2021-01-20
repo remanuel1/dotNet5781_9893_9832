@@ -176,6 +176,8 @@ namespace BL
         public void updateBusStation(BO.BusStation busStation)
         {
             DO.BusStation busStationDO = new DO.BusStation();
+            if (busStation.Latitude < 33.7 || busStation.Latitude > 36.3 || busStation.Longitude < 29.3 || busStation.Longitude > 33.5)
+                throw new BO.BadLocalExceptions("this location is out from ISRAEL");
             busStation.CopyPropertiesTo(busStationDO);
             try
             {
@@ -442,6 +444,7 @@ namespace BL
                 int one = line.listStaion.ElementAt(station.numberStationInLine - 2).numberStation;
                 int two = line.listStaion.ElementAt(station.numberStationInLine).numberStation;
                 insertFollowStations(one, two);
+
             }
             line.listStaion = (from DO.LineStation item in stationList
                                select lineStationDoBoAdapter(item)).ToList();
@@ -498,6 +501,7 @@ namespace BL
             {
                 throw new BO.BadIDExceptions($"station number: {ex.ID1}, {ex.ID2} is exsits", ex);
             }
+            
         }
         public BO.FollowStations getFollowStations(int station1, int station2)
         {
@@ -736,11 +740,10 @@ namespace BL
             }
             return user;
         }
-        public IEnumerable<BO.User> getAllUserBy(Predicate<BO.User> predicate)
+        public IEnumerable<object> getAllUser()
         {
-            /*return (from item in dl.getAllUserBy(Converter < BO.User, DO.User > predicate)
-                    select predicate(item);*/
-            return null;
+            return from item in dl.getAllUser()
+                   select new { type = item.type, name = item.name, userName = item.userName };
         }
         #endregion
     }

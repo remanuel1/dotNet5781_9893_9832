@@ -86,6 +86,9 @@
     <Compile Include="SearchRideWindow.xaml.cs">
       <DependentUpon>SearchRideWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SeeAllUsers.xaml.cs">
+      <DependentUpon>SeeAllUsers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SendMail.xaml.cs">
       <DependentUpon>SendMail.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SeeAllUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SendMail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -215,13 +222,7 @@
     <Resource Include="background1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="iconUser2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="iconAdmin1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="iconUser1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="iconAdmin.JPG" />
@@ -234,8 +235,16 @@
     <Resource Include="iconUser.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="18410.jpg" />
-    <Resource Include="91649.jpg" />
+    <Resource Include="background2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="iconSearch.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="iconMail.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="iconListUsers.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

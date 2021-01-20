@@ -177,7 +177,7 @@
     <totalFuel>1200</totalFuel>
     <Status>ready</Status>
     <sumKMFromLastTreat>0</sumKMFromLastTreat>
-    <lastTreat>18/01/2021 16:08:40</lastTreat>
+    <lastTreat>04/01/2021 00:00:00</lastTreat>
     <deleted>False</deleted>
   </Bus>
   <Bus>
@@ -238,6 +238,16 @@
     <Status>ready</Status>
     <sumKMFromLastTreat>0</sumKMFromLastTreat>
     <lastTreat>2021-01-10T00:00:00</lastTreat>
+    <deleted>False</deleted>
+  </Bus>
+  <Bus>
+    <numberLicense>65234125</numberLicense>
+    <startActivity>2021-01-19T00:00:00</startActivity>
+    <sumKM>0</sumKM>
+    <totalFuel>1200</totalFuel>
+    <Status>ready</Status>
+    <sumKMFromLastTreat>0</sumKMFromLastTreat>
+    <lastTreat>2021-01-19T00:00:00</lastTreat>
     <deleted>False</deleted>
   </Bus>
 </BusXML.xml>

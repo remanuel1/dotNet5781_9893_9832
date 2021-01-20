@@ -76,5 +76,11 @@ namespace PL
             newUser.Left = this.Left + 100;
             newUser.Show();
         }
+
+        private void getAllUser_Click(object sender, RoutedEventArgs e)
+        {
+            SeeAllUsers seeAllUsers = new SeeAllUsers(bl);
+            seeAllUsers.Show();
+        }
     }
 }

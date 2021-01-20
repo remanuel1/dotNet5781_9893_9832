@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="LineWindow" Height="550" Width="800">
+        Title="LineWindow" Height="550" Width="800" Icon="iconLine.JPG">
     <Window.Background>
         <ImageBrush ImageSource="background1.jpg"/>
     </Window.Background>
@@ -57,11 +57,15 @@
             </Label>
 
             <ComboBox x:Name="comboBoxArea" HorizontalAlignment="Center"
-                      VerticalAlignment="Center" Width="120" Height="35" SelectionChanged="comboBoxArea_SelectionChanged"
+                      VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                      Width="120" Height="35" SelectionChanged="comboBoxArea_SelectionChanged"
                       Style="{StaticResource commonTeaget}"/>
+
+
 
             <ListBox x:Name="listLines"
                  ItemsSource="{Binding}" Grid.Column="0" Padding="10" Grid.Row="1" Opacity="0.8"
+                     Style="{StaticResource FontForListBox}" 
                  MouseDoubleClick="listLines_MouseDoubleClick" Width="100"/>
 
             <Button Content="+"
@@ -70,7 +74,7 @@
                 Click="Button_ClickToAdd" ToolTip="press double click to enter a new line"/>
         </Grid>
 
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Width="500" Height="400"
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Width="500" Height="500"
                Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
     </Grid>

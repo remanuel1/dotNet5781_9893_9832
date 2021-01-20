@@ -70,7 +70,7 @@ namespace BLAPI
         void updateUser(User userCurrent, User userNew);
         User getUser(string userName);
         User getUserByMail(string userMail);
-        IEnumerable<User> getAllUserBy(Predicate<User> predicate);
+        IEnumerable<object> getAllUser();
         #endregion
     }
 }

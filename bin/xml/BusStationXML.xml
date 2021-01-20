@@ -41,14 +41,6 @@
     <deleted>false</deleted>
   </BusStation>
   <BusStation>
-    <numberStation>38837</numberStation>
-    <Latitude>34.796071</Latitude>
-    <Longitude>31.892166</Longitude>
-    <nameStation>Hana Avrech / Volkani</nameStation>
-    <address>Hana Avrech 15, Rehovot</address>
-    <deleted>false</deleted>
-  </BusStation>
-  <BusStation>
     <numberStation>38838</numberStation>
     <Latitude>34.824106</Latitude>
     <Longitude>31.857565</Longitude>
@@ -398,6 +390,22 @@
     <Longitude>31.816579</Longitude>
     <nameStation>Waiztman / Marvad Haksamim</nameStation>
     <address>Waiztman 19 , Gedera</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38837</numberStation>
+    <Latitude>34.796071</Latitude>
+    <Longitude>31.892166</Longitude>
+    <nameStation>Hana Avrech / Volkani</nameStation>
+    <address>Hana Avrech 15, Rehovot</address>
+    <deleted>false</deleted>
+  </BusStation>
+  <BusStation>
+    <numberStation>38892</numberStation>
+    <Latitude>34.55</Latitude>
+    <Longitude>30.1</Longitude>
+    <nameStation>gimzo</nameStation>
+    <address>hadekel gimzo</address>
     <deleted>false</deleted>
   </BusStation>
 </ArrayOfBusStation>

@@ -72,7 +72,7 @@ namespace PL
             try
             {
                 bl.insertBus(temp);
-                allBuses.DataContext = bl.getAllBusses();
+                allBuses.ItemsSource = bl.getAllBusses();
                 MessageBox.Show("The bus was successfully added", "O.K.", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (BO.BadDateExceptions ex)

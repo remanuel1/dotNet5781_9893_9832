@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="UserWindow" Height="550" Width="800">
+        Title="UserWindow" Height="550" Width="800" Icon="iconUser.JPG">
     <Window.Background>
         <ImageBrush ImageSource="background1.jpg"/>
     </Window.Background>
@@ -29,6 +29,7 @@
 
             <ListView x:Name="listStation"
                  ItemsSource="{Binding}" MouseDoubleClick="listStation_MouseDoubleClick" Opacity="0.8"
+                 Style="{StaticResource FontForListBox}"
                  Grid.Column="0" Margin="10,50,0.4,0.2" Grid.RowSpan="2">
                 <ListView.View>
                     <GridView>
@@ -37,9 +38,14 @@
                 </ListView.View>
             </ListView>
 
-            <Button x:Name="findDriving" Content="search a ride"
+            <Button x:Name="findDriving"
                Grid.Row="2" Grid.Column="0" FontSize="20" Click="findDriving_Click"
-                        Style="{StaticResource FontForButtom}" Margin="10,9.8,0.4,-8.4"/>
+                        Style="{StaticResource FontForButtom}" Margin="10,9.8,0.4,-8.4">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="iconSearch.JPG" Margin="5"/>
+                    <TextBlock Text="search a ride" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
 
         </Grid>
 
@@ -97,7 +103,8 @@
             <Label x:Name="nameStation" Content="{Binding}"
                    Grid.Row="1" Height="40" Style="{StaticResource FontForLabel}" FontSize="20" Margin="0,10.2,0,250.6" />
 
-            <ListView x:Name="listLineTiming"  Grid.Row="1" Margin="10,55.2,100,-62.4" Opacity="0.8">
+            <ListView x:Name="listLineTiming"  Grid.Row="1" Margin="10,55.2,100,-62.4" Opacity="0.8"
+                      Style="{StaticResource FontForListBox}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="No. line" Width="60" DisplayMemberBinding="{Binding LineNumber}"/>

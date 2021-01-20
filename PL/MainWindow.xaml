@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="800">
+        Title="MainWindow" Height="550" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Background>
-        <ImageBrush ImageSource="18410.jpg"/>
+        <ImageBrush ImageSource="background2.jpg"/>
     </Window.Background>
     <Grid RenderTransformOrigin="0.5,0.5">
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -20,9 +20,7 @@
         <Label Content="welcome"
                HorizontalAlignment="Center" VerticalAlignment="Top" Height="140" Width="341" Grid.ColumnSpan="2"
                FontSize="120" FontFamily="Gabriola" FontWeight="Bold" Margin="226,-28,226.6,0">
-            <Label.Background>
-                <ImageBrush/>
-            </Label.Background>
+
         </Label>
 
         <Canvas x:Name="cnAdmin"
@@ -110,7 +108,7 @@
                     Style="{StaticResource FontForButtom}"
                     Grid.Column="1" Click="user_Click"/>
 
-            <Label x:Name="newUser" Content="new here? creat new user.." Canvas.Top="319" Canvas.Left="49"
+            <Label x:Name="newUser" Content="new here? click to sign up" Canvas.Top="-34" Canvas.Left="126"
                    MouseDoubleClick="newUser_MouseDoubleClick"
                    Style="{StaticResource FontForLabel}" TextOptions.TextHintingMode="Fixed"/>
 

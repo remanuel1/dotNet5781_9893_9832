@@ -44,7 +44,7 @@ namespace PL
             InitializeComponent();
             bl = _bl;
             comboBoxArea.ItemsSource = Enum.GetValues(typeof(BO.Area));
-            //comboBoxArea.SelectedIndex = 0;
+            comboBoxArea.SelectedIndex = 4;
             refreshListLines();
         }
 

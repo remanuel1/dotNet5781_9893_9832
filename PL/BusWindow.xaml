@@ -6,7 +6,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="BUSES" Height="550" Width="800" RenderTransformOrigin="0.5,0.5">
+        Title="BUSES" Height="550" Width="800" Icon="iconBus.JPG">
     <Window.Background>
         <ImageBrush ImageSource="background1.jpg"/>
     </Window.Background>

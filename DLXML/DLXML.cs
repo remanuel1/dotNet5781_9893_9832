@@ -355,7 +355,7 @@ namespace DL
 
             if (ListLineStation.FirstOrDefault(p => p.identifyLine == lineStation.identifyLine && p.deleted == false) == null)
                 throw new DO.BadIdException(lineStation.identifyLine, "these line not exist");
-            ListLineStation.Find(p => p.identifyLine == lineStation.identifyLine).deleted = true;
+            ListLineStation.FirstOrDefault(p => p.identifyLine == lineStation.identifyLine && p.numberStation == lineStation.numberStation).deleted = true;
             XMLTools.SaveListToXMLSerializer(ListLineStation, lineStationPath);
 
         }
@@ -504,11 +504,10 @@ namespace DL
                 throw new DO.BadUserException(userMail);
         }
 
-        public IEnumerable<User> getAllUserBy(Predicate<User> predicate)
+        public IEnumerable<User> getAllUser()
         {
             List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
             return from item in ListUser
-                   where predicate(item)
                    orderby item.name
                    select item;
         }

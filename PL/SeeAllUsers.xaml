@@ -1,0 +1,29 @@
+﻿<Window x:Class="PL.SeeAllUsers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="SeeAllUsers" Height="300" Width="450" Icon="iconListUsers.jpg" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="background2.jpg"/>
+    </Window.Background>
+    <Grid>
+        <ListView x:Name="allUsers" HorizontalAlignment="Center" VerticalAlignment="Top" Width="440" Height="270" Padding="5"
+                  Style="{StaticResource FontForListBox}">
+            <ListView.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </ListView.Background>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="type" Width="100" DisplayMemberBinding="{Binding type}"/>
+                    <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding name}"/>
+                    <GridViewColumn Header="User Name" Width="150" DisplayMemberBinding="{Binding userName}"/>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>

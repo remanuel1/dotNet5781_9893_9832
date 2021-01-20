@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="SendMail" Height="300" Width="450">
+        Title="SendMail" Height="300" Width="450" Icon="iconMail.jpg">
+    <Window.Background>
+        <ImageBrush ImageSource="background2.jpg"/>
+    </Window.Background>
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -18,7 +21,8 @@
 
         <TextBox x:Name="mailAddress"
                  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"
-                 Height="40" Width="350" TextWrapping="Wrap"
+                 Height="40" Width="350" TextWrapping="Wrap" HorizontalContentAlignment="Center" FontSize="20"
+                 Style="{StaticResource FontForTextBox}"
                  PreviewKeyDown="mailAddress_PreviewKeyDown"/>
 
     </Grid>

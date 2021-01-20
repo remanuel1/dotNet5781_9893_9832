@@ -358,10 +358,9 @@ namespace DL
         {
             return null;
         }
-        public IEnumerable<DO.User> getAllUserBy(Predicate<DO.User> predicate)
+        public IEnumerable<DO.User> getAllUser()
         {
             return (from user in DataSource.allUsers
-                    where predicate(user)
                     select user.Clone()).ToList();
         }
     }
