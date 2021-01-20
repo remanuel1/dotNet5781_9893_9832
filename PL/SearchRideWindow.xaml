@@ -11,40 +11,42 @@
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="250"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Label Content="choose sourse station:" Grid.Column="0"
                Height="30"
-               Style="{StaticResource FontForLabel}" HorizontalAlignment="Center" Margin="73,29,73,361"/>
+               Style="{StaticResource FontForLabel}" HorizontalAlignment="Center" Margin="37,29,36.6,361"/>
 
         <ComboBox x:Name="sourseStation" ItemsSource="{Binding}"
                Visibility="{Binding}" IsEnabled="True"
-               Height="35" Width="200" Margin="50,56,50,329"
+               Height="30" Width="200" Margin="25,56,25,325"
                   Style="{StaticResource commonTeaget}"/>
 
         <Label Content="choose destination station:" Grid.Column="0"
                Height="30"
-               Style="{StaticResource FontForLabel}" HorizontalAlignment="Center" Margin="30,105,30,285"/>
+               Style="{StaticResource FontForLabel}" HorizontalAlignment="Center" Margin="18,107,18.6,283"/>
 
         <ComboBox x:Name="destinationStation" ItemsSource="{Binding}"
                Visibility="{Binding}" IsEnabled="True"
-               Height="35" Width="200" Margin="50,133,50,250"
+               Height="30" Width="200" Margin="25,133,25,245"
                Style="{StaticResource commonTeaget}"/>
 
         <Button x:Name="search" Content="GO"
                 Height="50" Width="100"
-                Style="{StaticResource FontForButtom}" FontSize="25" Click="search_Click"/>
+                Style="{StaticResource FontForButtom}" FontSize="25" Click="search_Click" Margin="75,213,74.6,157"/>
 
         <Label Name="numberLine"
                Grid.Column="1" Height="50" Width="200" VerticalAlignment="Top" HorizontalAlignment="Center"
                Style="{StaticResource FontForLabel}" FontSize="25" Margin="0,5,44,0" />
 
         <ListView x:Name="listLine" Grid.Column="1" ItemsSource="{Binding}"
-                  Opacity="0.9" 
-                  Width="200" Height="300" HorizontalAlignment="Left" HorizontalContentAlignment="Center"
-                  Style="{StaticResource FontForListBox}">
+                  Width="247" Height="300" HorizontalAlignment="Left"
+                  Style="{StaticResource FontForListBox}" Margin="0.4,60,0,60" >
+            <ListView.Background>
+                <SolidColorBrush Color="White" Opacity="0.8"/>
+            </ListView.Background>
 
         </ListView>
 

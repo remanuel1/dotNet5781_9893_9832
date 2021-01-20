@@ -2490,15 +2490,17 @@ namespace DS
             {
                 new User
                 {
-                    name = "renana Emanuel",
+                    name = "Renana Emanuel",
                     userName = "renana",
-                    password = "renana"
+                    password = "renana",
+                    mail = "renana12ema@gmail.com"
                 },
                 new User
                 {
                     name = "Maayan Zohar",
                     userName = "maayan",
-                    password = "maayan"
+                    password = "maayan",
+                    mail = "maayan659@gmail.com"
                 }
             };
         }
