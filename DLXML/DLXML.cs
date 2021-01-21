@@ -297,17 +297,6 @@ namespace DL
         {
             List<LineBus> ListLineBus = XMLTools.LoadListFromXMLSerializer<LineBus>(lineBusPath);
 
-            /*XElement root = new XElement(followStationsPath);
-
-            root.Add(XMLTools.ToXML(allFollow[0]));
-            for (int i = 1; i < allFollow.Count(); i++)
-            {
-                root.Add(XMLTools.ToXML(allFollow[i]));
-            }
-            
-            XMLTools.SaveListToXMLElement(root, followStationsPath);
-            XMLTools.LoadListFromXMLElement(followStationsPath);*/
-
             return (from line in ListLineBus
                    where line.deleted == false
                    orderby line.numberLine
@@ -318,15 +307,6 @@ namespace DL
         }
         #endregion
 
-        #region method line start driving
-        /* // כרגע לא ממומש - יציאת קו
-        bool addLineStartDriving(LineStartDriving lineBus);
-        bool updateLineStartDriving(LineStartDriving lineBus);
-        void deleteLineStartDriving(LineStartDriving lineBus);
-        LineStartDriving readLineStartDriving(int identifyBus);
-        IEnumerable<LineStartDriving> getLineStartDriving();
-        */
-        #endregion
 
         #region method Line station
         public void addLineStation(DO.LineStation lineStation)

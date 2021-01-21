@@ -2483,6 +2483,69 @@ namespace DS
                     frequency = 90,
                     endTime = TimeSpan.Parse("23:59:59")
                 },
+                new ExitLine
+                {
+                    identifyBus = 1002,
+                    startTime = TimeSpan.Parse("08:00:00"),
+                    frequency = 15,
+                    endTime = TimeSpan.Parse("11:59:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1002,
+                    startTime = TimeSpan.Parse("12:00:00"),
+                    frequency = 10,
+                    endTime = TimeSpan.Parse("15:59:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1002,
+                    startTime = TimeSpan.Parse("16:00:00"),
+                    frequency = 5,
+                    endTime = TimeSpan.Parse("19:59:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1002,
+                    startTime = TimeSpan.Parse("20:00:00"),
+                    frequency = 60,
+                    endTime = TimeSpan.Parse("23:59:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1003,
+                    startTime = TimeSpan.Parse("08:00:00"),
+                    frequency = 90,
+                    endTime = TimeSpan.Parse("11:59:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1003,
+                    startTime = TimeSpan.Parse("12:00:00"),
+                    frequency = 30,
+                    endTime = TimeSpan.Parse("18:59:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1003,
+                    startTime = TimeSpan.Parse("19:00:00"),
+                    frequency = 90,
+                    endTime = TimeSpan.Parse("23:59:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1004,
+                    startTime = TimeSpan.Parse("08:00:00"),
+                    frequency = 60,
+                    endTime = TimeSpan.Parse("15:59:59")
+                },
+                new ExitLine
+                {
+                    identifyBus = 1004,
+                    startTime = TimeSpan.Parse("16:00:00"),
+                    frequency = 120,
+                    endTime = TimeSpan.Parse("23:59:59")
+                },
                 #endregion
             };
 

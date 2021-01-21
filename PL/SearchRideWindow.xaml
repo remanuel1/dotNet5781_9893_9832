@@ -35,7 +35,7 @@
 
         <Button x:Name="search" Content="GO"
                 Height="50" Width="100"
-                Style="{StaticResource FontForButtom}" FontSize="25" Click="search_Click" Margin="75,213,74.6,157"/>
+                Style="{StaticResource FontForButtom}" FontSize="25" Click="search_Click" Margin="75,209,74.6,161" />
 
         <Label Name="numberLine"
                Grid.Column="1" Height="50" Width="200" VerticalAlignment="Top" HorizontalAlignment="Center"
